@@ -1,7 +1,7 @@
 <?php
 class Database {
     protected $pdo;
-
+    protected static $instance = 'sometext';
     protected function __construct()
     {
         try {
@@ -9,5 +9,19 @@ class Database {
         } catch (PDOException $e) {
             echo 'connection error!' .  $e;
         }
+    }
+
+    public static function instance()
+    {
+        if(self::$instance === null) {
+            self::$instance = new self;
+        }
+
+        return self::$instance;
+    }
+
+    public function __call($method, $args)
+    {
+        return call_user_func_array(array($this->pdo, $method), $args);
     }
 }
