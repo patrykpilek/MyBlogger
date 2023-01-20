@@ -13,6 +13,6 @@
 - [x] creating validate class
 - [x] creating method to include classes automatically
 - [x] validating login
-- [ ] creating method to check if email is already exist
+- [x] creating method to check if email is already exist
 - [ ] logging user in
 - [ ] creating method to check if user is logged in

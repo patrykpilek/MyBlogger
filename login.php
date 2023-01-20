@@ -10,7 +10,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
             if(!Validate::filterEmail($email)) {
                 $error = "Invalid email format";
             } else {
-                //
+                if($user = $userObj->emailExist($email)) {
+                    echo $user->fullName;
+                }
             }
         } else {
             $error = "Please enter your email and password";
