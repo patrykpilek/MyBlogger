@@ -1,2 +1,2 @@
 <?php
-echo "Hello World";
+header("location: login.html");
