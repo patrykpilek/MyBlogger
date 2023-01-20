@@ -15,4 +15,4 @@
 - [x] validating login
 - [x] creating method to check if email is already exist
 - [x] logging user in
-- [ ] creating method to check if user is logged in
+- [x] creating method to check if user is logged in

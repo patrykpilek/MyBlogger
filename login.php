@@ -1,6 +1,11 @@
 <?php
 include 'backend/init.php';
 
+if($userObj->isLoggedIn())
+{
+    header("Location: frontend/dashboard.php");
+}
+
 if($_SERVER['REQUEST_METHOD'] === "POST") {
     if(isset($_POST['login'])) {
         $email = Validate::escape($_POST['email']);

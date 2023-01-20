@@ -21,4 +21,9 @@ class Users
     {
         return password_hash($password, PASSWORD_BCRYPT);
     }
+
+    public function isLoggedIn()
+    {
+        return isset($_SESSION['user_id']);
+    }
 }
