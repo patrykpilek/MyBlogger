@@ -1,2 +1,6 @@
 <?php
-header("location: login.html");
+
+include "backend/init.php";
+
+
+//header("location: login.html");
