@@ -1,11 +1,13 @@
 <?php
+class Database {
+    protected $pdo;
 
-$dsn = 'mysql:host=localhost; dbname=blogger';
-$user = 'root';
-$pass = 'secret';
-
-try {
-    $pdo = new PDO($dsn, $user, $pass);
-} catch (PDOException $e) {
-    echo 'connection error!' .  $e;
+    protected function __construct()
+    {
+        try {
+            $this->pdo = new PDO("mysql:host=".DB_HOST."; dbname=".DB_NAME, DB_USER, DB_PASS);
+        } catch (PDOException $e) {
+            echo 'connection error!' .  $e;
+        }
+    }
 }
