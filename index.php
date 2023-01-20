@@ -1,2 +1,5 @@
 <?php
-header("location: login.html");
+
+include "backend/classes/Database.php";
+
+//header("location: login.html");
