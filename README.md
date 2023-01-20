@@ -2,4 +2,5 @@
 
 ### Creating Database Class
 
-- [x] connecting to MySQL Database 
+- [x] connecting to MySQL Database
+- [x] creating a separate file for classes

@@ -1,5 +1,7 @@
 <?php
 
-include "backend/classes/Database.php";
+include "backend/init.php";
+
+echo BASE_URL;
 
 //header("location: login.html");

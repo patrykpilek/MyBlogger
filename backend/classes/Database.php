@@ -6,7 +6,6 @@ $pass = 'secret';
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
-    echo "connect";
 } catch (PDOException $e) {
     echo 'connection error!' .  $e;
 }
