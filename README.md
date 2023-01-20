@@ -6,3 +6,13 @@
 - [x] creating a separate file for classes
 - [x] creating database class
 - [x] creating method to access PDO methods
+
+### Creating User Login
+
+- [x] creating users table
+- [x] creating validate class
+- [x] creating method to include classes automatically
+- [x] validating login
+- [x] creating method to check if email is already exist
+- [x] logging user in
+- [x] creating method to check if user is logged in
