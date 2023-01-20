@@ -10,7 +10,7 @@
 ### Creating User Login
 
 - [x] creating users table
-- [ ] creating validate class
+- [x] creating validate class
 - [ ] creating method to include classes automatically
 - [ ] validating login
 - [ ] creating method to check if email is already exist
