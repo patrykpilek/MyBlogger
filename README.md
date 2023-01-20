@@ -11,7 +11,7 @@
 
 - [x] creating users table
 - [x] creating validate class
-- [ ] creating method to include classes automatically
+- [x] creating method to include classes automatically
 - [ ] validating login
 - [ ] creating method to check if email is already exist
 - [ ] logging user in
