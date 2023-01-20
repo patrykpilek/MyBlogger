@@ -14,5 +14,5 @@
 - [x] creating method to include classes automatically
 - [x] validating login
 - [x] creating method to check if email is already exist
-- [ ] logging user in
+- [x] logging user in
 - [ ] creating method to check if user is logged in

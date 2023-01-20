@@ -11,7 +11,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
                 $error = "Invalid email format";
             } else {
                 if($user = $userObj->emailExist($email)) {
-                    echo $user->fullName;
+                    $hash = $user->password;
+                    if(password_verify($password, $hash)) {
+                        $_SESSION['user_id'] = $user->userID;
+                        header("Location: frontend/dashboard.php");
+                    } else {
+                        $error = "Your email or password is incorrect!";
+                    }
                 }
             }
         } else {
