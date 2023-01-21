@@ -26,7 +26,7 @@
 - [x] creating new table for blog permissions
 - [x] creating method to check if user is admin
 - [x] creating new table for blogs posts
-- [ ] creating method to display blog posts
+- [x] creating method to display blog posts
 - [ ] creating new table for post labels
 - [ ] creating method to display post labels
 - [ ] creating method for label menu
