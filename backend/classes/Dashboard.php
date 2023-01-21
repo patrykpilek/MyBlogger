@@ -53,12 +53,12 @@ class Dashboard
                                                     </div>
                                                     <div class="pl-h-lf-link">
                                                         <ul>
-                                                            {Labels}
+                                                            '. $this->getPostLabels($post->postID, $post->blogID) .'
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div class="pl-head-right">
-                                                    <span>' . $post->postStatus . '</span>
+                                                    <span>' . (($post->postStatus === 'draft') ? 'Draft' : '') . '</span>
                                                 </div>
                                             </div>
                                             <div class="p-l-footer">
@@ -107,5 +107,23 @@ class Dashboard
                 </div>
             ';
         }
+    }
+
+    public function getPostLabels($postID, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT *FROM `labels` WHERE `postID` = :postID AND `blogID` = :blogID");
+        $stmt->bindParam(":postID", $postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $labels = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $i = 1;
+        $return = '';
+
+        foreach ($labels as $label) {
+            $return .= '<li><a href="#">'.$label->labelName.'</a></li>' . (($i < count($labels)) ? ', ' : '');
+            $i++;
+        }
+        return $return;
     }
 }

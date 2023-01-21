@@ -28,7 +28,7 @@
 - [x] creating new table for blogs posts
 - [x] creating method to display blog posts
 - [x] creating new table for post labels
-- [ ] creating method to display post labels
+- [x] creating method to display post labels
 - [ ] creating method for label menu
 - [ ] creating JS function to display label menu
 - [ ] creating JS function to display add new label box
