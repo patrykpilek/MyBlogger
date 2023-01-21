@@ -126,4 +126,16 @@ class Dashboard
         }
         return $return;
     }
+
+    public function getLabelsMenu($blogID)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM `labels` WHERE `blogID` = :blogID");
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $labels = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($labels as $label) {
+            echo '<li><a href="javascript:;" data-id="'. $label->ID.'">'. $label->labelName .'</a></li>';
+        }
+    }
 }

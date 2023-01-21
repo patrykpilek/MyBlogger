@@ -29,7 +29,7 @@
 - [x] creating method to display blog posts
 - [x] creating new table for post labels
 - [x] creating method to display post labels
-- [ ] creating method for label menu
+- [x] creating method for label menu
 - [ ] creating JS function to display label menu
 - [ ] creating JS function to display add new label box
 - [ ] creating ajax request for label menu
