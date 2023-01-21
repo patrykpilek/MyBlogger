@@ -22,7 +22,7 @@
 - [x] setting up dashboard page
 - [x] creating search engine friendly urls
 - [x] creating new table for blogs
-- [ ] creating method to return data from tables
+- [x] creating method to return data from tables
 - [ ] creating new table for blog permissions
 - [ ] creating method to check if user is admin
 - [ ] creating new table for blogs posts

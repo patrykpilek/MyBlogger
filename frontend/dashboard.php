@@ -2,6 +2,10 @@
 include '../backend/init.php';
 
 $user = $userObj->userData();
+$blog = $userObj->get('blogs', ['blogID' => 1]);
+
+echo $blog->Title;
+
 ?>
 
 <!DOCTYPE HTML>
