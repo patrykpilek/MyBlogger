@@ -20,7 +20,7 @@
 ### Creating Dashboard (Admin Panel for Blogs)
 
 - [x] setting up dashboard page
-- [ ] creating search engine friendly urls
+- [x] creating search engine friendly urls
 - [ ] creating new table for blogs
 - [ ] creating method to return data from tables
 - [ ] creating new table for blog permissions
