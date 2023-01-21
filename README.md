@@ -21,7 +21,7 @@
 
 - [x] setting up dashboard page
 - [x] creating search engine friendly urls
-- [ ] creating new table for blogs
+- [x] creating new table for blogs
 - [ ] creating method to return data from tables
 - [ ] creating new table for blog permissions
 - [ ] creating method to check if user is admin
