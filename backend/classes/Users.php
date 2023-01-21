@@ -24,6 +24,22 @@ class Users
 
     public function isLoggedIn()
     {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['user_id']) ? true : false;
+    }
+
+    public function ID()
+    {
+        if($this->isLoggedIn()) {
+            return $_SESSION['user_id'];
+        }
+    }
+
+    public function userData($user_id = null)
+    {
+        $user_id = ($user_id === null) ? $this->ID() : $user_id;
+        $stmt = $this->db->prepare("SELECT * FROM `users` WHERE `userID` = :userID");
+        $stmt->bindParam(":userID", $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 }
