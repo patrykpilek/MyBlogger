@@ -37,7 +37,7 @@
 - [x] creating create method (CRUD functions)
 - [x] creating delete method (CRUD functions)
 - [x] creating function to add labels by label list
-- [ ] creating function to check all posts
+- [x] creating function to check all posts
 - [ ] creating JS function to publish posts (as bulk)
 - [ ] creating condition to publish posts at once
 - [ ] creating update method (CRUD functions)

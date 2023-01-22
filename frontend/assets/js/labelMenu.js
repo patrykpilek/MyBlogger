@@ -2,6 +2,7 @@ let button = document.querySelector("#labelMenu");
 let labelMenu = document.querySelector(".label-menu");
 let label = document.querySelectorAll(".label");
 let blogID = document.querySelector("#newLabel").dataset.blog;
+let checkAll = document.querySelector("#checkAll");
 
 button.addEventListener("click", function(event) {
     event.stopPropagation();
@@ -97,3 +98,17 @@ label.forEach(function(el) {
         }
     })
 });
+
+checkAll.addEventListener("change", function(e) {
+    let checkBox = document.querySelectorAll('.postCheckBox');
+
+    checkBox.forEach(function(el) {
+        el.checked = true;
+    });
+
+    if(this.checked === false) {
+        checkBox.forEach(function(el) {
+            el.checked = false;
+        });
+    }
+})
