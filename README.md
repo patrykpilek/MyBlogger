@@ -33,7 +33,7 @@
 - [x] creating JS function to display label menu
 - [x] creating JS function to display add new label box
 - [x] creating ajax request for label menu
-- [ ] validating addlabel ajax file
+- [x] validating addlabel ajax file
 - [ ] creating create method (CRUD functions)
 - [ ] creating delete method (CRUD functions)
 - [ ] creating function to add labels by label list
