@@ -41,7 +41,7 @@
 - [x] creating JS function to publish posts (as bulk)
 - [x] creating condition to publish posts at once
 - [x] creating update method (CRUD functions)
-- [ ] creating method to draft posts at once
+- [x] creating method to draft posts at once
 - [ ] creating function delete multiple posts at once
 - [ ] creating function to delete post by link
 - [ ] creating JS function search posts in dashboard
