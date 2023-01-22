@@ -1,6 +1,7 @@
 let button = document.querySelector("#labelMenu");
 let labelMenu = document.querySelector(".label-menu");
-let blogID    = document.querySelector("#newLabel").dataset.blog;
+let label = document.querySelectorAll(".label");
+let blogID = document.querySelector("#newLabel").dataset.blog;
 
 button.addEventListener("click", function(event) {
     event.stopPropagation();
@@ -56,4 +57,43 @@ button.addEventListener("click", function(event) {
             labelMenu.classList.remove("display");
         }
     }
+});
+
+label.forEach(function(el) {
+    el.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        let checkBox = document.querySelectorAll(".postCheckBox");
+        let array = new Array();
+
+        checkBox.forEach(function(el){
+            if(el.checked) {
+                array.push(el.value);
+            }
+        });
+
+        if(array.length > 0) {
+            //ajax request
+            let formData = new FormData();
+            formData.append('newLabel', el.textContent);
+            formData.append('postID', JSON.stringify(array));
+            formData.append('blogID', blogID);
+
+            let httpRequest = new XMLHttpRequest();
+
+            if(httpRequest){
+                httpRequest.open('POST', 'http://localhost/backend/ajax/addLabel.php', true);
+                httpRequest.onreadystatechange = function(){
+                    if(this.readyState === 4 && this.status === 200){
+                        location.reload(true);
+                    }
+                }
+                httpRequest.send(formData);
+            }
+        } else {
+            alert("No posts are selected!");
+            location.reload(true);
+        }
+    })
 });

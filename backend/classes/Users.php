@@ -51,6 +51,7 @@ class Users
 
         foreach ($fields as $key => $value) {
             $sql .= "{$where} `{$key}` = :{$key}";
+            $where = " AND ";
         }
 
         if($stmt = $this->db->prepare($sql)) {
@@ -74,19 +75,18 @@ class Users
                 $stmt->bindValue(":{$key}", $value);
             }
             $stmt->execute();
-            $stmt->db->lastInsertId();
+            $this->db->lastInsertId();
         }
     }
 
     public function delete($table, $fields = array())
     {
-//        $stmt = $this->db->prepare("DELETE FROM `labels` WHERE `postID` = :postID AND `blogID` = :blogID");
         $sql = "DELETE FROM `{$table}`";
         $where = " WHERE ";
 
         foreach ($fields as $key => $value) {
             $sql .= "{$where} `{$key}` = :{$key} ";
-            $where = "AND";
+            $where = "AND ";
         }
 
         if($stmt = $this->db->prepare($sql)) {
@@ -96,7 +96,5 @@ class Users
 
             $stmt->execute();
         }
-
-//        $userObj->delete('labels', ['postID' => '4', 'labelName' => 'newLabel']);
     }
 }

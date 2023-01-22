@@ -15,12 +15,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
                     foreach ($postIDs as $postID) {
                         $post = $userObj->get('posts', ['postID' => $postID]);
                         if($blog->role === 'Admin' or $blog->userID === $post->authorID) {
-                            $label = $userObj->get('labels', ['labelName' => $newLabel]);
+
+                            $label = $userObj->get('labels', ['labelName' => $newLabel, 'postID' => $post->postID, 'blogID' => $blog->blogID]);
 
                             if($label) {
-                                $userObj->delete('labels', ['labelName' => $label->labelName, 'postID' => $postID, 'blogID' => $blogID]);
+                                $userObj->delete('labels', ['labelName' => $label->labelName, 'postID' => $postID, 'blogID' => $blog->blogID]);
                             } else {
-                                $userObj->create('labels', ['labelName' => $newLabel, 'postID' => $postID, 'blogID' => $blogID]);
+                                $userObj->create('labels', ['labelName' => $newLabel, 'postID' => $postID, 'blogID' => $blog->blogID]);
                             }
                         }
                     }

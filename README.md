@@ -36,7 +36,7 @@
 - [x] validating addlabel ajax file
 - [x] creating create method (CRUD functions)
 - [x] creating delete method (CRUD functions)
-- [ ] creating function to add labels by label list
+- [x] creating function to add labels by label list
 - [ ] creating function to check all posts
 - [ ] creating JS function to publish posts (as bulk)
 - [ ] creating condition to publish posts at once
