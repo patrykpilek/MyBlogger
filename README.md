@@ -31,7 +31,7 @@
 - [x] creating method to display post labels
 - [x] creating method for label menu
 - [x] creating JS function to display label menu
-- [ ] creating JS function to display add new label box
+- [x] creating JS function to display add new label box
 - [ ] creating ajax request for label menu
 - [ ] validating addlabel ajax file
 - [ ] creating create method (CRUD functions)
