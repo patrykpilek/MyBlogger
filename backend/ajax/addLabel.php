@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
                             $label = $userObj->get('labels', ['labelName' => $newLabel]);
 
                             if($label) {
-                                //delete label;
+                                $userObj->delete('labels', ['labelName' => $label->labelName, 'postID' => $postID, 'blogID' => $blogID]);
                             } else {
                                 $userObj->create('labels', ['labelName' => $newLabel, 'postID' => $postID, 'blogID' => $blogID]);
                             }

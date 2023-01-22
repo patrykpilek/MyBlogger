@@ -35,7 +35,7 @@
 - [x] creating ajax request for label menu
 - [x] validating addlabel ajax file
 - [x] creating create method (CRUD functions)
-- [ ] creating delete method (CRUD functions)
+- [x] creating delete method (CRUD functions)
 - [ ] creating function to add labels by label list
 - [ ] creating function to check all posts
 - [ ] creating JS function to publish posts (as bulk)
