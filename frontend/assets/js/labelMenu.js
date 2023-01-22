@@ -25,7 +25,24 @@ button.addEventListener("click", function(event) {
 
                 if(label !== null) {
                     //ajax request
-                    alert("it's working");
+                    let formData = new FormData();
+                    formData.append('newLabel', label);
+                    formData.append('postID', JSON.stringify(array));
+                    formData.append('blogID', this.dataset.blog);
+
+                    let httpRequest = new XMLHttpRequest();
+
+                    if(httpRequest) {
+                        httpRequest.open('POST', 'http://localhost/backend/ajax/addlabel.php', true)
+                        httpRequest.onreadystatechange = function() {
+                            if(this.readyState === 4 && this.status === 200) {
+                                alert('request is sent');
+                                location.reload(true);
+                            }
+                        }
+                    }
+
+                    httpRequest.send();
                 }
             }
         } else {
