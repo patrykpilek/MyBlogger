@@ -43,7 +43,7 @@ class Dashboard
                                 <div class="post-link flex fl-row">
                                     <div class="post-in-left fl-1 fl-row flex">
                                         <div class="p-in-check">
-                                            <input type="checkbox" class="postCheckBox" value="'.$post->postID.'"/>
+                                            <input type="checkbox" class="postCheckBox" value="'.$post->postID.'" data-blog="'.$post->blogID.'"/>
                                         </div>
                                         <div class="fl-1">
                                             <div class="p-l-head flex fl-row">
