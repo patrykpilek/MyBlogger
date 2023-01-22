@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
                             if($label) {
                                 //delete label;
                             } else {
-                                //create label;
+                                $userObj->create('labels', ['labelName' => $newLabel, 'postID' => $postID, 'blogID' => $blogID]);
                             }
                         }
                     }

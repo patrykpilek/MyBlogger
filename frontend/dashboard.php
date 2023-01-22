@@ -196,7 +196,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                             <div class="label-menu">
                                                 <ul>
                                                     <li>
-                                                        <a href="javascript:;" id="newLabel" data-blog="<? echo $blog->blogID; ?>">New label...</a>
+                                                        <a href="javascript:;" id="newLabel" data-blog="<?php echo $blog->blogID;?>">New label...</a>
                                                     </li>
                                                     <?php $dashObj->getLabelsMenu($blog->blogID); ?>
                                                 </ul>
