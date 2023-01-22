@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     if($blog) {
                         if($blog->role === "Admin" OR $blog->userID === $post->authorID) {
-                            //update post
+                            $userObj->update("posts", ['postStatus' => 'published'], ['postID' => $post->postID, 'blogID' => $blog->blogID]);
                         } else {
                             echo "Your don'\t have rights to preform this action!";
                         }

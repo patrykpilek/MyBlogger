@@ -25,6 +25,9 @@ publishBtn.addEventListener("click", function(event) {
                 httpRequest.open('POST', 'http://localhost/backend/ajax/publishPosts.php', true);
                 httpRequest.onreadystatechange = function () {
                     if(this.readyState === 4 && this.status === 200) {
+                        if(this.responseText.length !== 0) {
+                            alert(this.responseText);
+                        }
                         location.reload(true);
                     }
                 }
