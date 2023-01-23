@@ -42,7 +42,7 @@
 - [x] creating condition to publish posts at once
 - [x] creating update method (CRUD functions)
 - [x] creating method to draft posts at once
-- [ ] creating function delete multiple posts at once
+- [x] creating function delete multiple posts at once
 - [ ] creating function to delete post by link
 - [ ] creating JS function search posts in dashboard
 - [ ] creating method to display searched posts
