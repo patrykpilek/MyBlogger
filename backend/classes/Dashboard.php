@@ -65,7 +65,7 @@ class Dashboard
                                                 <ul>
                                                     <li><a href="{EDIT-LINK}">Edit</a></li>
                                                     |
-                                                    <li><a href="javascript:;" id="deletePost">Delete</a></li>
+                                                    <li><a href="javascript:;" id="deletePost" data-post="'. $post->postID.'" data-blog="'. $post->blogID.'">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>

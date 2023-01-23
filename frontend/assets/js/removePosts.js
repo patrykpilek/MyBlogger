@@ -1,4 +1,34 @@
 let deleteBtn = document.querySelector("#deleteBtn");
+let deleteLink = document.querySelectorAll("#deletePost");
+
+deleteLink.forEach(function(el) {
+    el.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        if(confirm("Are you sure, you want to delete this?")) {
+            let formData = new FormData();
+
+            formData.append('postID', el.dataset.post);
+            formData.append("blogID", el.dataset.blog);
+
+            let httpRequest = new XMLHttpRequest();
+
+            if(httpRequest) {
+                httpRequest.open('POST', 'http://localhost/backend/ajax/removePostByLink.php', true);
+                httpRequest.onreadystatechange = function () {
+                    if(this.readyState === 4 && this.status === 200) {
+                        if(this.responseText.length !== 0) {
+                            alert(this.responseText);
+                        }
+                        location.reload(true);
+                    }
+                }
+
+                httpRequest.send(formData);
+            }
+        }
+    });
+});
 
 deleteBtn.addEventListener("click", function(e) {
     let checkBox = document.querySelectorAll(".postCheckBox");
