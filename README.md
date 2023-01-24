@@ -48,7 +48,7 @@
 - [x] creating method to display searched posts
 - [x] creating method to display total number of pages for posts
 - [x] creating conditions to display draft, publish, all post
-- [ ] creating method to count total number of pages for posts
+- [x] creating method to count total number of pages for posts
 - [ ] creating new JS file to handle our pagination methods
 - [ ] creating click event for page number
 - [ ] creating condition to display next pages post

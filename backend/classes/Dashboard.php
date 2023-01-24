@@ -173,4 +173,26 @@ class Dashboard
             echo"({$stmt->rowCount()})";
         }
     }
+
+    public function getPaginationPages($postLimit, $type, $status, $blogID) {
+        if($status === '') {
+            $sql = "SELECT * FROM `posts` WHERE `postType` = :type AND `blogID` = :blogID";
+        } else {
+            $sql = "SELECT * FROM `posts` WHERE `postType` = :type AND `postStatus` = :status AND `blogID` = :blogID";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":type", $type, PDO::PARAM_STR);
+        ($status !== '') ? $stmt->bindParam(":status", $status, PDO::PARAM_STR) : '';
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $total = $stmt->rowCount();
+
+        $pages = ceil($total/$postLimit);
+
+        for($i=1; $i < $pages+1; $i++) {
+            echo '<li class="pagenum">' . $i . '</li>';
+        }
+    }
 }

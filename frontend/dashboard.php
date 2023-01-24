@@ -13,6 +13,8 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
     }
 }
 
+$dashObj->getPaginationPages('1', 'Post', '', $blog->blogID);
+
 ?>
 
 <!DOCTYPE HTML>
