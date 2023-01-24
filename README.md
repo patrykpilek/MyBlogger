@@ -47,7 +47,7 @@
 - [x] creating JS function search posts in dashboard
 - [x] creating method to display searched posts
 - [x] creating method to display total number of pages for posts
-- [ ] creating conditions to display draft, publish, all post
+- [x] creating conditions to display draft, publish, all post
 - [ ] creating method to count total number of pages for posts
 - [ ] creating new JS file to handle our pagination methods
 - [ ] creating click event for page number

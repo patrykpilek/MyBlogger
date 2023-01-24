@@ -34,9 +34,15 @@ class Dashboard
 
     public function getAllPosts($type, $status = '', $blogID)
     {
-        $sql = "SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` WHERE `postType` = :type AND `blogID` = :blogID ORDER BY `postID` DESC LIMIT 10";
+        if($status === '') {
+            $sql = "SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` WHERE `postType` = :type AND `blogID` = :blogID ORDER BY `postID` DESC LIMIT 10";
+        } else {
+            $sql = "SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` WHERE `postType` = :type AND  `postStatus` = :status AND `blogID` = :blogID ORDER BY `postID` DESC LIMIT 10";
+        }
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(":type", $type, PDO::PARAM_STR);
+        ($status !== '') ? $stmt->bindParam(":status", $status, PDO::PARAM_STR) : '';
         $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
         $stmt->execute();
         $posts = $stmt->fetchAll(PDO::FETCH_OBJ);
