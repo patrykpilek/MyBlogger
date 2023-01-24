@@ -18,10 +18,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                             $userObj->delete("posts", ['postID' => $post->postID, 'blogID' => $blog->blogID]);
                         } else {
                             echo "Your don'\t have rights to preform this action!";
+                            break;
                         }
-                    } else {
-                        echo 'Something went wrong!';
-                        break;
                     }
                 }
             }
