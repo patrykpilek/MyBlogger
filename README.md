@@ -49,7 +49,7 @@
 - [x] creating method to display total number of pages for posts
 - [x] creating conditions to display draft, publish, all post
 - [x] creating method to count total number of pages for posts
-- [ ] creating new JS file to handle our pagination methods
+- [x] creating new JS file to handle our pagination methods
 - [ ] creating click event for page number
 - [ ] creating condition to display next pages post
 - [ ] creating condition to display previous page
