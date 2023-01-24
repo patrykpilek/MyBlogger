@@ -130,14 +130,14 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 </li>
                                 <ul>
                                     <li id="active" class="active">
-                                        <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/">All{COUNT}
+                                        <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/">All<?php $dashObj->getPostsCount('Post', '', $blog->blogID); ?>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="?type=draft" id="draft">Draft{COUNT}</a>
+                                        <a href="?type=draft" id="draft">Draft<?php $dashObj->getPostsCount('Post', 'draft', $blog->blogID); ?></a>
                                     </li>
                                     <li>
-                                        <a href="?type=published" id="published">Published{COUNT}</a>
+                                        <a href="?type=published" id="published">Published<?php $dashObj->getPostsCount('Post', 'published', $blog->blogID); ?></a>
                                     </li>
                                 </ul>
 
