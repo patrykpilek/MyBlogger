@@ -45,7 +45,7 @@
 - [x] creating function delete multiple posts at once
 - [x] creating function to delete post by link
 - [x] creating JS function search posts in dashboard
-- [ ] creating method to display searched posts
+- [x] creating method to display searched posts
 - [ ] creating method to display total number of pages for posts
 - [ ] creating conditions to display draft, publish, all post
 - [ ] creating method to count total number of pages for posts
