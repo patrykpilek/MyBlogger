@@ -63,7 +63,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                 <div class="header-b-left fl-1">
                     <div>
                         <div class="b-h-div">
-                            <h4>BLOG TITLE</h4>
+                            <h4><?php echo $blog->Title; ?></h4>
                         </div>
                         <span>
 					<a href="javascript:;" id="blogListBtn">
@@ -84,7 +84,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                         </div>
                     </div>
                     <div>
-                        <a href="{SUBDOMAIN}" target="_blank">ViewBlog</a>
+                        <a href="http://<?php echo $blog->Domain; ?>.localhost/" target="_blank">ViewBlog</a>
                     </div>
                 </div>
                 <div class="header-b-right flex fl-4">
@@ -142,22 +142,22 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 </ul>
 
                                 <li><span><i class="far fa-chart-bar"></i></span>
-                                    <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/stats">Stats</a>
+                                    <a href="<?php echo BASE_URL; ?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/stats">Stats</a>
                                 </li>
                                 <li><span><i class="fas fa-comment"></i></span>
-                                    <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/comments">Comments</a>
+                                    <a href="<?php echo BASE_URL; ?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/comments">Comments</a>
                                 </li>
                                 <li><span><i class="far fa-copy"></i></span>
-                                    <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/pages">Pages</a>
+                                    <a href="<?php echo BASE_URL; ?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/pages">Pages</a>
                                 </li>
                                 <li><span><i class="fas fa-object-group"></i></span>
-                                    <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/layout">Layout</a>
+                                    <a href="<?php echo BASE_URL; ?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/layout">Layout</a>
                                 </li>
                                 <li><span><i class="fas fa-pager"></i></span>
-                                    <a href="{BASE_URL}admin/blogID/{BLOG-ID}/template/edit">Template</a>
+                                    <a href="<?php echo BASE_URL; ?>admin/blogID/<?php echo $blog->blogID; ?>/template/edit">Template</a>
                                 </li>
                                 <li><span><i class="fas fa-cog"></i></span>
-                                    <a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/settings">Settings</a>
+                                    <a href="<?php echo BASE_URL; ?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/settings">Settings</a>
                                 </li>
                             </ul>
                         </div>
