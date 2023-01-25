@@ -8,12 +8,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
         $page = (int) $_POST['nextPage'];
         $postLimit = (int) $_POST['postLimit'];
         $postStatus = Validate::escape($_POST['postStatus']);
-
         $blog = $dashObj->blogAuth($blogID);
 
         if($blog) {
-
-            $dashObj->getAllPosts($page, $postLimit, 'Post', '', $blog->blogID);
+            $dashObj->getAllPosts($page, $postLimit, 'Post', $postStatus, $blog->blogID);
         }
     }
 }
