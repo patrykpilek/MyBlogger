@@ -50,7 +50,7 @@
 - [x] creating conditions to display draft, publish, all post
 - [x] creating method to count total number of pages for posts
 - [x] creating new JS file to handle our pagination methods
-- [ ] creating click event for page number
+- [x] creating click event for page number
 - [ ] creating condition to display next pages post
 - [ ] creating condition to display previous page
 - [ ] creating condition to display post by post limit option

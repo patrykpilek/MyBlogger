@@ -235,7 +235,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 </ul>
                                             </div>
 
-                                            <button class="bl disabled" id="nextPage" disabled="true">
+                                            <button class="bl disabled" id="nextPage" disabled="true" data-blog="<?php echo $blog->blogID; ?>">
                                                 <i class="fas fa-chevron-right"></i>
                                             </button>
 

@@ -192,7 +192,7 @@ class Dashboard
         $pages = ceil($total/$postLimit);
 
         for($i=1; $i < $pages+1; $i++) {
-            echo '<li class="pagenum">' . $i . '</li>';
+            echo '<li class="pageNum">' . $i . '</li>';
         }
     }
 }
