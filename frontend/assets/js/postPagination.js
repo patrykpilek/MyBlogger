@@ -6,6 +6,7 @@ let previousBtn = document.querySelector("#previousPage");
 let nextBtn = document.querySelector("#nextPage");
 let currentPage = document.querySelector("#currentPageNum");
 let bID = nextBtn.dataset.blog;
+let postStatus = '';
 
 if(page.lastElementChild != null) {
     if(page.lastElementChild.innerHTML.trim() > 1) {
@@ -29,7 +30,8 @@ btn.addEventListener("click", function(event) {
             let formData = new FormData();
             formData.append('blogID', bID);
             formData.append('nextPage', el.innerHTML.trim());
-            formData.append('postLimit', postLimit);
+            formData.append('postLimit', 1);
+            formData.append('postStatus', postStatus);
 
             let httpRequest = new XMLHttpRequest();
 

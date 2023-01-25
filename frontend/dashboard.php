@@ -257,11 +257,11 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             <!-- POSTS -->
                             <?php
                             if(strpos($_SERVER['REQUEST_URI'], '?type=published')) {
-                                $dashObj->getAllPosts('Post', 'published', $blog->blogID);
+                                $dashObj->getAllPosts('1', '1','Post', 'published', $blog->blogID);
                             } elseif (strpos($_SERVER['REQUEST_URI'], '?type=draft')) {
-                                $dashObj->getAllPosts('Post', 'draft', $blog->blogID);
+                                $dashObj->getAllPosts('1', '1','Post', 'draft', $blog->blogID);
                             } else {
-                                $dashObj->getAllPosts('Post', '', $blog->blogID);
+                                $dashObj->getAllPosts('1', '1','Post', '', $blog->blogID);
                             }
 
                             ?>
