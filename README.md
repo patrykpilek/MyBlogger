@@ -54,6 +54,6 @@
 - [x] creating condition to display next pages post
 - [x] creating condition to display next page
 - [x] creating condition to display previous page
-- [ ] creating condition to display post by post limit option
+- [x] creating condition to display post by post limit option
 - [ ] creating condition to display draft or publish posts page
 - [ ] add links to dashboard tabs

@@ -143,9 +143,71 @@ previousBtn.addEventListener("click", function (event) {
     }
 });
 
+postLimit.addEventListener("change", function(e) {
+    let jumpTo = this.value;
+    //ajax request
+    let formData = new FormData();
+    formData.append('blogID', bID);
+    formData.append('postLimit', jumpTo);
+    formData.append('postStatus', postStatus);
+
+    let httpRequest = new XMLHttpRequest();
+
+    if(httpRequest){
+        httpRequest.open('POST', 'http://localhost/backend/ajax/jumToPost.php', true);
+        httpRequest.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                document.querySelector("#posts").innerHTML = this.responseText;
+                currentPage.innerHTML = 1;
+                getPagesNumber(jumpTo);
+            }
+        }
+        httpRequest.send(formData);
+    }
+});
+
+function getPagesNumber(jumpTo) {
+    //ajax request
+    let formData = new FormData();
+    formData.append('blogID', bID);
+    formData.append('postLimit', jumpTo);
+    formData.append('postStatus', postStatus);
+
+    let httpRequest = new XMLHttpRequest();
+
+    if(httpRequest){
+        httpRequest.open('POST', 'http://localhost/backend/ajax/getPagesNumbers.php', true);
+        httpRequest.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                let regex = /(25|50|100)/g;
+                let number = jumpTo.match(regex);
+                let page = document.querySelector("#page-num");
+                if(number) {
+                    page.innerHTML = this.responseText;
+                    if(page.textContent === "1") {
+                        disableBtn();
+                    } else {
+                        enableBtn();
+                    }
+                }
+            }
+        }
+        httpRequest.send(formData);
+    }
+}
+
 function enableBtn() {
+    postLimit.disabled = false;
+
     btn.disabled = false;
     btn.classList.remove("disabled");
     nextBtn.disabled = false;
     nextBtn.classList.remove("disabled");
+}
+
+function disableBtn() {
+    btn.disabled = true;
+    btn.classList.add("disabled");
+    nextBtn.disabled = true;
+    nextBtn.classList.add("disabled");
 }
