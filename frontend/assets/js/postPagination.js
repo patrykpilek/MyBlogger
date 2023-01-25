@@ -106,6 +106,43 @@ nextBtn.addEventListener("click", function (event) {
     }
 });
 
+previousBtn.addEventListener("click", function (event) {
+    let currentNum = currentPage.innerHTML.trim();
+    let lastPageNum = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
+
+
+    if(currentNum > '1') {
+        currentNum--;
+
+        nextBtn.disabled = false;
+        nextBtn.classList.remove("disabled");
+
+        //ajax request
+        let formData = new FormData();
+        formData.append('blogID', bID);
+        formData.append('previousPage', currentNum);
+        formData.append('postLimit', 1);
+        formData.append('postStatus', postStatus);
+
+        let httpRequest = new XMLHttpRequest();
+
+        if(httpRequest){
+            httpRequest.open('POST', 'http://localhost/backend/ajax/showPreviousPosts.php', true);
+            httpRequest.onreadystatechange = function(){
+                if(this.readyState === 4 && this.status === 200){
+                    document.querySelector("#posts").innerHTML = this.responseText;
+                    currentPage.innerHTML = currentNum;
+                }
+            }
+            httpRequest.send(formData);
+        }
+    }
+    if(currentNum === '1') {
+        previousBtn.disabled = true;
+        previousBtn.classList.add("disabled");
+    }
+});
+
 function enableBtn() {
     btn.disabled = false;
     btn.classList.remove("disabled");
