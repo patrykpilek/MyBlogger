@@ -1,2 +1,3 @@
 RewriteEngine on
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/?$ frontend/dashboard.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/pages/?$ frontend/pages.php?blogID=$1

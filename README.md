@@ -57,3 +57,9 @@
 - [x] creating condition to display post by post limit option
 - [x] creating condition to display draft or publish posts page
 - [x] add links to dashboard tabs
+
+### Creating Page
+
+- [x] creating new file for pages 
+- [ ] make pagination button work for pages
+- [ ] adding scripts to make publish, draft and delete buttons work
