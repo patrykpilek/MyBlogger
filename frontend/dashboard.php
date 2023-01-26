@@ -222,7 +222,6 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                             <div class="p-num">
                                                 <ul id="page-num">
                                                     <?php
-
                                                     if(strpos($_SERVER['REQUEST_URI'], '?type=published')) {
                                                         $dashObj->getPaginationPages('1', 'Post', 'published', $blog->blogID);
                                                     } elseif (strpos($_SERVER['REQUEST_URI'], '?type=draft')) {
@@ -230,7 +229,6 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     } else {
                                                         $dashObj->getPaginationPages('1', 'Post','', $blog->blogID);
                                                     }
-                                                    
                                                     ?>
                                                 </ul>
                                             </div>
