@@ -61,5 +61,5 @@
 ### Creating Page
 
 - [x] creating new file for pages 
-- [ ] make pagination button work for pages
+- [x] make pagination button work for pages
 - [ ] adding scripts to make publish, draft and delete buttons work

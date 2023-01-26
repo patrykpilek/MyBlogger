@@ -185,7 +185,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     ?>
                                                 </ul>
                                             </div>
-                                            <button class="bl disabled" id="nextPage" disabled="true">
+                                            <button class="bl disabled" id="nextPage" disabled="true" data-blog="<?php echo $blog->blogID; ?>">
                                                 <i class="fas fa-chevron-right"></i>
                                             </button>
 
@@ -216,6 +216,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             ?>
                         </div>
                         <!-- JS FILES -->
+                        <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/pagePagination.js"></script>
 
                     </div><!--MAIN-Right-inner-DIV-ENDS-HERE-->
                 </div><!--MAIN-Right-DIV-ENDS-HERE-->
