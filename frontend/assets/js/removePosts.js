@@ -1,5 +1,6 @@
 let deleteBtn = document.querySelector("#deleteBtn");
 let deleteLink = document.querySelectorAll("#deletePost");
+let checkAll = document.querySelector("#checkAll");
 
 deleteLink.forEach(function(el) {
     el.addEventListener("click", function(e) {
@@ -70,3 +71,17 @@ deleteBtn.addEventListener("click", function(e) {
         location.reload(true);
     }
 });
+
+checkAll.addEventListener("change", function(e) {
+    let checkBox = document.querySelectorAll('.postCheckBox');
+
+    checkBox.forEach(function(el) {
+        el.checked = true;
+    });
+
+    if(this.checked === false) {
+        checkBox.forEach(function(el) {
+            el.checked = false;
+        });
+    }
+})

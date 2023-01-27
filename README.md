@@ -63,3 +63,7 @@
 - [x] creating new file for pages 
 - [x] make pagination button work for pages
 - [x] adding scripts to make publish, draft and delete buttons work
+
+### Creating Comments Pages
+
+- [x] Creating comments page
