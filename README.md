@@ -67,3 +67,4 @@
 ### Creating Comments Pages
 
 - [x] Creating comments page
+- [x] creating new table for blog comments
