@@ -70,7 +70,7 @@
 - [x] creating new table for blog comments
 - [x] creating method to display comments
 - [x] creating method to display comment pages number
-- [ ] making pagination buttons work for comments pages
+- [x] making pagination buttons work for comments pages
 - [ ] creating conditions to delete comments from comment page
 - [ ] creating condition to delete comment by link
 - [ ] creating new page for pending comments
