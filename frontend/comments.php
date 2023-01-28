@@ -59,7 +59,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                 <div class="header-b-left fl-1">
                     <div>
                         <div class="b-h-div">
-                            <h4>{BLOG TITLE}</h4>
+                            <h4><?php echo $blog->Title; ?></h4>
                         </div>
                         <span>
 					<a href="javascript:;" id="blogListBtn">
@@ -72,7 +72,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             </div>
                             <div class="bhm-body">
                                 <!-- BlogList -->
-                                <h4><?php echo $blog->Title; ?></h4>
+                                {BLOGS LIST}
                             </div>
                             <div class="bhm-footer">
                                 <a href="javascript:;" id="newBlogBtn">New Blog...</a>
@@ -187,7 +187,9 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
 
                                             <div class="p-num">
                                                 <ul id="page-num">
-                                                    {PAGE NUMBER}
+                                                    <?php
+                                                    $dashObj->getCommentPages('1', 'Published', $blog->blogID);
+                                                    ?>
                                                 </ul>
                                             </div>
 
