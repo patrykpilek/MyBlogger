@@ -66,5 +66,6 @@
 
 ### Creating Comments Pages
 
-- [x] Creating comments page
+- [x] creating comments page
 - [x] creating new table for blog comments
+- [x] creating method to display comments
