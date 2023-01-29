@@ -73,6 +73,6 @@
 - [x] making pagination buttons work for comments pages
 - [x] creating conditions to delete comments from comment page
 - [x] creating condition to delete comment by link
-- [ ] creating new page for pending comments
+- [x] creating new page for pending comments
 - [ ] creating function to publish comments
 - [ ] creating method publish comment by link

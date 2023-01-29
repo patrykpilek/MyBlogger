@@ -9,6 +9,10 @@ let active = document.querySelector("#active")
 let postStatus = 'Published';
 let bID = nextBtn.dataset.blog;
 
+if(location.href.match(/Pending/gi)) {
+    postStatus = 'Pending';
+}
+
 if(page.lastElementChild != null) {
     if(page.lastElementChild.innerHTML.trim() > 1) {
         enableBtn();
@@ -31,7 +35,7 @@ btn.addEventListener("click", function(event) {
             let formData = new FormData();
             formData.append('blogID', bID);
             formData.append('nextPage', el.innerHTML.trim());
-            formData.append('postLimit', postLimit.value);
+            formData.append('postLimit', 1);
             formData.append('postStatus', postStatus);
 
             let httpRequest = new XMLHttpRequest();
@@ -85,7 +89,7 @@ nextBtn.addEventListener("click", function (event) {
         let formData = new FormData();
         formData.append('blogID', bID);
         formData.append('nextPage', currentNum);
-        formData.append('postLimit', postLimit.value);
+        formData.append('postLimit', 1);
         formData.append('postStatus', postStatus);
 
         let httpRequest = new XMLHttpRequest();
@@ -122,7 +126,7 @@ previousBtn.addEventListener("click", function (event) {
         let formData = new FormData();
         formData.append('blogID', bID);
         formData.append('previousPage', currentNum);
-        formData.append('postLimit', postLimit.value);
+        formData.append('postLimit', 1);
         formData.append('postStatus', postStatus);
 
         let httpRequest = new XMLHttpRequest();
@@ -177,7 +181,7 @@ function getPagesNumber(jumpTo) {
     let httpRequest = new XMLHttpRequest();
 
     if(httpRequest){
-        httpRequest.open('POST', 'http://localhost/backend/ajax/getPagesNumbers.php', true);
+        httpRequest.open('POST', 'http://localhost/backend/ajax/getCommentPages.php', true);
         httpRequest.onreadystatechange = function(){
             if(this.readyState === 4 && this.status === 200){
                 let regex = /(25|50|100)/g;
