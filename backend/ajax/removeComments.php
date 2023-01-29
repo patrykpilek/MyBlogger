@@ -5,17 +5,23 @@ include '../init.php';
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST['postIDs'])) {
         $postIDs = json_decode($_POST['postIDs']);
-        $blogIDs = json_decode($_POST['blogIDs']);
+        $commentIDs = json_decode($_POST['commentIDs']);
+        $blog = $dashObj->blogAuth($_POST['blogID']);
 
-        if(!empty($postIDs) && !empty($blogIDs)) {
+        if(!empty($postIDs) && !empty($commentIDs)) {
             foreach ($postIDs as $postID) {
-                foreach ($blogIDs as $blogID) {
-                    $post = $userObj->get("posts", ['postID' => $postID, 'blogID' => $blogID]);
-                    $blog = $dashObj->blogAuth($post->blogID);
-
+                foreach ($commentIDs as $commentID) {
                     if($blog) {
+                        $post = $userObj->get("posts", ['postID' => $postID, 'blogID' => $blog->blogID]);
+
                         if($blog->role === "Admin" OR $blog->userID === $post->authorID) {
-                            $userObj->delete("posts", ['postID' => $post->postID, 'blogID' => $blog->blogID]);
+
+                            $comment = $userObj->get("comments", ['commentID' => $commentID, 'postID' => $post->postID, 'blogID' => $blog->blogID]);
+
+                            if($comment) {
+                                $userObj->delete("comments", ['commentID' => $commentID, 'postID' => $post->postID, 'blogID' => $blog->blogID]);
+                            }
+
                         } else {
                             echo "Your don'\t have rights to preform this action!";
                             break;

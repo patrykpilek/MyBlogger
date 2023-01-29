@@ -238,7 +238,7 @@ class Dashboard
                             <div class="post-link flex fl-row">
                                 <div class="post-in-left fl-1 fl-row flex">
                                     <div class="p-in-check">
-                                        <input type="checkbox" class="commentCheckBox"/>
+                                        <input type="checkbox" class="commentCheckBox" data-post="'. $comment->postID .'" data-comment="'. $comment->commentID .'"/>
                                     </div>
                                     <div class="fl-1">
                                         <div class="p-l-head flex fl-row">
@@ -258,7 +258,7 @@ class Dashboard
                                             </li>
                                           ' : '
                                               <li>
-                                                    <a href="javascript:;"id="deleteComment">Delete</a>
+                                                    <a href="javascript:;"id="deleteComment" data-post="'.$comment->postID.'" data-comment="'.$comment->commentID.'">Delete</a>
                                                 </li> 
                                           ') . '
                                            </ul>

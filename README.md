@@ -71,8 +71,8 @@
 - [x] creating method to display comments
 - [x] creating method to display comment pages number
 - [x] making pagination buttons work for comments pages
-- [ ] creating conditions to delete comments from comment page
-- [ ] creating condition to delete comment by link
+- [x] creating conditions to delete comments from comment page
+- [x] creating condition to delete comment by link
 - [ ] creating new page for pending comments
 - [ ] creating function to publish comments
 - [ ] creating method publish comment by link

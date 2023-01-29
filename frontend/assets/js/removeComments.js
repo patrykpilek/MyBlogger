@@ -1,6 +1,7 @@
-let deleteBtn = document.querySelector("#deleteBtn");
-let deleteLink = document.querySelectorAll("#deletePost");
+let deleteBtn = document.querySelector("#commentBtn");
+let deleteLink = document.querySelectorAll("#deleteComment");
 let checkAll = document.querySelector("#checkAll");
+let blogID = deleteBtn.dataset.blog;
 
 deleteLink.forEach(function(el) {
     el.addEventListener("click", function(e) {
@@ -10,12 +11,13 @@ deleteLink.forEach(function(el) {
             let formData = new FormData();
 
             formData.append('postID', el.dataset.post);
-            formData.append("blogID", el.dataset.blog);
+            formData.append("commentID", el.dataset.comment);
+            formData.append("blogID", blogID);
 
             let httpRequest = new XMLHttpRequest();
 
             if(httpRequest) {
-                httpRequest.open('POST', 'http://localhost/backend/ajax/removePostByLink.php', true);
+                httpRequest.open('POST', 'http://localhost/backend/ajax/removeCommentByLink.php', true);
                 httpRequest.onreadystatechange = function () {
                     if(this.readyState === 4 && this.status === 200) {
                         if(this.responseText.length !== 0) {
@@ -32,14 +34,14 @@ deleteLink.forEach(function(el) {
 });
 
 deleteBtn.addEventListener("click", function(e) {
-    let checkBox = document.querySelectorAll(".postCheckBox");
+    let checkBox = document.querySelectorAll(".commentCheckBox");
     let postIDs = new Array();
-    let blogIDs = new Array();
+    let commentIDs = new Array();
 
     checkBox.forEach(function (el) {
         if(el.checked) {
-            postIDs.push(el.value);
-            blogIDs.push(el.dataset.blog);
+            postIDs.push(el.dataset.post);
+            commentIDs.push(el.dataset.comment);
         }
     });
 
@@ -48,12 +50,13 @@ deleteBtn.addEventListener("click", function(e) {
             let formData = new FormData();
 
             formData.append('postIDs', JSON.stringify(postIDs));
-            formData.append("blogIDs", JSON.stringify(blogIDs));
+            formData.append("commentIDs", JSON.stringify(commentIDs));
+            formData.append("blogID", blogID);
 
             let httpRequest = new XMLHttpRequest();
 
             if(httpRequest) {
-                httpRequest.open('POST', 'http://localhost/backend/ajax/removePosts.php', true);
+                httpRequest.open('POST', 'http://localhost/backend/ajax/removeComments.php', true);
                 httpRequest.onreadystatechange = function () {
                     if(this.readyState === 4 && this.status === 200) {
                         if(this.responseText.length !== 0) {
@@ -73,7 +76,7 @@ deleteBtn.addEventListener("click", function(e) {
 });
 
 checkAll.addEventListener("change", function(e) {
-    let checkBox = document.querySelectorAll('.postCheckBox');
+    let checkBox = document.querySelectorAll('.commentCheckBox');
 
     checkBox.forEach(function(el) {
         el.checked = true;
