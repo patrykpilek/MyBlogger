@@ -254,7 +254,7 @@ class Dashboard
                                         <div class="p-l-footer">
                                           <ul>' . (($comment->status === "Pending") ? '
                                             <li>
-                                                <a href="javascript:;" id="publishComment">Publish</a>
+                                                <a href="javascript:;" id="publishComment" data-post="'.$comment->postID.'" data-comment="'.$comment->commentID.'">Publish</a>
                                             </li>
                                           ' : '
                                               <li>

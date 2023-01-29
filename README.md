@@ -75,4 +75,4 @@
 - [x] creating condition to delete comment by link
 - [x] creating new page for pending comments
 - [x] creating function to publish comments
-- [ ] creating method publish comment by link
+- [x] creating method publish comment by link
