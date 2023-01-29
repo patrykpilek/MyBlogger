@@ -63,3 +63,16 @@
 - [x] creating new file for pages 
 - [x] make pagination button work for pages
 - [x] adding scripts to make publish, draft and delete buttons work
+
+### Creating Comments Pages
+
+- [x] creating comments page
+- [x] creating new table for blog comments
+- [x] creating method to display comments
+- [x] creating method to display comment pages number
+- [x] making pagination buttons work for comments pages
+- [x] creating conditions to delete comments from comment page
+- [x] creating condition to delete comment by link
+- [x] creating new page for pending comments
+- [x] creating function to publish comments
+- [x] creating method publish comment by link

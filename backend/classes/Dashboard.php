@@ -24,9 +24,10 @@ class Dashboard
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function searchPosts($search, $blogID) {
+    public function searchPosts($search, $blogID)
+    {
         $stmt = $this->db->prepare("SELECT * FROM `posts`, `users` WHERE `authorID` = `userID` AND `title` LIKE ? AND `blogID` = ?");
-        $stmt->bindValue(1, '%'.$search.'%', PDO::PARAM_STR);
+        $stmt->bindValue(1, '%' . $search . '%', PDO::PARAM_STR);
         $stmt->bindValue(2, $blogID, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -34,7 +35,7 @@ class Dashboard
 
     public function getAllPosts($offset, $limit, $type, $status = '', $blogID)
     {
-        if($status === '') {
+        if ($status === '') {
             $sql = "SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` 
                     WHERE `postType` = :type AND `blogID` = :blogID ORDER BY `postID` 
                     DESC LIMIT :offset, :postLimit";
@@ -44,8 +45,8 @@ class Dashboard
                     DESC LIMIT :offset, :postLimit";
         }
 
-        if(!empty($offset)) {
-            $offset = ($offset-1)*$limit;
+        if (!empty($offset)) {
+            $offset = ($offset - 1) * $limit;
         }
 
         $stmt = $this->db->prepare($sql);
@@ -67,7 +68,7 @@ class Dashboard
                                 <div class="post-link flex fl-row">
                                     <div class="post-in-left fl-1 fl-row flex">
                                         <div class="p-in-check">
-                                            <input type="checkbox" class="postCheckBox" value="'.$post->postID.'" data-blog="'.$post->blogID.'"/>
+                                            <input type="checkbox" class="postCheckBox" value="' . $post->postID . '" data-blog="' . $post->blogID . '"/>
                                         </div>
                                         <div class="fl-1">
                                             <div class="p-l-head flex fl-row">
@@ -77,7 +78,7 @@ class Dashboard
                                                     </div>
                                                     <div class="pl-h-lf-link">
                                                         <ul>
-                                                            '. $this->getPostLabels($post->postID, $post->blogID) .'
+                                                            ' . $this->getPostLabels($post->postID, $post->blogID) . '
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -89,7 +90,7 @@ class Dashboard
                                                 <ul>
                                                     <li><a href="{EDIT-LINK}">Edit</a></li>
                                                     |
-                                                    <li><a href="javascript:;" id="deletePost" data-post="'. $post->postID.'" data-blog="'. $post->blogID.'">Delete</a></li>
+                                                    <li><a href="javascript:;" id="deletePost" data-post="' . $post->postID . '" data-blog="' . $post->blogID . '">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -124,7 +125,7 @@ class Dashboard
                     <div class="posts-wrap-inner">
                         <div class="nopost flex">
                             <div>
-                                <p>There are no '. $type .'s. </p><a href="{CREATE-POST-LINK}">Create a new ' . $type .'</a>
+                                <p>There are no ' . $type . 's. </p><a href="{CREATE-POST-LINK}">Create a new ' . $type . '</a>
                             </div>
                         </div>
                     </div>
@@ -145,7 +146,7 @@ class Dashboard
         $return = '';
 
         foreach ($labels as $label) {
-            $return .= '<li><a href="#">'.$label->labelName.'</a></li>' . (($i < count($labels)) ? ', ' : '');
+            $return .= '<li><a href="#">' . $label->labelName . '</a></li>' . (($i < count($labels)) ? ', ' : '');
             $i++;
         }
         return $return;
@@ -160,13 +161,13 @@ class Dashboard
         $labels = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         foreach ($labels as $label) {
-            echo '<li class="label" data-id="'.$label->ID.'"><a href="javascript:;">'.$label->labelName.'</a></li>';
+            echo '<li class="label" data-id="' . $label->ID . '"><a href="javascript:;">' . $label->labelName . '</a></li>';
         }
     }
 
     public function getPostsCount($type, $status, $blogID)
     {
-        if($status === '') {
+        if ($status === '') {
             $sql = "SELECT * FROM `posts` WHERE `postType` = :type AND `blogID` = :blogID";
         } else {
             $sql = "SELECT * FROM `posts` WHERE `postType` = :type AND `postStatus` = :status AND `blogID` = :blogID";
@@ -179,13 +180,14 @@ class Dashboard
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-        if($data) {
-            echo"({$stmt->rowCount()})";
+        if ($data) {
+            echo "({$stmt->rowCount()})";
         }
     }
 
-    public function getPaginationPages($postLimit, $type, $status, $blogID) {
-        if($status === '') {
+    public function getPaginationPages($postLimit, $type, $status, $blogID)
+    {
+        if ($status === '') {
             $sql = "SELECT * FROM `posts` WHERE `postType` = :type AND `blogID` = :blogID";
         } else {
             $sql = "SELECT * FROM `posts` WHERE `postType` = :type AND `postStatus` = :status AND `blogID` = :blogID";
@@ -199,9 +201,122 @@ class Dashboard
         $data = $stmt->fetchAll(PDO::FETCH_OBJ);
         $total = $stmt->rowCount();
 
-        $pages = ceil($total/$postLimit);
+        $pages = ceil($total / $postLimit);
 
-        for($i=1; $i < $pages+1; $i++) {
+        for ($i = 1; $i < $pages + 1; $i++) {
+            echo '<li class="pageNum">' . $i . '</li>';
+        }
+    }
+
+    public function getAllComments($offset, $limit, $type, $blogID)
+    {
+        $sql = "SELECT * FROM `users` `U`, `comments` `C`
+                LEFT JOIN `posts` `P` ON `P`.`postID` = `C`.`postID`
+                WHERE `U`.`userID` = `P`.`authorID` AND `C`.`blogID` = :blogID AND `C`.`status` = :type
+                ORDER BY `commentID` DESC LIMIT :offset, :postLimit";
+
+        if (!empty($offset)) {
+            $offset = ($offset - 1) * $limit;
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->bindParam(":type", $type, PDO::PARAM_STR);
+        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+        $stmt->bindParam(":postLimit", $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($comments) {
+            foreach ($comments as $comment) {
+                $date = new DateTime($comment->date);
+                // comments
+                echo '
+                    <div class="m-r-c-inner">
+                        <div class="posts-wrap">
+                        <div class="posts-wrap-inner">
+                            <div class="post-link flex fl-row">
+                                <div class="post-in-left fl-1 fl-row flex">
+                                    <div class="p-in-check">
+                                        <input type="checkbox" class="commentCheckBox" data-post="'. $comment->postID .'" data-comment="'. $comment->commentID .'"/>
+                                    </div>
+                                    <div class="fl-1">
+                                        <div class="p-l-head flex fl-row">
+                                            <div class="pl-head-left fl-1">
+                                                <div class="pl-h-lr-link">
+                                                    <span>	
+                                                        ' . $comment->comment . '
+                                                    </span>
+                                                    <a href="' . BASE_URL . $comment->title . '">' . $comment->title . '</a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-l-footer">
+                                          <ul>' . (($comment->status === "Pending") ? '
+                                            <li>
+                                                <a href="javascript:;" id="publishComment" data-post="'.$comment->postID.'" data-comment="'.$comment->commentID.'">Publish</a>
+                                            </li>
+                                          ' : '
+                                              <li>
+                                                    <a href="javascript:;"id="deleteComment" data-post="'.$comment->postID.'" data-comment="'.$comment->commentID.'">Delete</a>
+                                                </li> 
+                                          ') . '
+                                           </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-in-right">
+                                <div class="p-in-right flex fl-1">
+                                    <div class="pl-auth-name">
+                                        <span>
+                                            <a href="#">'.$comment->name.'</a>
+                                        </span>
+                                    </div>
+                                    <div class="pl-post-date">
+                                        <span>'.$date->format('d/m/y').'</span>
+                                    </div> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                ';
+            }
+        } else {
+            echo '
+                <div class="posts-wrap">
+                    <div class="posts-wrap-inner">
+                        <div class="nopost flex">
+                            <div>
+                                <p>There are no comments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ';
+        }
+    }
+
+    public function getCommentPages($postLimit, $type, $blogID) {
+
+        $sql = "SELECT * FROM `users` `U`, `comments` `C`
+                LEFT JOIN `posts` `P` ON `P`.`postID` = `C`.`postID`
+                WHERE `U`.`userID` = `P`.`authorID` 
+                AND `C`.`status` = :type 
+                AND `C`.`blogID` = :blogID
+                ORDER BY `C`.`commentID` DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":type", $type, PDO::PARAM_STR);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $total = $stmt->rowCount();
+
+        $pages = ceil($total / $postLimit);
+
+        for ($i = 1; $i < $pages + 1; $i++) {
             echo '<li class="pageNum">' . $i . '</li>';
         }
     }

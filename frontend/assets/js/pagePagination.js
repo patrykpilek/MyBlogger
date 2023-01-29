@@ -221,4 +221,6 @@ function disableBtn() {
     btn.classList.add("disabled");
     nextBtn.disabled = true;
     nextBtn.classList.add("disabled");
+    previousBtn.disabled = true;
+    previousBtn.classList.add("disabled");
 }
