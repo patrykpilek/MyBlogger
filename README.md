@@ -76,3 +76,25 @@
 - [x] creating new page for pending comments
 - [x] creating function to publish comments
 - [x] creating method publish comment by link
+
+### Blogs Settings Page
+
+- [x] creating settings page
+- [ ] creating methods to update title of blog
+- [ ] creating method update description
+- [ ] creating method to display blog authors list
+- [ ] creating js file for blog author section
+- [ ] creating method to display image before uploading it
+- [ ] making close button work for author section
+- [ ] inserting blog author
+- [ ] creating method to upload images
+- [ ] creating new js function to display author Menu
+- [ ] creating method to change user permission
+- [ ] creating method to delete authors
+- [ ] creating method to update meta description
+- [ ] creating js function to update PostLimit
+- [ ] creating method to update custom error
+- [ ] creating method to update comment moderation
+- [ ] creating method to update profile
+- [ ] creating method to update password
+- [ ] creating logout method
