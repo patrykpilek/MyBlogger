@@ -150,18 +150,18 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 <td class="td-des">
                                                     <span class="bt-title">
                                                         <span id="titleBox">
-                                                            {BLOG TITLE}
+                                                            <?php echo $blog->Title; ?>
                                                         </span>
                                                         <a href="javascript:;" id="titleBtn">Edit</a>
                                                     </span>
                                                     <div class="bn-title" id="titleBlock">
                                                         <div class="bn-input">
-                                                            <input type="text" name="title" value="{BLOG TITLE}" id="titleInput" autocomplete="off">
+                                                            <input type="text" name="title" value="<?php echo $blog->Title; ?>" id="titleInput" autocomplete="off">
                                                             <div class="bt-error" id="titleError">
                                                             </div>
                                                         </div>
                                                         <div class="bn-button">
-                                                            <button class="btn-newp" id="titleSaveBtn">Save changes</button>
+                                                            <button class="btn-newp" id="titleSaveBtn" data-blog="<?php $blog->blogID; ?>">Save changes</button>
                                                             <button class="cancel-btn" id="titleCancelBtn">Cancel</button>
                                                         </div>
                                                     </div>
@@ -547,6 +547,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                         <!--setting-inner-ends-->
                     </div>
                     <!-- js files -->
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/basicSettings.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>
