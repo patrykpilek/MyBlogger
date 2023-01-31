@@ -174,13 +174,13 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 <td class="td-des">
                                                     <span>
                                                         <span id="descBox">
-                                                            {BLOG DESCRIPTION}
+                                                            <?php echo $blog->Description; ?>
                                                         </span>
                                                         <a href="javascript:;" id="descBtn">Edit</a>
                                                     </span>
                                                     <div class="bn-title" id="descBlock">
                                                         <div class="bn-input">
-                                                            <textarea class="text-area" id="descInput" autocomplete="off">{BLOG DESCRIPTION}</textarea>
+                                                            <textarea class="text-area" id="descInput" autocomplete="off"><?php echo $blog->Description; ?></textarea>
                                                             <div class="bt-error" id="descError">
                                                             </div>
                                                             <div>

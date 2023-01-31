@@ -81,7 +81,7 @@
 
 - [x] creating settings page
 - [x] creating methods to update title of blog
-- [ ] creating method update description
+- [x] creating method update description
 - [ ] creating method to display blog authors list
 - [ ] creating js file for blog author section
 - [ ] creating method to display image before uploading it

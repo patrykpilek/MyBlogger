@@ -3,16 +3,16 @@
 include '../init.php';
 
 if($_SERVER['REQUEST_METHOD'] === "POST") {
-    if(isset($_POST['title'])) {
+    if(isset($_POST['description'])) {
 
-        $title = Validate::escape($_POST['title']);
+        $description = Validate::escape($_POST['description']);
         $blogID = (int) $_POST['blogID'];
         $blog = $dashObj->blogAuth($blogID);
 
         if($blog) {
             if($blog->role === "Admin") {
-                if(!empty($title)) {
-                    $userObj->update('blogs', ['Title' => $title], ['blogID' => $blog->blogID]);
+                if(!empty($description)) {
+                    $userObj->update('blogs', ['Description' => $description], ['blogID' => $blog->blogID]);
                 }
             } else {
                 echo "OwnerError";
