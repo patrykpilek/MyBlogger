@@ -259,7 +259,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                         </div>
                                                         <div class="au-right">
                                                             <div>
-                                                                <img src="{BASE_URL}frontend/assets/images/avatar-image.png" id="previewImage">
+                                                                <img src="<?php echo BASE_URL; ?>frontend/assets/images/avatar-image.png" id="previewImage">
                                                             </div>
                                                         </div>
                                                         <div class="bn-button">

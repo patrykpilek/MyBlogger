@@ -40,4 +40,22 @@ formBtn.addEventListener("click", function(event) {
             }
         }
     });
+
+    document.querySelector('#file').addEventListener("change", function(event) {
+        let regex = /(\.jpg|\.jpeg|\.png)$/i;
+
+        if(!regex.exec(this.value)) {
+            alert("Only '.jpeg', '.jpg', '.png', formats are allowed");
+            this.value = '';
+            return false;
+        } else {
+            if(this.files && this.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    document.querySelector("#previewImage").src = event.target.result;
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+    });
 });
