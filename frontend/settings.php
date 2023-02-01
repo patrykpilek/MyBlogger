@@ -548,6 +548,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     </div>
                     <!-- js files -->
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/basicSettings.js"></script>
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setAuthor.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>
