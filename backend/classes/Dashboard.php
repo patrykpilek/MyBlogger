@@ -238,7 +238,7 @@ class Dashboard
                             <div class="post-link flex fl-row">
                                 <div class="post-in-left fl-1 fl-row flex">
                                     <div class="p-in-check">
-                                        <input type="checkbox" class="commentCheckBox" data-post="'. $comment->postID .'" data-comment="'. $comment->commentID .'"/>
+                                        <input type="checkbox" class="commentCheckBox" data-post="' . $comment->postID . '" data-comment="' . $comment->commentID . '"/>
                                     </div>
                                     <div class="fl-1">
                                         <div class="p-l-head flex fl-row">
@@ -254,11 +254,11 @@ class Dashboard
                                         <div class="p-l-footer">
                                           <ul>' . (($comment->status === "Pending") ? '
                                             <li>
-                                                <a href="javascript:;" id="publishComment" data-post="'.$comment->postID.'" data-comment="'.$comment->commentID.'">Publish</a>
+                                                <a href="javascript:;" id="publishComment" data-post="' . $comment->postID . '" data-comment="' . $comment->commentID . '">Publish</a>
                                             </li>
                                           ' : '
                                               <li>
-                                                    <a href="javascript:;"id="deleteComment" data-post="'.$comment->postID.'" data-comment="'.$comment->commentID.'">Delete</a>
+                                                    <a href="javascript:;"id="deleteComment" data-post="' . $comment->postID . '" data-comment="' . $comment->commentID . '">Delete</a>
                                                 </li> 
                                           ') . '
                                            </ul>
@@ -269,11 +269,11 @@ class Dashboard
                                 <div class="p-in-right flex fl-1">
                                     <div class="pl-auth-name">
                                         <span>
-                                            <a href="#">'.$comment->name.'</a>
+                                            <a href="#">' . $comment->name . '</a>
                                         </span>
                                     </div>
                                     <div class="pl-post-date">
-                                        <span>'.$date->format('d/m/y').'</span>
+                                        <span>' . $date->format('d/m/y') . '</span>
                                     </div> 
                                 </div>
                                 </div>
@@ -298,7 +298,8 @@ class Dashboard
         }
     }
 
-    public function getCommentPages($postLimit, $type, $blogID) {
+    public function getCommentPages($postLimit, $type, $blogID)
+    {
 
         $sql = "SELECT * FROM `users` `U`, `comments` `C`
                 LEFT JOIN `posts` `P` ON `P`.`postID` = `C`.`postID`
@@ -318,6 +319,48 @@ class Dashboard
 
         for ($i = 1; $i < $pages + 1; $i++) {
             echo '<li class="pageNum">' . $i . '</li>';
+        }
+    }
+
+    public function getAuthorList($blogID)
+    {
+
+
+        $stmt = $this->db->prepare("SELECT * FROM  `blogsAuth` `B` 
+                                    LEFT JOIN `users` `U` 
+                                    ON `U`.`userID` = `B`.`userID`
+                                    WHERE  `B`.`blogID` = :blogID");
+
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($users) {
+            foreach ($users as $user) {
+                echo '
+                    <div class="ba-box">
+                        <span class="ba-name">
+                            <span><i class="fas fa-user-tie"></i></span>
+                            <span>'. $user->fullName .'</span>
+                        </span>
+                        <span class="ba-email">
+                            <a href="javscript:;">'. $user->email .'}</a>
+                        </span>
+                        <span class="ba-stats">
+                            <div class="authorBtn">
+                                '. $user->role .'
+                            </div>
+                            <ul class="authorOption">
+                                <li class="option" role="option" value="Admin">Admin</li>
+                                <li class="option" role="option" value="Author">Author</li>
+                            </ul> 
+                        </span>
+                        <span class="ba-delete" >
+                            <a href="javscript:;" class="deleteAuthor"><i class="fas fa-times"></i></a>
+                        </span>
+                    </div>
+                ';
+            }
         }
     }
 }
