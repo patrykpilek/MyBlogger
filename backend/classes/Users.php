@@ -79,7 +79,7 @@ class Users
                 $stmt->bindValue(":{$key}", $value);
             }
             $stmt->execute();
-            $this->db->lastInsertId();
+            return $this->db->lastInsertId();
         }
     }
 

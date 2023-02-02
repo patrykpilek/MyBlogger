@@ -6,6 +6,7 @@ formBtn.addEventListener("click", function(event) {
     let formSaveBtn = document.querySelector("#formSave");
 
     formSaveBtn.addEventListener("click", function(event) {
+        let blogID = this.dataset.blog;
         let email = document.querySelector('#emailInput');
         let name = document.querySelector('#nameInput');
         let pass = document.querySelector('#passInput');
@@ -34,6 +35,7 @@ formBtn.addEventListener("click", function(event) {
                     // send ajax request
                     let formData = new FormData();
 
+                    formData.append('blogID', blogID);
                     formData.append('email', email.value);
                     formData.append("name", name.value);
                     formData.append("pass", pass.value);

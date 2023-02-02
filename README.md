@@ -86,7 +86,7 @@
 - [x] creating js file for blog author section
 - [x] creating method to display image before uploading it
 - [x] making close button work for author section
-- [ ] inserting blog author
+- [x] inserting blog author
 - [ ] creating method to upload images
 - [ ] creating new js function to display author Menu
 - [ ] creating method to change user permission
