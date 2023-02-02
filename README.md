@@ -85,7 +85,7 @@
 - [x] creating method to display blog authors list
 - [x] creating js file for blog author section
 - [x] creating method to display image before uploading it
-- [ ] making close button work for author section
+- [x] making close button work for author section
 - [ ] inserting blog author
 - [ ] creating method to upload images
 - [ ] creating new js function to display author Menu
