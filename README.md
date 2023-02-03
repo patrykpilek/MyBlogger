@@ -89,7 +89,7 @@
 - [x] inserting blog author
 - [x] creating method to upload images
 - [x] creating new js function to display author Menu
-- [ ] creating method to change user permission
+- [x] creating method to change user permission
 - [ ] creating method to delete authors
 - [ ] creating method to update meta description
 - [ ] creating js function to update PostLimit

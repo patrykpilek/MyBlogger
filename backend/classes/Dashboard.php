@@ -347,7 +347,7 @@ class Dashboard
                             <a href="javscript:;">'. $user->email .'}</a>
                         </span>
                         <span class="ba-stats">
-                            <div class="authorBtn" id="authorMenu">
+                            <div class="authorBtn" id="authorMenu" data-blog="'. $user->blogID .'" data-author="'. $user->userID .'">
                                 '. $user->role .'
                             </div>
                             <ul class="authorOption">

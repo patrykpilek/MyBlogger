@@ -8,6 +8,8 @@ if(authorBtn) {
             let option = document.querySelectorAll(".option");
 
             menu.classList.toggle("display");
+            let blogID = this.dataset.blog;
+            let authorID = this.dataset.author;
 
             if(option) {
                 option.forEach(function(el) {
@@ -15,8 +17,11 @@ if(authorBtn) {
                         if(confirm("Do you want to change permission for this user?")) {
                             //ajax request
                             let formData = new FormData();
+                            let role = this.textContent;
 
                             formData.append('blogID', blogID);
+                            formData.append('authorID', authorID);
+                            formData.append('role', role);
 
                             let httpRequest = new XMLHttpRequest();
 
