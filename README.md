@@ -88,7 +88,7 @@
 - [x] making close button work for author section
 - [x] inserting blog author
 - [x] creating method to upload images
-- [ ] creating new js function to display author Menu
+- [x] creating new js function to display author Menu
 - [ ] creating method to change user permission
 - [ ] creating method to delete authors
 - [ ] creating method to update meta description
