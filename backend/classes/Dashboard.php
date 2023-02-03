@@ -356,7 +356,7 @@ class Dashboard
                             </ul> 
                         </span>
                         <span class="ba-delete" >
-                            <a href="javscript:;" class="deleteAuthor"><i class="fas fa-times"></i></a>
+                            <a href="javscript:;" class="deleteAuthor" data-blog="'. $user->blogID .'" data-author="'. $user->userID .'"><i class="fas fa-times"></i></a>
                         </span>
                     </div>
                 ';

@@ -90,7 +90,7 @@
 - [x] creating method to upload images
 - [x] creating new js function to display author Menu
 - [x] creating method to change user permission
-- [ ] creating method to delete authors
+- [x] creating method to delete authors
 - [ ] creating method to update meta description
 - [ ] creating js function to update PostLimit
 - [ ] creating method to update custom error
