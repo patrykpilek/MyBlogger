@@ -91,7 +91,7 @@
 - [x] creating new js function to display author Menu
 - [x] creating method to change user permission
 - [x] creating method to delete authors
-- [ ] creating method to update meta description
+- [x] creating method to update meta description
 - [ ] creating js function to update PostLimit
 - [ ] creating method to update custom error
 - [ ] creating method to update comment moderation

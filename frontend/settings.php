@@ -288,13 +288,13 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 <td class="td-des">
                                                     <span class="bt-title">
                                                         <span id="metaDescBox">
-                                                            {BLOG METADESCRIPTION}
+                                                            <?php echo $blog->MetaDescription; ?>
                                                         </span>
                                                         <a href="javascript:;" id="metaDescBtn">Edit</a>
                                                     </span>
                                                     <div class="bn-title" id="metaDescBlock">
                                                         <div class="bn-input">
-                                                            <textarea class="text-area" id="metaDescInput" autocomplete="off">{BLOG METADESCRIPTION}</textarea>
+                                                            <textarea class="text-area" id="metaDescInput" autocomplete="off"><?php echo $blog->MetaDescription; ?></textarea>
                                                             <div class="bt-error" id="metaDescError">
                                                             </div>
                                                             <div>
@@ -302,7 +302,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                             </div>
                                                         </div>
                                                         <div class="bn-button">
-                                                            <button class="btn-newp" id="metaSaveBtn">Save changes</button>
+                                                            <button class="btn-newp" id="metaSaveBtn" data-blog="<?php echo $blog->blogID; ?>">Save changes</button>
                                                             <button class="cancel-btn" id="metaCancelBtn">Cancel</button>
                                                         </div>
                                                     </div>
@@ -551,6 +551,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setAuthor.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setAuthorRole.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/removeAuthor.js"></script>
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updateMeta.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>
