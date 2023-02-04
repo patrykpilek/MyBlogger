@@ -95,6 +95,6 @@
 - [x] creating js function to update post limit
 - [x] creating method to update custom error
 - [x] creating method to update comment moderation
-- [ ] creating method to update profile
+- [x] creating method to update profile
 - [ ] creating method to update password
 - [ ] creating logout method

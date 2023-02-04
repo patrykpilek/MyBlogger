@@ -420,7 +420,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 <span class="bt-title"></span>
                                                     <div class="bn-title, display">
                                                         <div class="bn-input">
-                                                            <input type="text" name="email" id="editEmail" value="{BLOG EMAIL}" autocomplete="off">
+                                                            <input type="text" name="email" id="editEmail" value="<?php echo $blog->email; ?>" autocomplete="off">
                                                             <div class="bt-error" id="editEmailError">
                                                             </div>
                                                         </div>
@@ -438,7 +438,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     <span class="bt-title"></span>
                                                     <div class="bn-title, display">
                                                         <div class="bn-input">
-                                                            <input type="text" name="displayName" id="editDisplaName" value="{BLOG FULL-NAME}" autocomplete="off">
+                                                            <input type="text" name="displayName" id="editDisplayName" value="<?php echo $blog->fullName; ?>"" autocomplete="off">
                                                             <div class="bt-error" id="displayNameError">
                                                             </div>
                                                         </div>
@@ -455,7 +455,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 <td class="td-des" style="vertical-align:bottom;">
                                                     <div class="au-right">
                                                         <div>
-                                                            <img id="editProfileImage" src="{BASE_URL}{ProfileImage}">
+                                                            <img id="editProfileImage" src="<?php echo BASE_URL.$blog->profileImage; ?>">
                                                         </div>
                                                     </div>
                                                 </td>
@@ -470,7 +470,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 </td>
                                                 <td>
                                                     <div class="bn-button">
-                                                        <button class="btn-newp" id="saveProfileBtn">Save changes</button>
+                                                        <button class="btn-newp" id="saveProfileBtn" data-blog="<?php echo $blog->blogID; ?>">Save changes</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -554,6 +554,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updatePostLimit.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setCustomError.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updateCommentMod.js"></script>
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/editProfile.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>
