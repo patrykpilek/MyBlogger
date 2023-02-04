@@ -325,7 +325,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 </td>
                                                 <td class="td-des">
                                                     <span class="bt-title">
-                                                        <input type="text" name="postLimit" id="postInput" size="2" value="{BLOG POSTLIMIT}">
+                                                        <input type="text" name="postLimit" id="postInput" size="2" value="<?php echo $blog->PostLimit; ?>">
                                                     </span>
                                                     <span class="bt-title">
                                                         on the main page
@@ -335,7 +335,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                             </tbody>
                                         </table>
                                         <div class="bn-button">
-                                            <button class="btn-newp" id="postSaveBtn">Save changes</button>
+                                            <button class="btn-newp" id="postSaveBtn" data-blog="<?php echo $blog->blogID; ?>">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -552,6 +552,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setAuthorRole.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/removeAuthor.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updateMeta.js"></script>
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updatePostLimit.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>

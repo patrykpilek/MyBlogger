@@ -92,7 +92,7 @@
 - [x] creating method to change user permission
 - [x] creating method to delete authors
 - [x] creating method to update meta description
-- [ ] creating js function to update PostLimit
+- [x] creating js function to update post limit
 - [ ] creating method to update custom error
 - [ ] creating method to update comment moderation
 - [ ] creating method to update profile
