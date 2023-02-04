@@ -389,11 +389,11 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 </td>
                                                 <td class="td-des">
                                                     <div class="cm-radio-label">
-                                                        <input id="r1" type="radio" name="commentMod" value="always">
+                                                        <input id="r1" type="radio" name="commentMod" value="always" <?php echo (($blog->Comments === 'always') ? 'checked' : ''); ?>>
                                                         <label for="r1">Always</label>
                                                     </div>
                                                     <div class="cm-radio-label">
-                                                        <input id="r2" type="radio" name="commentMod" value="never">
+                                                        <input id="r2" type="radio" name="commentMod" value="never" <?php echo (($blog->Comments === 'never') ? 'checked' : ''); ?>>
                                                         <label for="r2">Never</label>
                                                     </div>
                                                 </td>
@@ -401,7 +401,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                             </tbody>
                                         </table>
                                         <div class="bn-button">
-                                            <button class="btn-newp" id="commentBtn">Save changes</button>
+                                            <button class="btn-newp" id="commentBtn" data-blog="<?php echo $blog->blogID; ?>">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -553,6 +553,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updateMeta.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updatePostLimit.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setCustomError.js"></script>
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updateCommentMod.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>
