@@ -356,15 +356,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     </span>
                                                     <div class="bn-title" id="customBlock">
                                                         <div class="bn-input">
-                                                            <textarea class="text-area" id="customInput"
-                                                                      autocomplete="off">{BLOG CUSTOM ERROR}</textarea>
+                                                            <textarea class="text-area" id="customInput" autocomplete="off"><?php echo $blog->CustomError; ?></textarea>
                                                             <div class="bt-error" id="customError">
                                                             </div>
                                                             <div>
                                                             </div>
                                                         </div>
                                                         <div class="bn-button">
-                                                            <button class="btn-newp" id="customSaveBtn">Save changes</button>
+                                                            <button class="btn-newp" id="customSaveBtn" data-blog="<?php echo $blog->blogID; ?>">Save changes</button>
                                                             <button class="cancel-btn" id="customCancelBtn">Cancel</button>
                                                         </div>
                                                     </div>
@@ -553,6 +552,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/removeAuthor.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updateMeta.js"></script>
                     <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/updatePostLimit.js"></script>
+                    <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/setCustomError.js"></script>
                 </div>
                 <!--MAIN-Right-DIV-ENDS-HERE-->
             </div>
