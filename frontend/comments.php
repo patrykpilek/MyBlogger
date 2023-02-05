@@ -45,7 +45,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     </div>
                     <div class="header-right fl-2">
                         <div class="h-r-in">
-                            <img src="<?php echo BASE_URL.$blog->profileImage; ?>"/>
+                            <img src="<?php echo BASE_URL.$blog->; ?>"/>
                             <div class="log-out">
                                 <div>
                                     <a href="<?php echo BASE_URL; ?>frontend/logout.php">logout</a>
@@ -188,7 +188,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                             <div class="p-num">
                                                 <ul id="page-num">
                                                     <?php
-                                                    $dashObj->getCommentPages('1', 'Published', $blog->blogID);
+                                                    $dashObj->getCommentPages('10', 'Published', $blog->blogID);
                                                     ?>
                                                 </ul>
                                             </div>
@@ -214,7 +214,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             <!-- Comments -->
                             <div id="posts">
                                 <?php
-                                $dashObj->getAllComments('1', '1','Published', $blog->blogID);
+                                $dashObj->getAllComments('1', '10','Published', $blog->blogID);
                                 ?>
                             </div>
                         </div>

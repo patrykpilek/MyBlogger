@@ -3,10 +3,16 @@
 class Users
 {
     protected $db;
+    protected $imageError;
 
     public function __construct()
     {
         $this->db = Database::instance();
+    }
+
+    public function imageError()
+    {
+        return $this->imageError;
     }
 
     public function emailExist($email)
@@ -43,7 +49,7 @@ class Users
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function redirect($location) {
+    public function redirect($location = '') {
         header("Location:".BASE_URL.$location);
     }
 
@@ -79,7 +85,7 @@ class Users
                 $stmt->bindValue(":{$key}", $value);
             }
             $stmt->execute();
-            $this->db->lastInsertId();
+            return $this->db->lastInsertId();
         }
     }
 
@@ -131,6 +137,38 @@ class Users
                 }
             }
             $stmt->execute();
+        }
+    }
+
+    public function uploadImage($file)
+    {
+        $fileInfo = getimagesize($file['tmp_name']);
+        $fileTmp = $file['tmp_name'];
+        $fileName = $file['name'];
+        $fileSize = $file['size'];
+        $errors = $file['error'];
+
+        //get extension
+        $ext = explode('.', $fileName);
+        $ext = strtolower(end($ext));
+
+        //extension types
+        $allowed = array('image/png', 'image/jpeg', 'image/jpg');
+
+        if(in_array($fileInfo['mime'], $allowed)) {
+            $folder = '/frontend/content/';
+            $file = $folder.substr(md5(time().mt_rand()), 2, 25).'.'.$ext;
+
+            if($errors === 0) {
+                if($fileSize <= 10485760) {
+                    move_uploaded_file($fileTmp, $_SERVER['DOCUMENT_ROOT'].$file);
+                    return $file;
+                } else {
+                    $this->imageError = "File is too large!";
+                }
+            }
+        } else {
+            $this->imageError = "File extension is not allowed!";
         }
     }
 }
