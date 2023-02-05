@@ -98,3 +98,43 @@
 - [x] creating method to update profile
 - [x] creating method to update password
 - [x] creating logout method
+
+### Blogs Methods
+
+- [x] creating methods to display blog data using subdomain
+- [ ] setting up subdomain in localhost
+
+- [ ] creating method to display blog data using subdomain
+- [ ] creating 404 error page
+- [ ] creating method to display blog posts
+- [ ] creating method to display post image as thumbnail
+- [ ] creating post page to display post data
+- [ ] creating method to get post data using slug url
+
+- [ ] display post data on post page
+- [ ] creating method to display post labels on post page
+- [ ] creating new table for blog widgets
+- [ ] creating method to display header gadget
+- [ ] creating method to display nav gadget
+- [ ] creating condition to include domain links in blog template
+
+- [ ] creating method to display label posts
+- [ ] displaying label posts in pot page
+- [ ] creating method to display widgets on sidebar
+- [ ] creating method to display labels gadget
+- [ ] creating html-javascript widget
+- [ ] creating method to display list widget
+
+- [ ] creating method to display author gadget
+- [ ] creating method to display top posts gadget
+- [ ] creating method to display footer gadgets
+- [ ] display title for label posts page
+- [ ] making search gadget work
+- [ ] creating method to display search posts
+
+- [ ] limiting text on posts preview to display
+- [ ] creating method to display comment form
+- [ ] creating method to display comments on post
+- [ ] creating method to display replies on comments
+- [ ] creating method to post comments on blog post
+- [ ] creating method to display comments on post

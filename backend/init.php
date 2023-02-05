@@ -15,3 +15,4 @@ define("BASE_URL", "http://localhost/");
 
 $userObj = new Users();
 $dashObj = new Dashboard();
+$blogObj = new Blog();
