@@ -49,7 +49,7 @@ class Users
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function redirect($location) {
+    public function redirect($location = '') {
         header("Location:".BASE_URL.$location);
     }
 

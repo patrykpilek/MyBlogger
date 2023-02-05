@@ -97,4 +97,4 @@
 - [x] creating method to update comment moderation
 - [x] creating method to update profile
 - [x] creating method to update password
-- [ ] creating logout method
+- [x] creating logout method
