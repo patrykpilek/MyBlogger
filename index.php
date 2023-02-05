@@ -7,8 +7,12 @@ include "backend/init.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{BLOG-TITLE}</title>
-    <?php $blogObj->getStyles() ?>
+    <title><?php $blogObj->getTitle(); ?></title>
+    <?php
+        $blogObj->getStyles();
+        $blogObj->getMeta();
+
+    ?>
 </head>
 <body>
 <div class="wrapper">
