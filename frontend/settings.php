@@ -533,7 +533,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 <td></td>
                                                 <td>
                                                     <div class="bn-button">
-                                                        <button class="btn-newp" id="passSaveBtn">Save changes</button>
+                                                        <button class="btn-newp" id="passSaveBtn" data-blog="<?php echo $blog->blogID; ?>">Save changes</button>
                                                     </div>
                                                 </td>
                                             </tr>

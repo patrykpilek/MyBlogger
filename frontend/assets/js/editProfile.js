@@ -60,3 +60,48 @@ document.querySelector('#editProfile').addEventListener("change", function(event
         }
     }
 });
+
+let savePassBtn = document.querySelector("#passSaveBtn");
+
+savePassBtn.addEventListener("click", function(event) {
+    let currPass = document.querySelector("#editCurPass").value;
+    let newPass = document.querySelector("#editNewPass").value;
+    let newPassRe = document.querySelector("#editNewPassAgain").value;
+
+    if(currPass && newPass && newPassRe !== "") {
+        if(newPass.length && newPassRe.length < 6) {
+            alert("Your password is to short");
+        } else {
+            if(newPass !== newPassRe) {
+                alert("Your new password does not match!");
+            } else {
+                let blogID = this.dataset.blog;
+                //ajax request
+                let formData = new FormData();
+
+                formData.append('blogID', blogID);
+                formData.append('currPass', currPass);
+                formData.append('newPass', newPass);
+                formData.append('newPassRe', newPassRe);
+
+                let httpRequest = new XMLHttpRequest();
+
+                if (httpRequest) {
+                    httpRequest.open('POST', 'http://localhost/backend/ajax/changePassword.php', true);
+                    httpRequest.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            if (this.responseText.length !== 0) {
+                                alert(this.responseText);
+                            }
+                            location.reload(true);
+                        }
+                    }
+
+                    httpRequest.send(formData);
+                }
+            }
+        }
+    } else {
+        alert("Enter your Password to update!")
+    }
+});
