@@ -103,8 +103,7 @@
 
 - [x] creating methods to display blog data using subdomain
 - [x] creating method to display blog data using subdomain
-
-- [ ] creating 404 error page
+- [x] creating 404 error page
 - [ ] creating method to display blog posts
 - [ ] creating method to display post image as thumbnail
 - [ ] creating post page to display post data

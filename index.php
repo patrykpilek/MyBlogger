@@ -1,7 +1,10 @@
 <?php
 
 include "backend/init.php";
-//header("location: login.php");
+
+if(!$blogObj->getBlog()) {
+    $userObj->redirect('login.php');
+}
 
 ?>
 <!DOCTYPE html>
