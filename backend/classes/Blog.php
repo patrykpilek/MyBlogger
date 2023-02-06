@@ -130,4 +130,22 @@ class Blog
 
         return $image;
     }
+
+    public function getPostData($slug) {
+        $stmt = $this->db->prepare("SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` WHERE `slug` = :slug");
+        $stmt->bindParam(":slug", $slug, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function getPost()
+    {
+        if($_SERVER['REQUEST_METHOD'] === "GET") {
+            if(isset($_GET['slug']) && !empty($_GET['slug'])) {
+                $slug = Validate::escape($_GET['slug']);
+                $post = $this->getPostData($slug);
+                return $post;
+            }
+        }
+    }
 }

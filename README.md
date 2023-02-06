@@ -107,7 +107,7 @@
 - [x] creating method to display blog posts
 - [x] creating method to display post image as thumbnail
 - [x] creating post page to display post data
-- [ ] creating method to get post data using slug url
+- [x] creating method to get post data using slug url
 - [ ] display post data on post page
 
 - [ ] creating method to display post labels on post page
