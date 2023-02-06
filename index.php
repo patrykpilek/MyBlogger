@@ -38,7 +38,7 @@ if(!$blogObj->getBlog()) {
                         <div class="post-out-wrap">
                             <div class="post-out-inner">
                                 <!-- Blog Posts -->
-                                {BLOG-POSTS}
+                                <?php $blogObj->getBlogPosts(); ?>
                             </div>
                         </div>
                     </main>
