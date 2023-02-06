@@ -13,10 +13,10 @@ class Blog
 
     public function getBlog()
     {
-        if(preg_match('/^([a-zA-Z0-9]+)\.localhost/',$_SERVER['HTTP_HOST'], $match)) {
+        if (preg_match('/^([a-zA-Z0-9]+)\.localhost/', $_SERVER['HTTP_HOST'], $match)) {
             $subdomain = $match[1];
 
-            if($blog = $this->user->get('blogs', ['domain' => $subdomain])) {
+            if ($blog = $this->user->get('blogs', ['domain' => $subdomain])) {
                 return $blog;
             } else {
                 $this->user->redirect('404');
@@ -33,14 +33,14 @@ class Blog
     public function getMeta()
     {
         $blog = $this->getBlog();
-        echo '<meta name="description" content="'.$blog->MetaDescription.'">
+        echo '<meta name="description" content="' . $blog->MetaDescription . '">
               <meta name="robots" content="index, follow">';
     }
 
     public function getStyles()
     {
         echo '
-            <link rel="stylesheet" href="'. BASE_URL .'frontend/assets/template/style/style.css">
+            <link rel="stylesheet" href="' . BASE_URL . 'frontend/assets/template/style/style.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
             <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -56,17 +56,17 @@ class Blog
         $stmt->execute();
         $posts = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-        if(!empty($posts)) {
+        if (!empty($posts)) {
             foreach ($posts as $post) {
                 $date = new DateTime($post->createdDate);
-                $content = substr(strip_tags($post->content),0, 500);
+                $content = substr(strip_tags($post->content), 0, 500);
 
                 echo '
                     <div class="post-out">
                         <div class="post-out-show">
                             <div class="post-title">
-                                <a href="'.BASE_URL.$post->slug.'">
-                                    <h1>'.$post->title.'</h1>
+                                <a href="' . BASE_URL . $post->slug . '">
+                                    <h1>' . $post->title . '</h1>
                                 </a>
                             </div>
                             <div class="post-author">
@@ -74,10 +74,10 @@ class Blog
                                     <div>
                                         <span class="author-span">
                                             <span class="auth-img">
-                                                <img src="'.BASE_URL.$post->profileImage.'"/>
+                                                <img src="' . BASE_URL . $post->profileImage . '"/>
                                             </span>
                                             <span class="auth-name">
-                                                <a href="#">'.$post->fullName.'</a>
+                                                <a href="#">' . $post->fullName . '</a>
                                             </span>
                                         </span>
                                         <span class="auth-time">
@@ -85,7 +85,7 @@ class Blog
                                                 <i class="far fa-calendar-alt"></i>
                                             </span>
                                             <span class="auth-date">
-                                                '.$date->format('M d, Y').'
+                                                ' . $date->format('M d, Y') . '
                                             </span>
                                         </span>
                                         <span class="auth-labels"></span>
@@ -95,15 +95,15 @@ class Blog
                             <div class="post-body">
                                 <div class="postout-show">
                                     <div class="postout-img">
-                                        <img src="'. $this->getFirstImage($post->content).'"/>
+                                        <img src="' . $this->getFirstImage($post->content) . '"/>
                                     </div>
                                     <div class="postout-text">
-                                        <p>'.$content.'</p>
+                                        <p>' . $content . '</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="read-more">
-                                <div class="read-btn"><a href="'.BASE_URL.$post->slug.'">Readmore</a></div>
+                                <div class="read-btn"><a href="' . BASE_URL . $post->slug . '">Readmore</a></div>
                             </div>
                             <div class="post-footer"></div>
                         </div>
@@ -121,17 +121,19 @@ class Blog
         }
     }
 
-    public function getFirstImage($content) {
-        if(preg_match('/<img.*?src="(.*?)"[^\>]?+>/', $content, $matches)) {
+    public function getFirstImage($content)
+    {
+        if (preg_match('/<img.*?src="(.*?)"[^\>]?+>/', $content, $matches)) {
             $image = $matches[1];
         } else {
-            $image = BASE_URL.'frontend/assets/images/404.jpg';
+            $image = BASE_URL . 'frontend/assets/images/404.jpg';
         }
 
         return $image;
     }
 
-    public function getPostData($slug) {
+    public function getPostData($slug)
+    {
         $stmt = $this->db->prepare("SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` WHERE `slug` = :slug");
         $stmt->bindParam(":slug", $slug, PDO::PARAM_STR);
         $stmt->execute();
@@ -140,12 +142,67 @@ class Blog
 
     public function getPost()
     {
-        if($_SERVER['REQUEST_METHOD'] === "GET") {
-            if(isset($_GET['slug']) && !empty($_GET['slug'])) {
+        if ($_SERVER['REQUEST_METHOD'] === "GET") {
+            if (isset($_GET['slug']) && !empty($_GET['slug'])) {
                 $slug = Validate::escape($_GET['slug']);
                 $post = $this->getPostData($slug);
                 return $post;
             }
         }
+    }
+
+    public function displayPostData()
+    {
+        $post = $this->getPost();
+        $date = new DateTime($post->createdDate);
+
+        echo '
+            <div class="post-out-wrap">
+                <div class="post-out-inner">
+                    <div class="post-title">
+                        <a href="'.BASE_URL.$post->slug.'">
+                            <h1>'.$post->title.'</h1>
+                        </a>
+                    </div>
+                    <div class="post-author">
+                        <div class="pa-inner">
+                            <div>
+                                <span class="author-span">
+                                    <span class="auth-img">
+                                        <img src="'.BASE_URL.$post->profileImage.'"/>
+                                    </span>
+                                    <span class="auth-name">
+                                        <a href="#">'.$post->fullName.'</a>
+                                    </span>
+                                </span>
+                                <span class="auth-time">
+                                    <span class="auth-c">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                    <span class="auth-date">
+                                        '.$date->format('M d, Y').'
+                                    </span>
+                                </span>
+                                <span class="auth-labels">{POST-LABLES}</span>
+                            </div>
+                        </div>
+                    </div><!--POST AUTHOR ENDS--->	
+            
+                    <!--BLOG POST HERE-->
+                    <div class="blog-post">
+                    <div class="blog-post-inner">
+                        <div class="post">
+                            '.$post->content.'
+                        </div>
+                        <!--POST ENDS HERE-->
+                    </div>	
+                    </div>
+                    <!--BLOG POST ENDS HERE-->
+            
+                </div>
+                <!--post-out-inner-->
+            </div>
+            <!--post-out-wrap-->
+        ';
     }
 }

@@ -32,7 +32,7 @@ $post = $blogObj->getPost();
             <div class="web-body-inner flex fl-row">
                 <div class="main">
                     <main>
-                        {BLOG POSTS}
+                        <?php $blogObj->displayPostData(); ?>
                     </main>
                 </div>
                 <div class="aside">

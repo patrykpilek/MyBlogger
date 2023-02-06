@@ -108,7 +108,7 @@
 - [x] creating method to display post image as thumbnail
 - [x] creating post page to display post data
 - [x] creating method to get post data using slug url
-- [ ] display post data on post page
+- [x] display post data on post page
 
 - [ ] creating method to display post labels on post page
 - [ ] creating new table for blog widgets
