@@ -5,3 +5,7 @@ RewriteRule ^admin/blogID/([0-9]+)/dashboard/comments/?$ frontend/comments.php?b
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/pending/comments/?$ frontend/pending-comments.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/settings/?$ frontend/settings.php?blogID=$1
 RewriteRule ^404/?$ frontend/404.php
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ([^/]+)/?$ frontend/post.php?slug=$1
