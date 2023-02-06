@@ -95,7 +95,7 @@ class Blog
                             <div class="post-body">
                                 <div class="postout-show">
                                     <div class="postout-img">
-                                        <img src="{FIRST-IMAGE}"/>
+                                        <img src="'. $this->getFirstImage($post->content).'"/>
                                     </div>
                                     <div class="postout-text">
                                         <p>'.$content.'</p>
@@ -119,5 +119,15 @@ class Blog
                 </div>
             ';
         }
+    }
+
+    public function getFirstImage($content) {
+        if(preg_match('/<img.*?src="(.*?)"[^\>]?+>/', $content, $matches)) {
+            $image = $matches[1];
+        } else {
+            $image = BASE_URL.'frontend/assets/images/404.jpg';
+        }
+
+        return $image;
     }
 }
