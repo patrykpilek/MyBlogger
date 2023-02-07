@@ -4,11 +4,13 @@ class Blog
 {
     protected $db;
     protected $user;
+    protected $layout;
 
     public function __construct()
     {
         $this->db = Database::instance();
         $this->user = new Users();
+        $this->layout = new Layout();
     }
 
     public function getBlog()
@@ -222,5 +224,10 @@ class Blog
             $i++;
         }
         return $return;
+    }
+
+    public function getHeader()
+    {
+        return $this->layout->getHeaderGadget();
     }
 }

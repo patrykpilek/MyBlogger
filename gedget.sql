@@ -8,7 +8,7 @@
 -- Table structure for table `gedget`
 --
 
-CREATE TABLE `gedget` (
+CREATE TABLE `gadgets` (
   `gadgetID` int(11) NOT NULL,
   `blogID` int(11) NOT NULL,
   `type` enum('profile','search','html','labels','topPosts','list','header','nav') NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `gedget` (
 --
 -- Indexes for table `gedget`
 --
-ALTER TABLE `gedget`
+ALTER TABLE `gadgets`
   ADD PRIMARY KEY (`gadgetID`);
 
 --
@@ -35,7 +35,7 @@ ALTER TABLE `gedget`
 --
 -- AUTO_INCREMENT for table `gedget`
 --
-ALTER TABLE `gedget`
+ALTER TABLE `gadgets`
   MODIFY `gadgetID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

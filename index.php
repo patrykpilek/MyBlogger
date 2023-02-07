@@ -23,7 +23,7 @@ if(!$blogObj->getBlog()) {
         <div class="header-wrap">
             <div class="header-wrap-inner flex fl-c">
                 <div class="header flex fl-4">
-                    {HEADER}
+                    <?php $blogObj->getHeader(); ?>
                 </div>
             </div>
             <div class="nav">
