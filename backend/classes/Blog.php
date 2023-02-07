@@ -230,4 +230,9 @@ class Blog
     {
         return $this->layout->getHeaderGadget();
     }
+
+    public function getNav()
+    {
+        return $this->layout->getNavGadget();
+    }
 }

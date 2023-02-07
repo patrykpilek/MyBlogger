@@ -34,15 +34,34 @@ class Layout
             echo '
                 <header>
                     <div class="bg-des-title-wrap">
-                        <a href="#">
+                        <a href="'.BASE_URL.'">
                             <h1 class="blogtitle">'.$content->{'title'}.'</h1>
                         </a>
                         <p>
                             '.$content->{'description'}.'
                         </p>
                     </div>
-                </header
+                </header>
             ';
+        }
+    }
+
+    public function getNavGadget()
+    {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'nav', 'displayOn' => 'nav', 'position' => '2']);
+        $content = json_decode($gadget->content);
+
+        if($gadget) {
+            ?>
+            <nav>
+                <?php
+                    for($i=1; $i <= $content->{'total'}; $i++) {
+                        echo '<a href= "'.$content->{'link'.$i}.'">'.$content->{'name'.$i}.'</a>';
+                    }
+                ?>
+            </nav>
+            <?php
         }
     }
 }

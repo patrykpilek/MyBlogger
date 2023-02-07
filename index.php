@@ -27,7 +27,7 @@ if(!$blogObj->getBlog()) {
                 </div>
             </div>
             <div class="nav">
-                {NAV}
+                <?php $blogObj->getNav(); ?>
             </div>
         </div>
         <div class="web-body">
