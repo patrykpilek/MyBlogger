@@ -33,7 +33,7 @@
 - [x] creating JS function to display label menu
 - [x] creating JS function to display add new label box
 - [x] creating ajax request for label menu
-- [x] validating addlabel ajax file
+- [x] validating add label ajax file
 - [x] creating create method (CRUD functions)
 - [x] creating delete method (CRUD functions)
 - [x] creating function to add labels by label list
@@ -110,7 +110,7 @@
 - [x] creating method to get post data using slug url
 - [x] display post data on post page
 
-- [ ] creating method to display post labels on post page
+- [x] creating method to display post labels on post page
 - [ ] creating new table for blog widgets
 - [ ] creating method to display header gadget
 - [ ] creating method to display nav gadget

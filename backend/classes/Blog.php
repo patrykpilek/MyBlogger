@@ -183,7 +183,7 @@ class Blog
                                         '.$date->format('M d, Y').'
                                     </span>
                                 </span>
-                                <span class="auth-labels">{POST-LABLES}</span>
+                                <span class="auth-labels">'.$this->getPostLabels($post->postID, $post->blogID).'</span>
                             </div>
                         </div>
                     </div><!--POST AUTHOR ENDS--->	
@@ -204,5 +204,23 @@ class Blog
             </div>
             <!--post-out-wrap-->
         ';
+    }
+
+    public function getPostLabels($postID, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT *FROM `labels` WHERE `postID` = :postID AND `blogID` = :blogID");
+        $stmt->bindParam(":postID", $postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $labels = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $i = 1;
+        $return = '';
+
+        foreach ($labels as $label) {
+            $return .= '<span class="post-label"><a href="'.BASE_URL.'search/label/'.$label->labelName.'">' . $label->labelName . '</a></span>' . (($i < count($labels)) ? ', ' : '');
+            $i++;
+        }
+        return $return;
     }
 }
