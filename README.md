@@ -111,7 +111,7 @@
 - [x] display post data on post page
 
 - [x] creating method to display post labels on post page
-- [ ] creating new table for blog widgets
+- [x] creating new table for blog widgets
 - [ ] creating method to display header gadget
 - [ ] creating method to display nav gadget
 - [ ] creating condition to include domain links in blog template
