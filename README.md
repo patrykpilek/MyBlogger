@@ -109,13 +109,12 @@
 - [x] creating post page to display post data
 - [x] creating method to get post data using slug url
 - [x] display post data on post page
-
 - [x] creating method to display post labels on post page
 - [x] creating new table for blog widgets
 - [x] creating method to display header gadget
 - [x] creating method to display nav gadget
 - [x] creating condition to include domain links in blog template
-- [ ] creating method to display label posts
+- [x] creating method to display label posts
 
 - [ ] displaying label posts in pot page
 - [ ] creating method to display widgets on sidebar

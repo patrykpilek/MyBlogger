@@ -208,6 +208,67 @@ class Blog
         ';
     }
 
+    public function displayLabelPosts($label)
+    {
+        $blog = $this->getBlog();
+        $posts = $this->getLabelPosts($label, $blog->blogID);
+
+        if($posts) {
+            foreach ($posts as $post) {
+                $date = new DateTime($post->createdDate);
+                echo '
+                   <div class="post-out">
+                        <div class="post-out-show">
+                            <div class="post-title">
+                                <a href="'.BASE_URL.$post->slug.'">
+                                    <h1>'.$post->title.'</h1>
+                                </a>
+                            </div>
+                            <div class="post-author">
+                                <div class="pa-inner">
+                                    <div>
+                                        <span class="author-span">
+                                            <span class="auth-img">
+                                                <img src="'.BASE_URL.$post->profileImage.'"/>
+                                            </span>
+                                            <span class="auth-name">
+                                                <a href="#">'.$post->fullName.'</a>
+                                            </span>
+                                        </span>
+                                        <span class="auth-time">
+                                            <span class="auth-c">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </span>
+                                            <span class="auth-date">
+                                                '.$date->format('M d, Y').'
+                                            </span>
+                                        </span>
+                                        <span class="auth-labels"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-body">
+                                <div class="postout-show">
+                                    <div class="postout-img">
+                                        <img src="POST-THUMBNAIL"/>
+                                    </div>
+                                    <div class="postout-text">
+                                        <p>{Content}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="read-more">
+                                <div class="read-btn"><a href="{POST-LINK}">Readmore</a></div>
+                            </div>
+                            <div class="post-footer"></div>
+                        </div>
+                    </div>
+
+                ';
+            }
+        }
+    }
+
     public function getPostLabels($postID, $blogID)
     {
         $stmt = $this->db->prepare("SELECT *FROM `labels` WHERE `postID` = :postID AND `blogID` = :blogID");
@@ -224,6 +285,21 @@ class Blog
             $i++;
         }
         return $return;
+    }
+
+    public function getLabelPosts($label, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM `posts` `p` 
+                                    LEFT JOIN `users` `u` ON `p`.`authorID` = `u`.`userID` 
+                                    LEFT JOIN `labels` `l` ON `p`.`postID` = `l`.`postID` 
+                                    AND `p`.`blogID` = 'l'.`blogID` 
+                                    WHERE `p`.`postStatus` = `published` 
+                                    AND `l`.`labelName` = :label 
+                                    AND `l`.`blogID` = :blogID");
+        $stmt->bindParam(":label", $label, PDO::PARAM_STR);
+        $stmt->bindParam(":blogID", $label, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getHeader()
