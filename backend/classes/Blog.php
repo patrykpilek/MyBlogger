@@ -250,15 +250,15 @@ class Blog
                             <div class="post-body">
                                 <div class="postout-show">
                                     <div class="postout-img">
-                                        <img src="POST-THUMBNAIL"/>
+                                        <img src="'.$this->getFirstImage($post->content).'"/>
                                     </div>
                                     <div class="postout-text">
-                                        <p>{Content}</p>
+                                        <p>'.$post->content.'</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="read-more">
-                                <div class="read-btn"><a href="{POST-LINK}">Readmore</a></div>
+                                <div class="read-btn"><a href="'.BASE_URL.$post->slug.'">Readmore</a></div>
                             </div>
                             <div class="post-footer"></div>
                         </div>
