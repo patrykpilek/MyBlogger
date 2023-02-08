@@ -269,62 +269,24 @@ class Blog
         }
     }
 
-    public function displayLabelPosts($label)
+    public function getPostPage()
     {
         $blog = $this->getBlog();
-        $posts = $this->getLabelPosts($label, $blog->blogID);
 
-        if ($posts) {
-            foreach ($posts as $post) {
-                $date = new DateTime($post->createdDate);
-                echo '
-                    <div class="post-out">
-                        <div class="post-out-show">
-                            <div class="post-title">
-                                <a href="'.BASE_URL.$post->slug.'">
-                                    <h1>'.$post->title.'</h1>
-                                </a>
-                            </div>
-                            <div class="post-author">
-                                <div class="pa-inner">
-                                    <div>
-                                        <span class="author-span">
-                                            <span class="auth-img">
-                                                <img src="'.BASE_URL.$post->profileImage.'"/>
-                                            </span>
-                                            <span class="auth-name">
-                                                <a href="#">'.$post->fullName.'</a>
-                                            </span>
-                                        </span>
-                                        <span class="auth-time">
-                                            <span class="auth-c">
-                                                <i class="far fa-calendar-alt"></i>
-                                            </span>
-                                            <span class="auth-date">
-                                                '.$date->format("M d, Y").'
-                                            </span>
-                                        </span>
-                                        <span class="auth-labels"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-body">
-                                <div class="postout-show">
-                                    <div class="postout-img">
-                                        <img src="'.$this->getFirstImage($post->content).'"/>
-                                    </div>
-                                    <div class="postout-text">
-                                        <p>'.$post->content.'</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="read-more">
-                                <div class="read-btn"><a href="'.BASE_URL.$post->slug.'">Readmore</a></div>
-                            </div>
-                            <div class="post-footer"></div>
-                        </div>
-                    </div>
-                ';
+        if($_SERVER['REQUEST_METHOD'] === "GET") {
+            if(isset($_GET['label']) && !empty($_GET['label'])) {
+                $label = Validate::escape($_GET['label']);
+                $this->displayPostData($label);
+            } else {
+                if(!$this->getPost()) {
+                    if($blog->CustomError != '') {
+                        echo html_entity_decode($blog->CustomError);
+                    } else {
+                        echo '<p align="center"><font size="5">PAGE NOT FOUND!</font></p><br/><br/><p><font style="font-size: 150px; font-weight: bold; color: red;">404</font></p>';
+                    }
+                } else {
+                    $this->displayPostData();
+                }
             }
         }
     }
@@ -358,21 +320,6 @@ class Blog
                                     AND `l`.`blogID` = :blogID");
         $stmt->bindParam(":label", $label, PDO::PARAM_STR);
         $stmt->bindParam(":blogID", $label, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function getLabelPosts($label, $blogID)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM `posts` `p` 
-                                    LEFT JOIN `users` `u` ON `p`.`authorID` = `u`.`userID` 
-                                    LEFT JOIN `labels` `l` ON `p`.`postID` = `l`.`postID` 
-                                    AND `p`.`blogID` = `l`.`blogID` 
-                                    WHERE `p`.`postStatus` = `published` 
-                                    AND `l`.`labelName` = :label 
-                                    AND `l.`.`blogID` = :blogID");
-        $stmt->bindParam(":label", $label, PDO::PARAM_STR);
-        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }

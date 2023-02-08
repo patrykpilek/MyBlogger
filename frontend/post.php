@@ -21,18 +21,18 @@ $post = $blogObj->getPost();
         <div class="header-wrap">
             <div class="header-wrap-inner flex fl-c">
                 <div class="header flex fl-4">
-                    {HEADER}
+                    <?php $blogObj->getHeader(); ?>
                 </div>
             </div>
         </div>
         <div class="nav">
-            {NAV}
+            <?php $blogObj->getNav(); ?>
         </div>
         <div class="web-body">
             <div class="web-body-inner flex fl-row">
                 <div class="main">
                     <main>
-                        <?php $blogObj->displayPostData(); ?>
+                        <?php $blogObj->getPostPage(); ?>
                     </main>
                 </div>
                 <div class="aside">
