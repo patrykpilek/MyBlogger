@@ -125,6 +125,29 @@ class Layout
         }
     }
 
+    public function getHtmlGadget($area) {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'html', 'displayOn' => $area]);
+
+        if($gadget) {
+            $content = json_decode($gadget->content);
+            ?>
+            <div class="label-wrap">
+                <div class="label-inner">
+                    <div class="label">
+                        <div class="aside-heading">
+                            <h3><?php echo $content->{'title'}; ?></h3>
+                        </div>
+                        <div class="label-lists">
+                            <?php echo $gadget->html; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
     public function getAllGadgets($blogID = '')
     {
         if($blogID != '') {
@@ -151,6 +174,8 @@ class Layout
                         $this->getSearchGadget($gadget->displayOn);
                     } else if($gadget->type === "labels") {
                         $this->getLabelsGadget($gadget->displayOn);
+                    } else if($gadget->type === "html") {
+                        $this->getHtmlGadget($gadget->displayOn);
                     }
                     $i++;
                 } while($gadget->position === $i);

@@ -120,7 +120,7 @@
 - [x] creating method to display widgets on sidebar
 - [x] creating method to display labels gadget
 - [x] creating html-javascript widget
-- [ ] creating method to display list widget
+- [x] creating method to display list widget
 - [ ] creating method to display author gadget
 
 - [ ] creating method to display top posts gadget
