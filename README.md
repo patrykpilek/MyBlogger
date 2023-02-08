@@ -118,7 +118,7 @@
 
 - [x] displaying label posts in pot page
 - [x] creating method to display widgets on sidebar
-- [ ] creating method to display labels gadget
+- [x] creating method to display labels gadget
 - [ ] creating html-javascript widget
 - [ ] creating method to display list widget
 - [ ] creating method to display author gadget

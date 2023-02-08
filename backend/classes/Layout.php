@@ -64,4 +64,63 @@ class Layout
             <?php
         }
     }
+
+    public function getSearchGadget($area)
+    {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get("gadgets", ['blogID' => $blog->blogID, 'type' => 'search', 'displayOn' => $area]);
+
+        if($gadget) {
+            echo '
+                <div class="search-wrap">
+                    <div class="search-inner">
+                        <div class="search-box">
+                            <div class="aside-heading">
+                                <h3>Search</h3>	
+                            </div>
+                            <div class="search-input">
+                                <span>
+                                    <input type="text" name="search" id="search" >
+                                </span>
+                                <span>
+                                    <button id="searchBtn" id="searchBtn">Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>	
+                </div>
+            ';
+        }
+    }
+
+    public function getAllGadgets($blogID = '')
+    {
+        if($blogID != '') {
+            $blog = $this->user->get("blogs", ['blogID' => $blogID]);
+        } else {
+            $blog = $this->getBlog();
+        }
+
+        $stmt = $this->db->prepare("SELECT * FROM `gadgets` WHERE `blogID` = :blogID ORDER BY `position`");
+        $stmt->bindParam("blogID", $blog->blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getSideBar()
+    {
+        $gadgets = $this->getAllGadgets();
+        $i = 1;
+
+        foreach ($gadgets as $gadget) {
+            if($gadget->displayOn === "sideBar") {
+                do {
+                    if($gadget->type === "search") {
+                        $this->getSearchGadget($gadget->displayOn);
+                    }
+                    $i++;
+                } while($gadget->position === $i);
+            }
+        }
+    }
 }

@@ -333,4 +333,9 @@ class Blog
     {
         return $this->layout->getNavGadget();
     }
+
+    public function getSideBar()
+    {
+        return $this->layout->getSideBar();
+    }
 }

@@ -39,7 +39,7 @@ $post = $blogObj->getPost();
                     <aside>
                         <div class="aside-wrap">
                             <div class="aside-inner">
-                                {SIDEBAR}
+                                <?php $blogObj->getSideBar(); ?>
                             </div>
                         </div>
                     </aside>
