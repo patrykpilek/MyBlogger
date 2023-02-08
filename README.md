@@ -116,7 +116,7 @@
 - [x] creating condition to include domain links in blog template
 - [x] creating method to display label posts
 
-- [ ] displaying label posts in pot page
+- [x] displaying label posts in pot page
 - [ ] creating method to display widgets on sidebar
 - [ ] creating method to display labels gadget
 - [ ] creating html-javascript widget

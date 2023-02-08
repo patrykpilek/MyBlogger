@@ -162,8 +162,8 @@ class Blog
             <div class="post-out-wrap">
                 <div class="post-out-inner">
                     <div class="post-title">
-                        <a href="'.BASE_URL.$post->slug.'">
-                            <h1>'.$post->title.'</h1>
+                        <a href="' . BASE_URL . $post->slug . '">
+                            <h1>' . $post->title . '</h1>
                         </a>
                     </div>
                     <div class="post-author">
@@ -171,10 +171,10 @@ class Blog
                             <div>
                                 <span class="author-span">
                                     <span class="auth-img">
-                                        <img src="'.BASE_URL.$post->profileImage.'"/>
+                                        <img src="' . BASE_URL . $post->profileImage . '"/>
                                     </span>
                                     <span class="auth-name">
-                                        <a href="#">'.$post->fullName.'</a>
+                                        <a href="#">' . $post->fullName . '</a>
                                     </span>
                                 </span>
                                 <span class="auth-time">
@@ -182,10 +182,10 @@ class Blog
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
                                     <span class="auth-date">
-                                        '.$date->format('M d, Y').'
+                                        ' . $date->format('M d, Y') . '
                                     </span>
                                 </span>
-                                <span class="auth-labels">'.$this->getPostLabels($post->postID, $post->blogID).'</span>
+                                <span class="auth-labels">' . $this->getPostLabels($post->postID, $post->blogID) . '</span>
                             </div>
                         </div>
                     </div><!--POST AUTHOR ENDS--->	
@@ -194,7 +194,7 @@ class Blog
                     <div class="blog-post">
                     <div class="blog-post-inner">
                         <div class="post">
-                            '.$post->content.'
+                            ' . $post->content . '
                         </div>
                         <!--POST ENDS HERE-->
                     </div>	
@@ -213,11 +213,72 @@ class Blog
         $blog = $this->getBlog();
         $posts = $this->getLabelPosts($label, $blog->blogID);
 
-        if($posts) {
+        if ($posts) {
             foreach ($posts as $post) {
                 $date = new DateTime($post->createdDate);
                 echo '
                    <div class="post-out">
+                        <div class="post-out-show">
+                            <div class="post-title">
+                                <a href="' . BASE_URL . $post->slug . '">
+                                    <h1>' . $post->title . '</h1>
+                                </a>
+                            </div>
+                            <div class="post-author">
+                                <div class="pa-inner">
+                                    <div>
+                                        <span class="author-span">
+                                            <span class="auth-img">
+                                                <img src="' . BASE_URL . $post->profileImage . '"/>
+                                            </span>
+                                            <span class="auth-name">
+                                                <a href="#">' . $post->fullName . '</a>
+                                            </span>
+                                        </span>
+                                        <span class="auth-time">
+                                            <span class="auth-c">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </span>
+                                            <span class="auth-date">
+                                                ' . $date->format('M d, Y') . '
+                                            </span>
+                                        </span>
+                                        <span class="auth-labels"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-body">
+                                <div class="postout-show">
+                                    <div class="postout-img">
+                                        <img src="' . $this->getFirstImage($post->content) . '"/>
+                                    </div>
+                                    <div class="postout-text">
+                                        <p>' . $post->content . '</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="read-more">
+                                <div class="read-btn"><a href="' . BASE_URL . $post->slug . '">Readmore</a></div>
+                            </div>
+                            <div class="post-footer"></div>
+                        </div>
+                    </div>
+
+                ';
+            }
+        }
+    }
+
+    public function displayLabelPosts($label)
+    {
+        $blog = $this->getBlog();
+        $posts = $this->getLabelPosts($label, $blog->blogID);
+
+        if ($posts) {
+            foreach ($posts as $post) {
+                $date = new DateTime($post->createdDate);
+                echo '
+                    <div class="post-out">
                         <div class="post-out-show">
                             <div class="post-title">
                                 <a href="'.BASE_URL.$post->slug.'">
@@ -240,7 +301,7 @@ class Blog
                                                 <i class="far fa-calendar-alt"></i>
                                             </span>
                                             <span class="auth-date">
-                                                '.$date->format('M d, Y').'
+                                                '.$date->format("M d, Y").'
                                             </span>
                                         </span>
                                         <span class="auth-labels"></span>
@@ -263,7 +324,6 @@ class Blog
                             <div class="post-footer"></div>
                         </div>
                     </div>
-
                 ';
             }
         }
@@ -281,7 +341,7 @@ class Blog
         $return = '';
 
         foreach ($labels as $label) {
-            $return .= '<span class="post-label"><a href="'.BASE_URL.'search/label/'.$label->labelName.'">' . $label->labelName . '</a></span>' . (($i < count($labels)) ? ', ' : '');
+            $return .= '<span class="post-label"><a href="' . BASE_URL . 'search/label/' . $label->labelName . '">' . $label->labelName . '</a></span>' . (($i < count($labels)) ? ', ' : '');
             $i++;
         }
         return $return;
@@ -298,6 +358,21 @@ class Blog
                                     AND `l`.`blogID` = :blogID");
         $stmt->bindParam(":label", $label, PDO::PARAM_STR);
         $stmt->bindParam(":blogID", $label, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getLabelPosts($label, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM `posts` `p` 
+                                    LEFT JOIN `users` `u` ON `p`.`authorID` = `u`.`userID` 
+                                    LEFT JOIN `labels` `l` ON `p`.`postID` = `l`.`postID` 
+                                    AND `p`.`blogID` = `l`.`blogID` 
+                                    WHERE `p`.`postStatus` = `published` 
+                                    AND `l`.`labelName` = :label 
+                                    AND `l.`.`blogID` = :blogID");
+        $stmt->bindParam(":label", $label, PDO::PARAM_STR);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
