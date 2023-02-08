@@ -93,6 +93,38 @@ class Layout
         }
     }
 
+    public function getLabelsGadget($area) {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'labels', 'displayOn' => $area]);
+
+        if($gadget) {
+            $stmt = $this->db->prepare("SELECT * FROM `labels` WHERE `blogID` = :blogID GROUP BY `labelName`");
+            $stmt->bindParam(":blogID", $blog->blogID, PDO::PARAM_INT);
+            $stmt->execute();
+            $labels = $stmt->fetchAll(PDO::FETCH_OBJ);
+            ?>
+                <div class="label-wrap">
+                    <div class="label-inner">
+                        <div class="label">
+                            <div class="aside-heading">
+                                <h3>Labels</h3>
+                            </div>
+                            <div class="label-lists">
+                                <ul>
+                                    <?php
+                                        foreach ($labels as $label) {
+                                            echo '<li><a href="'.BASE_URL.'search/label/'.$label->labelName.'">'.$label->labelName.'</a></li>';
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }
+    }
+
     public function getAllGadgets($blogID = '')
     {
         if($blogID != '') {
@@ -117,6 +149,8 @@ class Layout
                 do {
                     if($gadget->type === "search") {
                         $this->getSearchGadget($gadget->displayOn);
+                    } else if($gadget->type === "labels") {
+                        $this->getLabelsGadget($gadget->displayOn);
                     }
                     $i++;
                 } while($gadget->position === $i);
