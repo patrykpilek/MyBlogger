@@ -148,6 +148,34 @@ class Layout
         }
     }
 
+    public function getListGadget($area)
+    {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get("gadgets", ['blogID' => $blog->blogID, 'type' => 'list', 'displayOn' => $area]);
+
+        if($gadget) {
+            $list = json_decode($gadget->content);
+            ?>
+            <div class="list-widget-wrap">
+                <div class="list-widget-inner">
+                    <div class="aside-heading">
+                        <h3>Lists</h3>
+                    </div>
+                    <div class="list-body">
+                        <ul>
+                            <?php
+                                for($i=1; $i <= $list->{'total'}; $i++) {
+                                    echo '<li><a href= "'.$list->{'link'.$i}.'">'.$list->{'name'.$i}.'</a></li>';
+                                }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
     public function getAllGadgets($blogID = '')
     {
         if($blogID != '') {
@@ -176,6 +204,8 @@ class Layout
                         $this->getLabelsGadget($gadget->displayOn);
                     } else if($gadget->type === "html") {
                         $this->getHtmlGadget($gadget->displayOn);
+                    } else if($gadget->type === "list") {
+                        $this->getListGadget($gadget->displayOn);
                     }
                     $i++;
                 } while($gadget->position === $i);

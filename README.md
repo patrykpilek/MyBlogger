@@ -115,13 +115,12 @@
 - [x] creating method to display nav gadget
 - [x] creating condition to include domain links in blog template
 - [x] creating method to display label posts
-
 - [x] displaying label posts in pot page
 - [x] creating method to display widgets on sidebar
 - [x] creating method to display labels gadget
 - [x] creating html-javascript widget
 - [x] creating method to display list widget
-- [ ] creating method to display author gadget
+- [x] creating method to display author gadget
 
 - [ ] creating method to display top posts gadget
 - [ ] creating method to display footer gadgets
