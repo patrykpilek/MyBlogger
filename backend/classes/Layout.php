@@ -89,6 +89,7 @@ class Layout extends Blog
                         </div>
                     </div>	
                 </div>
+                <script type="text/javascript" src="'.BASE_URL.'frontend/assets/js/searchBlog.js"></script>
             ';
         }
     }

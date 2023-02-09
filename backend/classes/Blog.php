@@ -30,7 +30,7 @@ class Blog
     {
         $post = $this->getPost();
         $blog = $this->getBlog();
-        echo ((isset($post->title)) ? $post->title : $blog->Ttitle);
+        echo ((isset($post->title)) ? $post->title : $blog->Title);
     }
 
     public function getMeta()
