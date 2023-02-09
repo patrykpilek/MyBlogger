@@ -52,7 +52,7 @@ $post = $blogObj->getPost();
 
                     <div class="footer-col">
                         <div class="footer-col-inner">
-                            {FOOTER}
+                            <?php $blogObj->getFooter(); ?>
                         </div>
                     </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-class Layout
+class Layout extends Blog
 {
     protected $db;
     protected $user;
@@ -214,6 +214,51 @@ class Layout
         }
     }
 
+    public function getTopPostsGadget($area)
+    {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get("gadgets", ['blogID' => $blog->blogID, 'type' => 'topPosts', 'displayOn' => $area]);
+        $author = $this->user->userData($blog->CreatedBy);
+
+        if($gadget) {
+            $content = json_decode($gadget->content);
+            $stmt = $this->db->prepare("SELECT * FROM `posts` LEFT JOIN `users` ON `authorID` = `userID` WHERE `blogID` = :blogID ORDER BY `postID` DESC LIMIT :postLimit");
+            $stmt->bindParam(":blogID", $blog->blogID, PDO::PARAM_INT);
+            $stmt->bindParam(":postLimit", $content->{'postLimit'}, PDO::PARAM_INT);
+            $stmt->execute();
+            $posts = $stmt->fetchAll(PDO::FETCH_OBJ);
+            ?>
+                <div class="papular-wrap">
+                    <div class="papular-inner">
+                        <div class="papular">
+                            <div class="aside-heading">
+                                <h3><?php echo $content->{'title'} ?></h3>
+                            </div>
+                            <div class="papular-body">
+                                <?php
+                                    foreach ($posts as $post) {
+                                        echo '
+                                            <div class="papular-list">
+                                                <div class="papular-img">
+                                                    <img src="'.$this->getFirstImage($post->content).'"/>
+                                                </div>
+                                                <div class="papular-links">
+                                                    <a href="http://'.$blog->Domain.'.localhost/'.$post->slug.'">
+                                                        '.$post->title.'
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        ';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }
+    }
+
     public function getAllGadgets($blogID = '')
     {
         if($blogID != '') {
@@ -246,6 +291,47 @@ class Layout
                         $this->getListGadget($gadget->displayOn);
                     } else if($gadget->type === "profile") {
                         $this->getAuthorGadget($gadget->displayOn);
+                    } else if($gadget->type === "topPosts") {
+                        $this->getTopPostsGadget($gadget->displayOn);
+                    }
+                    $i++;
+                } while($gadget->position === $i);
+            }
+        }
+    }
+
+    public function getFooter()
+    {
+        $gadgets = $this->getAllGadgets();
+        $i = 1;
+
+        foreach ($gadgets as $gadget) {
+            if($gadget->displayOn === "footer") {
+                do {
+                    if($gadget->type === "search") {
+                        echo '<div class="col-3">';
+                        $this->getSearchGadget($gadget->displayOn);
+                        echo '</div>';
+                    } else if($gadget->type === "labels") {
+                        echo '<div class="col-3">';
+                        $this->getLabelsGadget($gadget->displayOn);
+                        echo '</div>';
+                    } else if($gadget->type === "html") {
+                        echo '<div class="col-3">';
+                        $this->getHtmlGadget($gadget->displayOn);
+                        echo '</div>';
+                    } else if($gadget->type === "list") {
+                        echo '<div class="col-3">';
+                        $this->getListGadget($gadget->displayOn);
+                        echo '</div>';
+                    } else if($gadget->type === "profile") {
+                        echo '<div class="col-3">';
+                        $this->getAuthorGadget($gadget->displayOn);
+                        echo '</div>';
+                    } else if($gadget->type === "topPosts") {
+                        echo '<div class="col-3">';
+                        $this->getTopPostsGadget($gadget->displayOn);
+                        echo '</div>';
                     }
                     $i++;
                 } while($gadget->position === $i);

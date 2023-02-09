@@ -338,4 +338,9 @@ class Blog
     {
         return $this->layout->getSideBar();
     }
+
+    public function getFooter()
+    {
+        return $this->layout->getFooter();
+    }
 }
