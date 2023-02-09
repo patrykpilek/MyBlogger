@@ -122,7 +122,7 @@
 - [x] creating method to display list widget
 - [x] creating method to display author gadget
 
-- [ ] creating method to display top posts gadget
+- [x] creating method to display top posts gadget
 - [ ] creating method to display footer gadgets
 - [ ] display title for label posts page
 - [ ] making search gadget work

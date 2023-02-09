@@ -176,6 +176,44 @@ class Layout
         }
     }
 
+    public function getAuthorGadget($area)
+    {
+        $blog = $this->getBlog();
+        $gadget = $this->user->get("gadgets", ['blogID' => $blog->blogID, 'type' => 'profile', 'displayOn' => $area]);
+        $author = $this->user->userData($blog->CreatedBy);
+
+        if($gadget) {
+            $content = json_decode($gadget->content);
+            echo '
+                <div class="aboutme-wrap">
+                    <div class="aboutme-inner">
+                        <div class="about-me">
+                            <div class="aside-heading">
+                                <h3>About</h3>	
+                            </div>
+                            <div class="aboutme-img">
+                                <img src="'.BASE_URL.$author->profileImage.'"/>
+                            </div>
+                            <div class="aboutme-body">
+                                <p>'.$content->{'description'}.'</p>
+                            </div>
+                            <div class="aboutme-footer">
+                            <div class="aboutme-social">
+                                <ul>
+                                '.(($content->{'Facebook'} !== '') ? '<li><a href="'.$content->{'Facebook'}.'" target="_blank"><i class="fab fa-facebook-f"></i></a></li>' : '').'
+                                '.(($content->{'Twitter'} !== '') ? '<li><a href="'.$content->{'Twitter'}.'" target="_blank"><i class="fab fa-twitter"></i></a></li>' : '').'
+                                '.(($content->{'Instagram'} !== '') ? '<li><a href="'.$content->{'Instagram'}.'" target="_blank"><i class="fab fa-instagram"></i></a></li>' : '').'
+                                '.(($content->{'Youtube'} !== '') ? '<li><a href="'.$content->{'Youtube'}.'" target="_blank"><i class="fab fa-youtube"></i></a></li> ' : '').'  
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ';
+        }
+    }
+
     public function getAllGadgets($blogID = '')
     {
         if($blogID != '') {
@@ -206,6 +244,8 @@ class Layout
                         $this->getHtmlGadget($gadget->displayOn);
                     } else if($gadget->type === "list") {
                         $this->getListGadget($gadget->displayOn);
+                    } else if($gadget->type === "profile") {
+                        $this->getAuthorGadget($gadget->displayOn);
                     }
                     $i++;
                 } while($gadget->position === $i);
