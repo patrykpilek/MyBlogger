@@ -126,7 +126,7 @@
 - [x] creating method to display footer gadgets
 - [x] display title for label posts page
 - [x] making search gadget work
-- [ ] creating method to display search posts
+- [x] creating method to display search posts
 - [ ] limiting text on posts preview to display
 
 - [ ] creating method to display comment form

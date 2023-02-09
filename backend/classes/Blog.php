@@ -124,6 +124,10 @@ class Blog
         }
     }
 
+    public function getSearchResult($search) {
+        return $this->getBlogSearch($search);
+    }
+
     public function getFirstImage($content)
     {
         if (preg_match('/<img.*?src="(.*?)"[^\>]?+>/', $content, $matches)) {
@@ -133,6 +137,76 @@ class Blog
         }
 
         return $image;
+    }
+
+    public function getBlogSearch($search) {
+        $keyword = '%'.$search.'%';
+        $blog = $this->getBlog();
+        $stmt = $this->db->prepare("SELECT * FROM `posts` LEFT JOIN `users` ON `userID` = `authorID` WHERE `blogID` = :blogID AND `postStatus` = 'published' AND `title` LIKE :search ORDER BY `postID` DESC");
+        $stmt->bindParam(":blogID", $blog->blogID, PDO::PARAM_INT);
+        $stmt->bindParam(":search", $keyword, PDO::PARAM_STR);
+        $stmt->execute();
+        $posts = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if($posts) {
+            foreach ($posts as $post) {
+                $date = new DateTime($post->createdDate);
+                echo '
+                <div class="post-out">
+                    <div class="post-out-show">
+                        <div class="post-title">
+                            <a href="'.BASE_URL.$post->slug.'">
+                                <h1>'.$post->title.'</h1>
+                            </a>
+                        </div>
+                        <div class="post-author">
+                            <div class="pa-inner">
+                                <div>
+                                    <span class="author-span">
+                                        <span class="auth-img">
+                                            <img src="'.BASE_URL.$post->profileImage.'"/>
+                                        </span>
+                                        <span class="auth-name">
+                                            <a href="#">'.$post->fullName.'</a>
+                                        </span>
+                                    </span>
+                                    <span class="auth-time">
+                                        <span class="auth-c">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                        <span class="auth-date">
+                                            '.$date->format('M d, Y').'
+                                        </span>
+                                    </span>
+                                    <span class="auth-labels"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-body">
+                            <div class="postout-show">
+                                <div class="postout-img">
+                                    <img src="'.$this->getFirstImage($post->content).'"/>
+                                </div>
+                                <div class="postout-text">
+                                    <p>'.$post->content.'</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="read-more">
+                            <div class="read-btn"><a href="'.BASE_URL.$post->slug.'">Readmore</a></div>
+                        </div>
+                        <div class="post-footer"></div>
+                    </div>
+                </div>
+            ';
+            }
+        } else {
+            if($blog->CustomError != '') {
+                echo html_entity_decode($blog->CustomError);
+            } else {
+                echo '<p align="center"><font size="5">PAGE NOT FOUND!</font></p><br/><br/><p><font style="font-size: 150px; font-weight: bold; color: red;">404</font></p>';
+            }
+        }
     }
 
     public function getPostData($slug)
@@ -278,7 +352,10 @@ class Blog
             if(isset($_GET['label']) && !empty($_GET['label'])) {
                 $label = Validate::escape($_GET['label']);
                 $this->displayPostData($label);
-            } else {
+            } else if(isset($_GET['search']) && !empty($_GET['search'])) {
+                $search = Validate::escape($_GET['search']);
+                $this->getSearchResult($search);
+            }else {
                 if(!$this->getPost()) {
                     if($blog->CustomError != '') {
                         echo html_entity_decode($blog->CustomError);
