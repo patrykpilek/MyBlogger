@@ -28,8 +28,9 @@ class Blog
 
     public function getTitle()
     {
+        $post = $this->getPost();
         $blog = $this->getBlog();
-        echo $blog->Title;
+        echo ((isset($post->title)) ? $post->title : $blog->Ttitle);
     }
 
     public function getMeta()
@@ -126,7 +127,7 @@ class Blog
     public function getFirstImage($content)
     {
         if (preg_match('/<img.*?src="(.*?)"[^\>]?+>/', $content, $matches)) {
-            $image = $matches[1];
+            $image = BASE_URL.$matches[1];
         } else {
             $image = BASE_URL . 'frontend/assets/images/404.jpg';
         }
@@ -253,7 +254,7 @@ class Blog
                                         <img src="' . $this->getFirstImage($post->content) . '"/>
                                     </div>
                                     <div class="postout-text">
-                                        <p>' . $post->content . '</p>
+                                        <p>'. preg_replace('/<img.*?src="(.*?)"[^\>]?+>/', "", $post->content) .'</p>
                                     </div>
                                 </div>
                             </div>

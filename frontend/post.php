@@ -7,7 +7,7 @@ $post = $blogObj->getPost();
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $post->title; ?></title>
+    <title><?php $blogObj->getTitle(); ?></title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>frontend/assets/template/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">

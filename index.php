@@ -48,7 +48,7 @@ if(!$blogObj->getBlog()) {
                     <aside>
                         <div class="aside-wrap">
                             <div class="aside-inner">
-                                {SIDE-BAR}
+                                <?php $blogObj->getSideBar(); ?>
                             </div>
                         </div>
                     </aside>
@@ -61,7 +61,7 @@ if(!$blogObj->getBlog()) {
 
                     <div class="footer-col">
                         <div class="footer-col-inner">
-                            {FOOTER}
+                            <?php $blogObj->getFooter(); ?>
                         </div>
                     </div>
 
