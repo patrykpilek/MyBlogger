@@ -282,6 +282,28 @@ class Blog
             </div>
             <!--post-out-wrap-->
         ';
+        $this->getCommentForm($post->blogID, $post->postID);
+    }
+
+    public function getCommentForm($blogID, $postID)
+    {
+        echo '
+            <div class="comment-wrapper">
+                <div class="comment-inner">
+                    <div class="comment-input">
+                        <input type="text"  name="name"   id="name"  placeholder="Name">
+                        <input type="email" name="email"  id="email" placeholder="Email">
+                    </div>
+                    <div class="comment-textarea">
+                        <textarea rows="10" name="comment" id="comment" placeholder="Your Comment"></textarea>
+                    </div>
+                    <div class="comment-submit">
+                        <button id="commentBtn" data-blog="'.$blogID.'" data-post="'.$postID.'" data-reply="0">Submit</button>
+                        <button id="cancelBtn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        ';
     }
 
     public function displayLabelPosts($label)
