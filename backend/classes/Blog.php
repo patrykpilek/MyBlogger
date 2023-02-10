@@ -285,11 +285,49 @@ class Blog
         $this->getComments();
     }
 
+    public function getCommentsReplies($blogID, $commentID)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM `comments` WHERE `blogID` = :blogID AND `replied` = :commentID AND `status` = 'published' ORDER BY `commentID` DESC");
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->bindParam(":commentID", $commentID, PDO::PARAM_INT);
+        $stmt->execute();
+        $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if($comments) {
+            foreach ($comments as $comment) {
+                echo '
+                <div class="cb-inner">
+                    <div class="comment flex fl-row">
+                        <div class="comment-img">
+                            <div class="c-img-body">
+                                <img src="https://www.gravatar.com/avatar/'. md5(strtolower(trim($comment->email))) .'">
+                            </div>
+                        </div>
+                        <div class="comment-text fl-6">
+                        <div class="comment-text-inner flex fl-c">
+                            <div class="comment-text fl-6">
+                                <small><span>'.$comment->name.'</span></small>
+                            <div class="comment-text-inner">
+                                '.$comment->comment.'
+                            </div>	
+                            </div>
+                            <div class="comment-footer">
+                                <span><a href="javascript;:">Delete</a></span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                ';
+            }
+        }
+    }
+
     public function getComments()
     {
         $blog = $this->getBlog();
         $post = $this->getPost();
-        $stmt = $this->db->prepare("SELECT * FROM `comments` WHERE `postID`= :postID AND `blogID` = :blogID AND `status` = 'published' ORDER BY `commentID` DESC");
+        $stmt = $this->db->prepare("SELECT * FROM `comments` WHERE `postID`= :postID OR `replied` = `commentID` AND `blogID` = :blogID AND `status` = 'published' ORDER BY `commentID` DESC");
         $stmt->bindParam(":postID", $post->postID, PDO::PARAM_INT);
         $stmt->bindParam(":blogID", $blog->blogID, PDO::PARAM_INT);
         $stmt->execute();
@@ -306,7 +344,9 @@ class Blog
                     </div>
                     <div class="comment-body">
                         <!--cb-inner-->
-                        <?php foreach ($comments as $comment):?>
+                        <?php foreach ($comments as $comment):
+                            if($comment->replied === 0):
+                        ?>
                         <div class="cb-inner">
                             <div class="comment flex fl-row">
                                 <div class="comment-img">
@@ -327,19 +367,17 @@ class Blog
                                             <span><a href="javascript:;">Delete</a></span>
                                         </div>
                                     </div>
-                                    {Comment-Replies}
-
+                                    <?php $this->getCommentsReplies($post->blogID, $comment->commentID); ?>
                                 </div>
                             </div>
                         </div>
                         <!--cb-inner ends-->
-                        <?php endforeach;?>
-                    </div>
-                </div>
-            </div>
-            <?php
-            $this->getCommentForm($post->blogID, $post->postID);
+                        <?php
+                        endif;
+                        endforeach;
+                        echo '</div>';
         }
+        $this->getCommentForm($post->blogID, $post->postID);
     }
 
     public function getCommentForm($blogID, $postID)
