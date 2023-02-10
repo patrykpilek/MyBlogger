@@ -129,7 +129,7 @@
 - [x] limiting text on posts preview to display
 
 - [x] creating method to display comment form
-- [ ] creating method to display comments on post
+- [x] creating method to display comments on post
 - [ ] creating method to display replies on comments
 - [ ] creating method to post comments on blog post
 - [ ] creating method to display comments on post

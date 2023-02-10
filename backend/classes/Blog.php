@@ -282,7 +282,64 @@ class Blog
             </div>
             <!--post-out-wrap-->
         ';
-        $this->getCommentForm($post->blogID, $post->postID);
+        $this->getComments();
+    }
+
+    public function getComments()
+    {
+        $blog = $this->getBlog();
+        $post = $this->getPost();
+        $stmt = $this->db->prepare("SELECT * FROM `comments` WHERE `postID`= :postID AND `blogID` = :blogID AND `status` = 'published' ORDER BY `commentID` DESC");
+        $stmt->bindParam(":postID", $post->postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blog->blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $comments = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if($comments) {
+            ?>
+            <div class="comment-show-wrapper">
+                <div class="comment-show-inner">
+                    <div class="comment-count">
+                        <div>
+                            <span>Comment: <span><?php echo count($comments) ?></span></span>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <!--cb-inner-->
+                        <?php foreach ($comments as $comment):?>
+                        <div class="cb-inner">
+                            <div class="comment flex fl-row">
+                                <div class="comment-img">
+                                    <div class="c-img-body">
+                                        <img src="https://www.gravatar.com/avatar/<?php echo md5(strtolower(trim($user->email))); ?>">
+                                    </div>
+                                </div>
+                                <div class="comment-text fl-6">
+                                    <div class="comment-text-inner flex fl-c">
+                                        <div class="comment-text fl-6">
+                                            <small><span><?php echo $comment->name; ?></span></small>
+                                            <div class="comment-text-inner">
+                                                <?php echo $comment->comment; ?>
+                                            </div>
+                                        </div>
+                                        <div class="comment-footer">
+                                            <span><a href="javascript:;" id="replyBtn">Reply</a></span>
+                                            <span><a href="javascript:;">Delete</a></span>
+                                        </div>
+                                    </div>
+                                    {Comment-Replies}
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--cb-inner ends-->
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </div>
+            <?php
+            $this->getCommentForm($post->blogID, $post->postID);
+        }
     }
 
     public function getCommentForm($blogID, $postID)
