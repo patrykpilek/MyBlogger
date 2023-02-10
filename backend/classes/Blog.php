@@ -101,7 +101,7 @@ class Blog
                                         <img src="' . $this->getFirstImage($post->content) . '"/>
                                     </div>
                                     <div class="postout-text">
-                                        <p>' . $content . '</p>
+                                        <p>'.$content.'</p>
                                     </div>
                                 </div>
                             </div>
@@ -151,6 +151,7 @@ class Blog
         if($posts) {
             foreach ($posts as $post) {
                 $date = new DateTime($post->createdDate);
+                $content = substr(strip_tags($post->content), 0, 500);
                 echo '
                 <div class="post-out">
                     <div class="post-out-show">
@@ -188,7 +189,7 @@ class Blog
                                     <img src="'.$this->getFirstImage($post->content).'"/>
                                 </div>
                                 <div class="postout-text">
-                                    <p>'.$post->content.'</p>
+                                    <p>'.$content.'</p>
                                 </div>
                             </div>
                         </div>
@@ -291,6 +292,7 @@ class Blog
         if ($posts) {
             foreach ($posts as $post) {
                 $date = new DateTime($post->createdDate);
+                $content = substr(strip_tags($post->content), 0, 500);
                 echo '
                    <div class="post-out">
                         <div class="post-out-show">
@@ -328,7 +330,7 @@ class Blog
                                         <img src="' . $this->getFirstImage($post->content) . '"/>
                                     </div>
                                     <div class="postout-text">
-                                        <p>'. preg_replace('/<img.*?src="(.*?)"[^\>]?+>/', "", $post->content) .'</p>
+                                        <p>'.$content.'</p>
                                     </div>
                                 </div>
                             </div>

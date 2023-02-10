@@ -121,13 +121,12 @@
 - [x] creating html-javascript widget
 - [x] creating method to display list widget
 - [x] creating method to display author gadget
-
 - [x] creating method to display top posts gadget
 - [x] creating method to display footer gadgets
 - [x] display title for label posts page
 - [x] making search gadget work
 - [x] creating method to display search posts
-- [ ] limiting text on posts preview to display
+- [x] limiting text on posts preview to display
 
 - [ ] creating method to display comment form
 - [ ] creating method to display comments on post
