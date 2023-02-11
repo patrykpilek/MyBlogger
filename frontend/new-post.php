@@ -244,7 +244,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     </div>
                 </div>
                 <!-- JS Files -->
-
+                <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/newPost.js"></script>
             </div>
             <!--EDIT-INNER-ENDS-->
         </div>
