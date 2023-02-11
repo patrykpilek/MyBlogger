@@ -541,4 +541,21 @@ class Blog
     {
         return $this->layout->getFooter();
     }
+
+    public function getAllLabels($blogID)
+    {
+        $stmt = $this->db->prepare("SELECT *FROM `labels` WHERE `blogID` = :blogID GROUP BY `labelName`");
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $labels = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $i = 1;
+        $return = '';
+
+        foreach ($labels as $label) {
+            $return .= '<a href="javascript:;" class="label">' . $label->labelName . '</a>' . (($i < count($labels)) ? ', ' : '');
+            $i++;
+        }
+        return $return;
+    }
 }

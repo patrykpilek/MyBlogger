@@ -136,7 +136,7 @@
 ### Blogs Methods
 
 - [x] creating new page for new post
-- [ ] creating method to display labels on new post page
+- [x] creating method to display labels on new post page
 - [ ] creating method to display label in textarea
 - [ ] creating js method to check if user typing for title in the title filed
 - [ ] creating method to generate post link using title

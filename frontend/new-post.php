@@ -156,7 +156,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                 </div>
                                                 <div class="edm-label-list">
                                                     <div>
-                                                        {ALL LABELS}
+                                                        <?php echo $blogObj->getAllLabels($blog->blogID); ?>
                                                     </div>
                                                 </div>
                                                 <div class="edm-label-button">
