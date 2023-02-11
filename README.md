@@ -138,7 +138,7 @@
 - [x] creating new page for new post
 - [x] creating method to display labels on new post page
 - [x] creating method to display label in textarea
-- [ ] creating js method to check if user typing for title in the title filed
+- [x] creating js method to check if user typing for title in the title filed
 - [ ] creating method to generate post link using title
 - [ ] creating js condition to make link options work
 - [ ] validating custom url input field

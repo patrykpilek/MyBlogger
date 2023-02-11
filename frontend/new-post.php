@@ -71,13 +71,13 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 </div>
                                 <div class="fl-1">Posting as
                                     <span class="bold">
-							<?php echo $blog->fullName; ?>
-						</span>
+							            <?php echo $blog->fullName; ?>
+						            </span>
                                 </div>
                             </div>
                             <div class="eb-buttons flex fl-1">
                                 <div>
-                                    <button id="publish">Publish</button>
+                                    <button id="publish" data-blog="<?php echo $blog->blogID;?>">Publish</button>
                                     <button id="saveBtn">Save</button>
                                     <button>Close</button>
                                 </div>

@@ -1,4 +1,5 @@
 let labels = document.querySelectorAll(".label");
+let publish = document.querySelector("#publish");
 
 labels.forEach(function(el) {
     el.addEventListener("click", function(event) {
@@ -23,3 +24,44 @@ labels.forEach(function(el) {
         }
     });
 });
+
+let title = document.querySelector('#title');
+let linkOp = document.querySelectorAll('.postLinkOp');
+
+title.addEventListener("keydown", function(event) {
+    if(document.querySelectorAll(".postLinkOp").value !== '') {
+        if(linkOp[0].value === "automatic") {
+            checkTyping();
+        }
+    }
+});
+
+let typingTimer = null;
+let typingInterval = 5000;
+
+function checkTyping() {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(displaySlug, 1000);
+}
+
+function displaySlug() {
+    let formData = new FormData();
+
+    formData.append("blogID", publish.dataset.blog);
+
+    let httpRequest = new XMLHttpRequest();
+
+    if(httpRequest) {
+        httpRequest.open('POST', 'http://localhost/backend/ajax/getSlug.php', true);
+        httpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200) {
+                if(this.responseText.length !== 0) {
+                    alert(this.responseText);
+                }
+                location.reload(true);
+            }
+        }
+
+        httpRequest.send(formData);
+    }
+}
