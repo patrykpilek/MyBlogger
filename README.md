@@ -33,7 +33,7 @@
 - [x] creating JS function to display label menu
 - [x] creating JS function to display add new label box
 - [x] creating ajax request for label menu
-- [x] validating addlabel ajax file
+- [x] validating add label ajax file
 - [x] creating create method (CRUD functions)
 - [x] creating delete method (CRUD functions)
 - [x] creating function to add labels by label list
@@ -98,3 +98,37 @@
 - [x] creating method to update profile
 - [x] creating method to update password
 - [x] creating logout method
+
+### Blogs Methods
+
+- [x] creating methods to display blog data using subdomain
+- [x] creating method to display blog data using subdomain
+- [x] creating 404 error page
+- [x] creating method to display blog posts
+- [x] creating method to display post image as thumbnail
+- [x] creating post page to display post data
+- [x] creating method to get post data using slug url
+- [x] display post data on post page
+- [x] creating method to display post labels on post page
+- [x] creating new table for blog widgets
+- [x] creating method to display header gadget
+- [x] creating method to display nav gadget
+- [x] creating condition to include domain links in blog template
+- [x] creating method to display label posts
+- [x] displaying label posts in pot page
+- [x] creating method to display widgets on sidebar
+- [x] creating method to display labels gadget
+- [x] creating html-javascript widget
+- [x] creating method to display list widget
+- [x] creating method to display author gadget
+- [x] creating method to display top posts gadget
+- [x] creating method to display footer gadgets
+- [x] display title for label posts page
+- [x] making search gadget work
+- [x] creating method to display search posts
+- [x] limiting text on posts preview to display
+- [x] creating method to display comment form
+- [x] creating method to display comments on post
+- [x] creating method to display replies on comments
+- [x] creating method to post comments on blog post
+- [x] creating method to display comments on post
