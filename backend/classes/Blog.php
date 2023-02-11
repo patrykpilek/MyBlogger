@@ -363,7 +363,7 @@ class Blog
                                             </div>
                                         </div>
                                         <div class="comment-footer">
-                                            <span><a href="javascript:;" id="replyBtn">Reply</a></span>
+                                            <span><a href="javascript:;" id="replyBtn" data-reply="<?php echo $comment->commentID; ?>">Reply</a></span>
                                             <span><a href="javascript:;">Delete</a></span>
                                         </div>
                                     </div>

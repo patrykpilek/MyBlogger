@@ -1,5 +1,22 @@
 let commentBtn = document.querySelector("#commentBtn");
 let cancelBtn = document.querySelector("#cancelBtn");
+let replyBtn = document.querySelectorAll("#replyBtn");
+
+cancelBtn.addEventListener("click", function(event) {
+    window.location.reload(true);
+});
+
+replyBtn.forEach(function(el) {
+    el.addEventListener("click", function(event) {
+        event.preventDefault();
+        let parentEl = this.parentElement.parentElement.parentElement;
+        let commentForm = document.querySelector(".comment-wrapper");
+
+        parentEl.append(commentForm);
+        commentForm = '';
+        commentBtn.dataset.reply = this.dataset.reply;
+    });
+});
 
 commentBtn.addEventListener("click", function(event) {
     event.preventDefault();
@@ -12,6 +29,7 @@ commentBtn.addEventListener("click", function(event) {
 
         formData.append('postID', this.dataset.post);
         formData.append("blogID", this.dataset.blog);
+        formData.append("reply", this.dataset.reply);
         formData.append("name", name);
         formData.append("email", email);
         formData.append("comment", comment);
