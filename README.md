@@ -131,5 +131,5 @@
 - [x] creating method to display comment form
 - [x] creating method to display comments on post
 - [x] creating method to display replies on comments
-- [ ] creating method to post comments on blog post
+- [x] creating method to post comments on blog post
 - [ ] creating method to display comments on post

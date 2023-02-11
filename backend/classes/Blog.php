@@ -327,7 +327,7 @@ class Blog
     {
         $blog = $this->getBlog();
         $post = $this->getPost();
-        $stmt = $this->db->prepare("SELECT * FROM `comments` WHERE `postID`= :postID OR `replied` = `commentID` AND `blogID` = :blogID AND `status` = 'published' ORDER BY `commentID` DESC");
+        $stmt = $this->db->prepare("SELECT * FROM `comments` WHERE `postID`= :postID AND `blogID` = :blogID AND `status` = 'published' OR `replied` = `commentID` ORDER BY `commentID` DESC");
         $stmt->bindParam(":postID", $post->postID, PDO::PARAM_INT);
         $stmt->bindParam(":blogID", $blog->blogID, PDO::PARAM_INT);
         $stmt->execute();
@@ -378,6 +378,7 @@ class Blog
                         echo '</div>';
         }
         $this->getCommentForm($post->blogID, $post->postID);
+        echo '<script type="text/javascript" src="'.BASE_URL.'frontend/assets/js/comments.js"></script>';
     }
 
     public function getCommentForm($blogID, $postID)
