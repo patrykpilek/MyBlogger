@@ -4,6 +4,7 @@ RewriteRule ^admin/blogID/([0-9]+)/dashboard/pages/?$ frontend/pages.php?blogID=
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/comments/?$ frontend/comments.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/pending/comments/?$ frontend/pending-comments.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/settings/?$ frontend/settings.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/post/new/?$ frontend/new-post.php?blogID=$1
 RewriteRule ^404/?$ frontend/404.php
 RewriteRule ^search/label/([\w]+)/?$ frontend/post.php?label=$1
 RewriteRule ^search/([\w]+)/?$ frontend/post.php?search=$1

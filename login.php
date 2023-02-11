@@ -1,9 +1,9 @@
 <?php
 include 'backend/init.php';
 
-if($userObj->isLoggedIn())
-{
-    header("Location: frontend/dashboard.php");
+if($userObj->isLoggedIn()) {
+    $blog = $userObj->get("blogs", ['CreatedBy' => $userObj->ID()]);
+    $userObj->redirect("admin/blogID/{$blog->blogID}/dashboard/");
 }
 
 if($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -19,7 +19,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
                     $hash = $user->password;
                     if(password_verify($password, $hash)) {
                         $_SESSION['user_id'] = $user->userID;
-                        header("Location: frontend/dashboard.php");
+                        $blog = $userObj->get("blogs", ['CreatedBy' => $userObj->userID]);
+                        $userObj->redirect("admin/blogID/{$blog->blogID}/dashboard/");
                     } else {
                         $error = "Your email or password is incorrect!";
                     }

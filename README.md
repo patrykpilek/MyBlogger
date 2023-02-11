@@ -132,3 +132,24 @@
 - [x] creating method to display replies on comments
 - [x] creating method to post comments on blog post
 - [x] creating method to display comments on post
+
+### Blogs Methods
+
+- [x] creating new page for new post
+- [ ] creating method to display labels on new post page
+- [ ] creating method to display label in textarea
+- [ ] creating js method to check if user typing for title in the title filed
+- [ ] creating method to generate post link using title
+- [ ] creating js condition to make link options work
+- [ ] validating custom url input field
+- [ ] creating ajax request to create post
+- [ ] creating method to publish post
+- [ ] creating method to save post
+- [ ] creating method to edit post
+- [ ] creating method to update post
+- [ ] creating method to update post
+- [ ] creating method to make published post draft
+- [ ] creating js function to upload image in editor
+- [ ] uploading images to post editor
+- [ ] creating method to new page
+- [ ] creating method to update page
