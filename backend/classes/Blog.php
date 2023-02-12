@@ -558,4 +558,16 @@ class Blog
         }
         return $return;
     }
+
+    public function createPostSlug($title, $blogID, $postID)
+    {
+        $slug = strtolower(trim(preg_replace("/[^A-Za-z0-9-]+/", "-", $title))).'.html';
+
+        if($post = $this->user->get('posts', ['blogID' => $blogID, 'slug' => $slug])) {
+            if($post->postID != $postID) {
+                $slug = strtolower(trim(preg_replace("/[^A-Za-z0-9-]+/", "-", $title))).rand(1,100).'.html';
+            }
+        }
+        return $slug;
+    }
 }

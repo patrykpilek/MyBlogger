@@ -27,6 +27,7 @@ labels.forEach(function(el) {
 
 let title = document.querySelector('#title');
 let linkOp = document.querySelectorAll('.postLinkOp');
+let slug = document.querySelector('#slugDiv');
 
 title.addEventListener("keydown", function(event) {
     if(document.querySelectorAll(".postLinkOp").value !== '') {
@@ -48,6 +49,7 @@ function displaySlug() {
     let formData = new FormData();
 
     formData.append("blogID", publish.dataset.blog);
+    formData.append("title", title.value);
 
     let httpRequest = new XMLHttpRequest();
 
@@ -56,9 +58,8 @@ function displaySlug() {
         httpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200) {
                 if(this.responseText.length !== 0) {
-                    alert(this.responseText);
+                    slug.innerHTML = this.responseText;
                 }
-                location.reload(true);
             }
         }
 
