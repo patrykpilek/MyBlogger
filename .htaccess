@@ -5,6 +5,8 @@ RewriteRule ^admin/blogID/([0-9]+)/dashboard/comments/?$ frontend/comments.php?b
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/pending/comments/?$ frontend/pending-comments.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/settings/?$ frontend/settings.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/post/new/?$ frontend/new-post.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/post/([0-9]+)/edit/?$ frontend/edit-post.php?blogID=$1&postID=$2
+
 RewriteRule ^404/?$ frontend/404.php
 RewriteRule ^search/label/([\w]+)/?$ frontend/post.php?label=$1
 RewriteRule ^search/([\w]+)/?$ frontend/post.php?search=$1
