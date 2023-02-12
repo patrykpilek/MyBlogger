@@ -30,6 +30,7 @@ let linkOp = document.querySelectorAll('.postLinkOp');
 let slug = document.querySelector('#slugDiv');
 let urlDiv = document.querySelector('#custom-url-area');
 let customUrl = document.querySelector('#customSlug');
+let customUrlEr = document.querySelector('#urlError');
 urlDiv.style.display = "none";
 
 
@@ -38,6 +39,21 @@ title.addEventListener("keydown", function(event) {
         if(linkOp[0].value === "automatic") {
             checkTyping();
         }
+    }
+});
+
+customUrl.addEventListener("keyup", function (event) {
+    regex = /^([a-zA-Z0-9-]+)$/gm;
+    if(this.value !== '') {
+        if(this.value.match(regex)) {
+            customUrlEr.innerHTML = "";
+            slug.innerHTML = this.value+".html";
+        } else {
+            slug.innerHTML = "";
+            customUrlEr.innerHTML = "Invalid characters!";
+        }
+    } else {
+        slug.innerHTML = "";
     }
 });
 
