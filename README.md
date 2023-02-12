@@ -144,7 +144,7 @@
 - [x] validating custom url input field
 - [x] creating ajax request to create post
 - [x] creating method to publish post
-- [ ] creating method to save post
+- [x] creating method to save post
 - [ ] creating method to edit post
 
 - [ ] creating method to update post

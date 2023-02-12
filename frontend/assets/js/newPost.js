@@ -1,5 +1,6 @@
 let labels = document.querySelectorAll(".label");
 let publish = document.querySelector("#publish");
+let saveBtn = document.querySelector("#saveBtn");
 
 labels.forEach(function(el) {
     el.addEventListener("click", function(event) {
@@ -139,6 +140,52 @@ publish.addEventListener("click", function(event) {
 
             httpRequest.send(formData);
         }
+    } else {
+        alert('Please add post title!')
     }
 
 });
+
+if(saveBtn !== null) {
+    saveBtn.addEventListener("click", function(event) {
+        let blogID = publish.dataset.blog;
+        let title = document.querySelector('#title').value.trim();
+        let description = document.querySelector('#description').value.trim();
+        let labels = document.querySelector('#labelArea').value.trim();
+        let comments = document.querySelector('.comments:checked').value;
+        let slug = document.querySelector('#customSlug').value.trim();
+        let content = document.querySelector('#editor').firstChild.innerHTML;
+
+        if(title !== '') {
+            if(slug === '') {
+                slug = title;
+            }
+
+            let formData = new FormData();
+
+            formData.append("blogID", blogID);
+            formData.append("title", title);
+            formData.append("description", description);
+            formData.append("content", content);
+            formData.append("labels", labels);
+            formData.append("comments", comments);
+            formData.append("slug", slug);
+
+            let httpRequest = new XMLHttpRequest();
+
+            if(httpRequest) {
+                httpRequest.open('POST', 'http://localhost/backend/ajax/saveNewPost.php', true);
+                httpRequest.onreadystatechange = function () {
+                    if(this.readyState === 4 && this.status === 200) {
+                        window.location.href = "http://localhost/admin/blogID/" + blogID + "/post/new/" + this.responseText + "/edit/";
+                    }
+                }
+
+                httpRequest.send(formData);
+            }
+        } else {
+            alert('Please add post title!')
+        }
+
+    });
+}
