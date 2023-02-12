@@ -28,6 +28,10 @@ labels.forEach(function(el) {
 let title = document.querySelector('#title');
 let linkOp = document.querySelectorAll('.postLinkOp');
 let slug = document.querySelector('#slugDiv');
+let urlDiv = document.querySelector('#custom-url-area');
+let customUrl = document.querySelector('#customSlug');
+urlDiv.style.display = "none";
+
 
 title.addEventListener("keydown", function(event) {
     if(document.querySelectorAll(".postLinkOp").value !== '') {
@@ -35,6 +39,22 @@ title.addEventListener("keydown", function(event) {
             checkTyping();
         }
     }
+});
+
+linkOp.forEach(function(el) {
+    el.addEventListener("change", function(event) {
+        if(el.value === "custom") {
+            slug.innerHTML = '';
+            urlDiv.style.display = "block";
+            customUrl.value = '';
+        } else {
+            slug.innerHTML = '';
+            urlDiv.style.display = "none";
+            if(title.value !== '') {
+                displaySlug();
+            }
+        }
+    });
 });
 
 let typingTimer = null;

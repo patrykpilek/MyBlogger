@@ -140,7 +140,7 @@
 - [x] creating method to display label in textarea
 - [x] creating js method to check if user typing for title in the title filed
 - [x] creating method to generate post link using title
-- [ ] creating js condition to make link options work
+- [x] creating js condition to make link options work
 - [ ] validating custom url input field
 - [ ] creating ajax request to create post
 - [ ] creating method to publish post
