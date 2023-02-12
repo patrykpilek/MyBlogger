@@ -143,10 +143,9 @@
 - [x] creating js condition to make link options work
 - [x] validating custom url input field
 - [x] creating ajax request to create post
-- [ ] creating method to publish post
+- [x] creating method to publish post
 - [ ] creating method to save post
 - [ ] creating method to edit post
-- [ ] creating method to update post
 
 - [ ] creating method to update post
 - [ ] creating method to make published post draft

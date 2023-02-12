@@ -110,6 +110,7 @@ publish.addEventListener("click", function(event) {
     let labels = document.querySelector('#labelArea').value.trim();
     let comments = document.querySelector('.comments:checked').value;
     let slug = document.querySelector('#customSlug').value.trim();
+    let content = document.querySelector('#editor').firstChild.innerHTML;
 
     if(title !== '') {
         if(slug === '') {
@@ -121,6 +122,7 @@ publish.addEventListener("click", function(event) {
         formData.append("blogID", blogID);
         formData.append("title", title);
         formData.append("description", description);
+        formData.append("content", content);
         formData.append("labels", labels);
         formData.append("comments", comments);
         formData.append("slug", slug);
