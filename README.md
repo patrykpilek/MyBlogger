@@ -142,11 +142,12 @@
 - [x] creating method to generate post link using title
 - [x] creating js condition to make link options work
 - [x] validating custom url input field
-- [ ] creating ajax request to create post
+- [x] creating ajax request to create post
 - [ ] creating method to publish post
 - [ ] creating method to save post
 - [ ] creating method to edit post
 - [ ] creating method to update post
+
 - [ ] creating method to update post
 - [ ] creating method to make published post draft
 - [ ] creating js function to upload image in editor

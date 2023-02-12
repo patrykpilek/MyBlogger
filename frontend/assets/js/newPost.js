@@ -102,3 +102,41 @@ function displaySlug() {
         httpRequest.send(formData);
     }
 }
+
+publish.addEventListener("click", function(event) {
+    let blogID = this.dataset.blog;
+    let title = document.querySelector('#title').value.trim();
+    let description = document.querySelector('#description').value.trim();
+    let labels = document.querySelector('#labelArea').value.trim();
+    let comments = document.querySelector('.comments:checked').value;
+    let slug = document.querySelector('#customSlug').value.trim();
+
+    if(title !== '') {
+        if(slug === '') {
+            slug = title;
+        }
+
+        let formData = new FormData();
+
+        formData.append("blogID", blogID);
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("labels", labels);
+        formData.append("comments", comments);
+        formData.append("slug", slug);
+
+        let httpRequest = new XMLHttpRequest();
+
+        if(httpRequest) {
+            httpRequest.open('POST', 'http://localhost/backend/ajax/addPost.php', true);
+            httpRequest.onreadystatechange = function () {
+                if(this.readyState === 4 && this.status === 200) {
+                    window.location.href = "http://localhost/admin/blogID/" + blogID + "/dashboard/";
+                }
+            }
+
+            httpRequest.send(formData);
+        }
+    }
+
+});
