@@ -125,6 +125,44 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                         },
                                         theme: 'snow'
                                     });
+
+                                    function selectImage() {
+                                        let input = document.createElement('input');
+                                        input.setAttribute('type', 'file');
+                                        input.click();
+
+                                        input.onchange = function() {
+                                            let file = input.files[0]
+
+                                            if(/^image\//.test(file.type)) {
+                                                let formData = new FormData();
+
+                                                formData.append("image", file);
+
+                                                let httpRequest = new XMLHttpRequest();
+
+                                                if(httpRequest) {
+                                                    httpRequest.open('POST', 'http://localhost/backend/ajax/uploadImage.php', true);
+                                                    httpRequest.onreadystatechange = function () {
+                                                        if(this.readyState === 4 && this.status === 200) {
+                                                            if(this.responseText.length !== 0) {
+                                                                let url = JSON.parse(this.responseText).url;
+                                                                let range = editor.getSelection();
+                                                                editor.insertEmbed(range.index, 'image', 'http://localhost/' + url)
+                                                            }
+                                                        }
+                                                    }
+
+                                                    httpRequest.send(formData);
+                                                }
+                                            } else  {
+                                                alert("You can only upload images");
+                                            }
+                                        }
+                                    }
+                                    editor.getModule('toolbar').addHandler('image', function() {
+                                       selectImage();
+                                    });
                                 </script>
                             </div>
                         </div>

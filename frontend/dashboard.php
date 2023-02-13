@@ -88,7 +88,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <div class="h-b-r-inner flex fl-row">
                         <div class="hbr-in-left fl-1 flex fl-row">
                             <div>
-                                <button class="btn-newp" value="New post">New post</button>
+                                <button class="btn-newp" value="New post" onclick="window.location.href='http://localhost/admin/blogID/<?php echo $blog->blogID ?>/post/new/'">New post</button>
                             </div>
                             <div class="flex fl-row fl-1">
                                 <!-- profile Image -->
