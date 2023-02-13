@@ -146,7 +146,7 @@
 - [x] creating method to publish post
 - [x] creating method to save post
 - [x] creating method to edit post
-- [ ] creating method to update post
+- [x] creating method to update post
 - [ ] creating method to make published post draft
 - [ ] creating js function to upload image in editor
 - [ ] uploading images to post editor
