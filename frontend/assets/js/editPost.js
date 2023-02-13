@@ -1,6 +1,7 @@
 let labels = document.querySelectorAll(".label");
 let publish = document.querySelector("#publish");
 let saveBtn = document.querySelector("#saveBtn");
+let draftBtn = document.querySelector("#draftBtn");
 
 labels.forEach(function(el) {
     el.addEventListener("click", function(event) {
@@ -151,6 +152,7 @@ publish.addEventListener("click", function(event) {
 if(saveBtn !== null) {
     saveBtn.addEventListener("click", function(event) {
         let blogID = publish.dataset.blog;
+        let postID = publish.dataset.post;
         let title = document.querySelector('#title').value.trim();
         let description = document.querySelector('#description').value.trim();
         let labels = document.querySelector('#labelArea').value.trim();
@@ -166,6 +168,7 @@ if(saveBtn !== null) {
             let formData = new FormData();
 
             formData.append("blogID", blogID);
+            formData.append("postID", postID);
             formData.append("title", title);
             formData.append("description", description);
             formData.append("content", content);
@@ -189,5 +192,30 @@ if(saveBtn !== null) {
             alert('Please add post title!')
         }
 
+    });
+}
+
+if(draftBtn !== null) {
+    draftBtn.addEventListener("click", function(event) {
+        let blogID = publish.dataset.blog;
+        let postID = publish.dataset.post;
+
+        let formData = new FormData();
+
+        formData.append("blogID", blogID);
+        formData.append("postID", postID);
+
+        let httpRequest = new XMLHttpRequest();
+
+        if(httpRequest) {
+            httpRequest.open('POST', 'http://localhost/backend/ajax/addToDraft.php', true);
+            httpRequest.onreadystatechange = function () {
+                if(this.readyState === 4 && this.status === 200) {
+                    window.location.reload(true);
+                }
+            }
+
+            httpRequest.send(formData);
+        }
     });
 }

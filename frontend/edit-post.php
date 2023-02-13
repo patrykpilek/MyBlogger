@@ -84,7 +84,7 @@ if (isset($_GET['postID']) && isset($_GET['blogID'])) {
                                     <button id="publish" data-blog="<?php echo $blog->blogID; ?>" data-post="<?php echo $post->postID; ?>">Update</button>
                                     <button id="draft">Revent to draft</button>
                                     <?php endif; ?>
-                                    <button onclick="window.location.href='<?php echo BASE_URL.'admin/blogID/'.$blog->blogID.'/dashboard'; ?>">Close</button>
+                                    <button onclick="window.location.href='<?php echo BASE_URL.'admin/blogID/'.$blog->blogID.'/dashboard/'; ?>'">Close</button>
                                 </div>
                             </div>
                         </div>
