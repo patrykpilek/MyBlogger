@@ -89,12 +89,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <div class="edit-main-inner flex fl-row">
                         <div class="edit-main-left fl-4 fl-c">
                             <div class="edit-main-editor">
-                                <link href="<?php echo BASE_URL; ?>frontend/assets/css/quill.snow.css" rel="stylesheet">
+<!--                                <link href="--><?php //echo BASE_URL; ?><!--frontend/assets/css/quill.snow.css" rel="stylesheet">-->
+                                <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
                                 <!-- Create the editor container -->
                                 <div id="editor"></div>
 
                                 <!-- Include the Quill library -->
-                                <script src="<?php echo BASE_URL; ?>frontend/assets/js/quill.js"></script>
+<!--                                <script src="--><?php //echo BASE_URL; ?><!--frontend/assets/js/quill.js"></script>-->
+                                <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
                                 <!-- Initialize Quill editor -->
                                 <script type="text/javascript">
@@ -148,7 +150,9 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                             if(this.responseText.length !== 0) {
                                                                 let url = JSON.parse(this.responseText).url;
                                                                 let range = editor.getSelection();
-                                                                editor.insertEmbed(range.index, 'image', 'http://localhost/' + url)
+                                                                // editor.insertEmbed(range.index, 'image', 'http://localhost/'+url)
+                                                                // editor.insertEmbed(range.index, 'image', 'https://quilljs.com/assets/images/brand-asset.png')
+                                                                editor.insertEmbed(10, 'image', 'https://quilljs.com/assets/images/brand-asset.png');
                                                             }
                                                         }
                                                     }
