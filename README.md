@@ -150,5 +150,5 @@
 - [x] creating method to make published post draft
 - [x] creating js function to upload image in editor
 - [x] uploading images to post editor
-- [ ] creating method to new page
+- [x] creating method to new page
 - [ ] creating method to update page

@@ -14,7 +14,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Pages - MyBlogger</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>frontend/assets/css/style.css"/>
@@ -154,9 +154,9 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                             </span>
                                         </div>
                                         <div class="fl-4">
-                                            <button>New page</button>
+                                            <button onclick="window.location.href='<?php echo BASE_URL.'admin/blogID/'.$blog->blogID.'/page/new/'; ?>';">New page</button>
                                             <button id="publishBtn">Publish</button>
-                                            <button id="draftBtn">Revert to darft</button>
+                                            <button id="draftBtn">Revert to draft</button>
                                             <button id="deleteBtn"><i class="fas fa-trash"></i></button>
                                         </div>
                                     </div>
