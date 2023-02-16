@@ -15,7 +15,14 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
 
         if($blog) {
             if(!empty($title)) {
-                $postID = $userObj->create('posts', ['title' => $title, 'description' => $description, 'slug' => $slug, 'authorID' => $blog->userID, 'blogID' => $blog->blogID, 'content' => $content, 'postStatus' => 'draft', 'postType' => 'Page', 'isComments' => 'blocked', 'createdDate' => $date]);
+                $post = $userObj->get("posts", ['postID' => $postID, 'blogID' => $blog->blogID]);
+                if($post) {
+                    $postID = $userObj->update('posts', ['title' => $title, 'description' => $description, 'slug' => $slug, 'content' => $content, 'postStatus' => 'draft', 'postType' => 'Page', 'isComments' => 'blocked'], ['postID' => $post->postID, 'blodID' => $blog->blogID]);
+                    $postID = $post->postID;
+                } else {
+                    $postID = $userObj->create('posts', ['title' => $title, 'description' => $description, 'slug' => $slug, 'authorID' => $blog->userID, 'blogID' => $blog->blogID, 'content' => $content, 'postStatus' => 'draft', 'postType' => 'Page', 'isComments' => 'blocked', 'createdDate' => $date]);
+                }
+
                 echo $postID;
             }
         }

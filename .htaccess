@@ -7,6 +7,7 @@ RewriteRule ^admin/blogID/([0-9]+)/dashboard/settings/?$ frontend/settings.php?b
 RewriteRule ^admin/blogID/([0-9]+)/post/new/?$ frontend/new-post.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/page/new/?$ frontend/new-page.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/post/([0-9]+)/edit/?$ frontend/edit-post.php?blogID=$1&postID=$2
+RewriteRule ^admin/blogID/([0-9]+)/page/([0-9]+)/edit/?$ frontend/edit-page.php?blogID=$1&postID=$2
 
 RewriteRule ^404/?$ frontend/404.php
 RewriteRule ^search/label/([\w]+)/?$ frontend/post.php?label=$1

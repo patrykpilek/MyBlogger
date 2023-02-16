@@ -151,4 +151,4 @@
 - [x] creating js function to upload image in editor
 - [x] uploading images to post editor
 - [x] creating method to new page
-- [ ] creating method to update page
+- [x] creating method to update page
