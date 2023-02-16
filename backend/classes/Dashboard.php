@@ -74,7 +74,7 @@ class Dashboard
                                             <div class="p-l-head flex fl-row">
                                                 <div class="pl-head-left fl-1">
                                                     <div class="pl-h-lr-link">
-                                                        <a href="{POST-LINK}">' . $post->title . '</a>
+                                                        <a href="'.BASE_URL.'admin/blogID/'.$post->blogID.'/'.strtolower($type).'/'.$post->postID.'/edit">' . $post->title . '</a>
                                                     </div>
                                                     <div class="pl-h-lf-link">
                                                         <ul>
@@ -88,7 +88,7 @@ class Dashboard
                                             </div>
                                             <div class="p-l-footer">
                                                 <ul>
-                                                    <li><a href="{EDIT-LINK}">Edit</a></li>
+                                                    <li><a href="'.BASE_URL.'admin/blogID/'.$post->blogID.'/'.strtolower($type).'/'.$post->postID.'/edit">Edit</a></li>
                                                     |
                                                     <li><a href="javascript:;" id="deletePost" data-post="' . $post->postID . '" data-blog="' . $post->blogID . '">Delete</a></li>
                                                 </ul>

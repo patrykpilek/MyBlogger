@@ -1,9 +1,6 @@
 <?php
 include '../backend/init.php';
 
-$user = $userObj->userData();
-$blog = $userObj->get('blogs', ['blogID' => 1]);
-
 if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
     $blogID = (int) $_GET['blogID'];
     $blog = $dashObj->blogAuth($blogID);
@@ -48,7 +45,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <div class="header-right fl-2">
                         <div class="h-r-in">
                             <!-- Profile Image -->
-                            <img src="<?php echo BASE_URL.$user->profileImage; ?>">
+                            <img src="<?php echo BASE_URL.$blog->profileImage; ?>">
                             <div class="log-out">
                                 <div>
                                     <a href="<?php echo BASE_URL; ?>frontend/logout.php">logout</a>
@@ -91,15 +88,15 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     <div class="h-b-r-inner flex fl-row">
                         <div class="hbr-in-left fl-1 flex fl-row">
                             <div>
-                                <button class="btn-newp" value="New post">New post</button>
+                                <button class="btn-newp" value="New post" onclick="window.location.href='http://localhost/admin/blogID/<?php echo $blog->blogID ?>/post/new/'">New post</button>
                             </div>
                             <div class="flex fl-row fl-1">
                                 <!-- profile Image -->
                                 <div class="avatar-image">
-                                    <img src="<?php echo BASE_URL.$user->profileImage; ?>">
+                                    <img src="<?php echo BASE_URL.$blog->profileImage; ?>">
                                 </div>
                                 <div class="fl-1">Using Mylogger as
-                                    <span class="bold"><?php echo $user->fullName; ?></span>
+                                    <span class="bold"><?php echo $blog->fullName; ?></span>
                                 </div>
                             </div>
                         </div>
