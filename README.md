@@ -152,3 +152,7 @@
 - [x] uploading images to post editor
 - [x] creating method to new page
 - [x] creating method to update page
+
+### Creating Layout Section for Blogs
+
+- [x] creating layout page
