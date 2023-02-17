@@ -254,7 +254,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                 <!--add-gadget-ends-->
 
                                                                 <!-- SIDEBAR GADGETS -->
-                                                                {SIDEBAR GADGETS}
+                                                                <?php $layoutObj->sideBarGadgets($blog->blogID); ?>
                                                             </div><!--layout-widget-inner-ends-->
                                                         </div><!--layout-widget-box-ends-->
 

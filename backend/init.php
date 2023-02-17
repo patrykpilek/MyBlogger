@@ -16,6 +16,7 @@ define("DB_PASS", "secret");
 $userObj = new Users();
 $dashObj = new Dashboard();
 $blogObj = new Blog();
+$layoutObj = new Layout();
 
 if($blog = $blogObj->getBlog())
 {

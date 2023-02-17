@@ -156,3 +156,5 @@
 ### Creating Layout Section for Blogs
 
 - [x] creating layout page
+- [x] creating method to display widgets on sidebar to edit
+- [ ] display footer gadgets
