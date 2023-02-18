@@ -389,7 +389,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 </div>
                                 <!--layout-wrapper-->
                                 <!-- JS FILES -->
-
+                                <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/drag-and-drop.js"></script>
                             </div>
                         </div>
                     </div>

@@ -351,7 +351,7 @@ class Layout extends Blog
             if ($gadget->displayOn === 'sideBar') {
                 $content = json_decode($gadget->content);
                 echo '
-                    <div class="gadget">
+                    <div class="gadget" id="drag" draggable="true" data-id="'.$gadget->gadgetID.'" data-blog="'.$blog->blogID.'" data-type="'.$gadget->type.'" data-area="'.$gadget->displayOn .'" data-pos="'.$gadget->position.'">
                         <div class="gadget-body flex fl-row">
                             <div class="gadget-left">
                                 <span>

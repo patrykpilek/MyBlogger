@@ -158,3 +158,20 @@
 - [x] creating layout page
 - [x] creating method to display widgets on sidebar to edit
 - [x] display footer gadgets
+- [x] creating drag and drop function for gadgets
+- [ ] creating method to update position for gadget
+- [ ] creating gadget list page
+- [ ] display gadget list
+- [ ] display gadget form
+- [ ] creating method to insert popular posts gadget
+- [ ] creating method to add search gadget to blog
+- [ ] creating method to add html gadget to blog
+- [ ] creating method to add profile gadget to blog
+- [ ] creating method to add labels gadget
+- [ ] creating js function to add lists gadget
+- [ ] adding list gadget
+- [ ] creating method to delete gadgets
+- [ ] creating method to edit gadgets
+- [ ] display gadget data for edit gadget page
+- [ ] display header, nav gadgets edit form
+- [ ] creating method to update nav header gadget
