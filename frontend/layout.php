@@ -271,6 +271,9 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                         <div class="layout-widget-inner flex fl-row">
                                                             <div class="footer-1 fl-1">
                                                                 <!--FOOTER 1 = GADGET-->
+                                                                <?php if($gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'displayOn' => 'footer', 'position' => 1])):
+                                                                    $content = json_decode($gadget->content);
+                                                                ?>
                                                                 <div class="gadget">
                                                                     <div class="gadget-body flex fl-row">
                                                                         <div class="gadget-left">
@@ -280,15 +283,15 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                         </div>
                                                                         <div class="gadget-right flex fl-4 fl-c">
                                                                             <div>
-                                                                                <span>{GADGET TITLE}</span>
+                                                                                <span><?php echo $content->{'title'} ?></span>
                                                                             </div>
                                                                             <div>
-                                                                                <span>{GADGET CONTENT}</span>
+                                                                                <span><?php echo $content->{'caption'} ?></span>
                                                                             </div>
                                                                         </div>
                                                                         <span>
-                                                                            <a href="javascript:;" id="editGadget">Edit</a>
-                                                                            <a href="javascript:;" id="deleteGadget">Delete</a>
+                                                                            <a href="javascript:;" id="editGadget" data-blog="<?php echo $blog->blogID; ?>" data-type="<?php echo $gadget->type; ?>" data-area="<?php echo $gadget->displayOn; ?>" data-pos="<?php echo $gadget->position; ?>">Edit</a>
+                                                                            <a href="javascript:;" id="deleteGadget" data-blog="<?php echo $blog->blogID; ?>" data-type="<?php echo $gadget->type; ?>" data-area="<?php echo $gadget->displayOn; ?>" data-pos="<?php echo $gadget->position; ?>">Delete</a>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -297,11 +300,15 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
+                                                                <?php endif; ?>
                                                                 <!--add-gadget-ends-->
                                                             </div>
                                                             <div class="footer-2 fl-1">
 
                                                                 <!--FOOTER 2 = GADGET-->
+                                                                <?php if($gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'displayOn' => 'footer', 'position' => 2])):
+                                                                $content = json_decode($gadget->content);
+                                                                ?>
                                                                 <div class="gadget">
                                                                     <div class="gadget-body flex fl-row">
                                                                         <div class="gadget-left">
@@ -311,10 +318,10 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                         </div>
                                                                         <div class="gadget-right flex fl-4 fl-c">
                                                                             <div>
-                                                                                <span>{GADGET TITLE}</span>
+                                                                                <span><?php echo $content->{'title'} ?></span>
                                                                             </div>
                                                                             <div>
-                                                                                <span>{GADGET CONTENT}</span>
+                                                                                <span><?php echo $content->{'caption'} ?></span>
                                                                             </div>
                                                                         </div>
                                                                         <span>
@@ -330,10 +337,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
+                                                                <?php endif; ?>
                                                                 <!--add-gadget-ends-->
                                                             </div>
                                                             <div class="footer-3 fl-1">
                                                                 <!--FOOTER 3 = GADGET-->
+                                                                <?php if($gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'displayOn' => 'footer', 'position' => 2])):
+                                                                $content = json_decode($gadget->content);
+                                                                ?>
                                                                 <div class="gadget">
                                                                     <div class="gadget-body flex fl-row">
                                                                         <div class="gadget-left">
@@ -343,10 +354,10 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                         </div>
                                                                         <div class="gadget-right flex fl-4 fl-c">
                                                                             <div>
-                                                                                <span>{GADGET TITLE}</span>
+                                                                                <span><?php echo $content->{'title'} ?></span>
                                                                             </div>
                                                                             <div>
-                                                                                <span>{GADGET CONTENT}</span>
+                                                                                <span><?php echo $content->{'caption'} ?></span>
                                                                             </div>
                                                                         </div>
                                                                         <span>
@@ -361,6 +372,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
+                                                                <?php endif; ?>
                                                                 <!--add-gadget-ends-->
                                                             </div>
                                                         </div><!--layout-widget-inner-ends-->

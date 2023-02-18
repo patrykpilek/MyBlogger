@@ -157,4 +157,4 @@
 
 - [x] creating layout page
 - [x] creating method to display widgets on sidebar to edit
-- [ ] display footer gadgets
+- [x] display footer gadgets
