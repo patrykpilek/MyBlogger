@@ -159,7 +159,7 @@
 - [x] creating method to display widgets on sidebar to edit
 - [x] display footer gadgets
 - [x] creating drag and drop function for gadgets
-- [ ] creating method to update position for gadget
+- [x] creating method to update position for gadget
 - [ ] creating gadget list page
 - [ ] display gadget list
 - [ ] display gadget form
