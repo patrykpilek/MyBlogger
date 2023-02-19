@@ -247,7 +247,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                             <div class="layout-widget-inner">
 
                                                                 <!--add-gadget-->
-                                                                <div class="dashed-border add-gadget">
+                                                                <div class="dashed-border add-gadget" data-area="sideBar" data-pos="0">
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
@@ -295,13 +295,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                         </span>
                                                                     </div>
                                                                 </div>
+                                                                <?php else: ?>
                                                                 <!--add-gadget-->
-                                                                <div class="dashed-border add-gadget" id="addGadgetBtn">
+                                                                <div class="dashed-border add-gadget" id="addGadgetBtn" data-area="footer" data-pos="1">
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
-                                                                <?php endif; ?>
                                                                 <!--add-gadget-ends-->
+                                                                <?php endif; ?>
                                                             </div>
                                                             <div class="footer-2 fl-1">
 
@@ -331,14 +332,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                     </div>
                                                                 </div>
                                                                 <!--gadget ends-->
-
+                                                                <?php else: ?>
                                                                 <!--add-gadget-->
-                                                                <div class="dashed-border add-gadget" id="addGadgetBtn">
+                                                                <div class="dashed-border add-gadget" id="addGadgetBtn" data-area="footer" data-pos="2">
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
-                                                                <?php endif; ?>
                                                                 <!--add-gadget-ends-->
+                                                                <?php endif; ?>
                                                             </div>
                                                             <div class="footer-3 fl-1">
                                                                 <!--FOOTER 3 = GADGET-->
@@ -367,13 +368,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                     </div>
                                                                 </div>
                                                                 <!--gadget ends-->
+                                                                <?php else: ?>
                                                                 <!--add-gadget-->
-                                                                <div class="dashed-border add-gadget">
+                                                                <div class="dashed-border add-gadget" data-area="footer" data-pos="3">
                                                                     <span><i class="fas fa-plus"></i></span>
                                                                     <span><a href="javascript:;" id="newGadget">Add a Gadget</a></span>
                                                                 </div>
-                                                                <?php endif; ?>
                                                                 <!--add-gadget-ends-->
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div><!--layout-widget-inner-ends-->
                                                     </div><!--layout-widget-box-ends-->
@@ -390,6 +392,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 <!--layout-wrapper-->
                                 <!-- JS FILES -->
                                 <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/drag-and-drop.js"></script>
+                                <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/layout.js"></script>
                             </div>
                         </div>
                     </div>

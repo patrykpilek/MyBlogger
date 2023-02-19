@@ -160,7 +160,7 @@
 - [x] display footer gadgets
 - [x] creating drag and drop function for gadgets
 - [x] creating method to update position for gadget
-- [ ] creating gadget list page
+- [x] creating gadget list page
 - [ ] display gadget list
 - [ ] display gadget form
 - [ ] creating method to insert popular posts gadget
