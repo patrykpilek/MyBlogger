@@ -162,7 +162,7 @@
 - [x] creating method to update position for gadget
 - [x] creating gadget list page
 - [x] display gadget list
-- [ ] display gadget form
+- [x] display gadget form
 - [ ] creating method to insert popular posts gadget
 - [ ] creating method to add search gadget to blog
 - [ ] creating method to add html gadget to blog

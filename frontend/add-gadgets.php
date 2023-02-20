@@ -11,6 +11,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
             $pos = (int) $_GET['pos'];
         }
 
+        if(isset($_GET['type'])) {
+            $type = Validate::escape($_GET['type']);
+        }
+
         if (!$blog) {
             header('Location: 404');
         }
@@ -59,9 +63,332 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="layout-pop-inner">
 
                 <div class="laypopup-box">
-                    <div class="l-popup flex fl-c">
-                        {EDIT-GADGETS}
-                    </div>
+                    <?php if(!empty($type) && $type === "topPosts"): ?>
+                        <div class="l-popup flex fl-c">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Title</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title"  style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="text" name="gadgetTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <div id="error" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Show</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title"  style="display: block;">
+                                            <div class="bn-input">
+                                                <div class="papular-inputs">
+                                                    <span>
+                                                        Display up to
+                                                    <select id="postLimit" name="postLimit">
+                                                        <option value="{POST-LIMIT}" selected>{POST-LIMIT}</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                        post(s)
+                                                    </span>
+                                                    <br>
+                                                </div>
+                                                <div class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="topPostsBtn"  class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn" onclick="window.close();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <?php elseif(!empty($type) && $type === "search"): ?>
+                        <div class="l-popup flex fl-c">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Title</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="text" name="searchInput" id="gadgetTitle" value="{GADGET-CONTENT}">
+                                                <div id="error" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="searchSaveBtn" class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn" onclick="window.close();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif(!empty($type) && $type === "html"): ?>
+                        <div class="l-popup flex fl-c">
+                            <div class="popup-html-widget">
+                                <div class="popup-html-sec">
+                                    <div class="bn-title"  style="display: block;">
+                                        <div class="pop-html-title">
+                                            Title
+                                        </div>
+                                        <div class="bn-input">
+                                            <input type="text" name="gadgetTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                            <div id="error" class="bt-error" style="display:block;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--popup-html-sec-->
+                                <div class="popup-html-sec">
+                                    <div class="bn-title" style="display: block;">
+                                        <div class="pop-html-title">
+                                            Content
+                                        </div>
+                                        <div class="bn-input">
+                                            <textarea class="text-area" id="gadgetContent">
+                                                {GADGET-HTML}
+                                            </textarea>
+                                            <div id="contentError"class="bt-error">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--popup-html-sec ends-->
+                            </div>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="htmlSaveBtn" class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn" onclick="window.close();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif(!empty($type) && $type === "profile"): ?>
+                        <div class="l-popup flex fl-c">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Title</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title"  style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="text" name="title" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <div id="titleError" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Description</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <textarea class="text-area" id="gadgetContent">
+                                                    {GADGET-CONTENT}
+                                                </textarea>
+                                                <div id="contentError" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Facebook URL</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="url" name="fbUrl" id="fbUrl" value="{GADGET-CONTENT}">
+                                                <div class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Twiiter URL</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="url" name="twitterUrl" id="twitterUrl" value="{GADGET-CONTENT}">
+                                                <div class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Instagram URL</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="url" name="igUrl" id="igUrl" value="{GADGET-CONTENT}">
+                                                <div class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Youtube URL</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="url" name="ytUrl" id="ytUrl" value="{GADGET-CONTENT}">
+                                                <div class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="profileBtn" class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn" onclick="window.close();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif(!empty($type) && $type === "labels"): ?>
+                        <div class="l-popup flex fl-c">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Title</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="text" name="labelsTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <div id="error" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="labelBtn" class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn" onclick="window.close();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif(!empty($type) && $type === "list"): ?>
+                        <div class="l-popup flex fl-c">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Title</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="text" name="gadgetTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <div id="titleError" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>New Site Name</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input type="text" name="siteName" id="siteName">
+                                                <div id="nameError" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>New Site URL</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title">
+                                            <div class="bn-input">
+                                                <input type="url" name="siteUrl" id="siteUrl">
+                                                <div id="urlError" class="bt-error">
+                                                </div>
+                                                <div class="add-link-box">
+                                                    <div class="add-btn-div">
+                                                        <button id="addLink" class="cancel-btn">Add Link</button>
+                                                    </div>
+                                                    <div class="add-link-body">
+                                                        <ul id="linkArea">
+                                                            <li>
+                                                                <span>
+                                                                    <a href="javascript:;" id="deleteLink">Delete</a>
+                                                                </span>
+                                                                <span>
+                                                                    <a id="link" href="{LINK}" target="_blink">{LINK}</a>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="listSaveBtn" class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn" onclick="window.close();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else: ?>
                     <!--l-popup-body-->
                     <div class="l-popup-body">
                         <div class="lp-box flex fl-row">
@@ -213,6 +540,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                         </div>
                     </div>
                     <!--l-popup-body-ends-->
+                    <?php endif; ?>
                 </div>
             </div>
             <!-- JS FILES -->
