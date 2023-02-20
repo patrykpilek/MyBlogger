@@ -161,7 +161,7 @@
 - [x] creating drag and drop function for gadgets
 - [x] creating method to update position for gadget
 - [x] creating gadget list page
-- [ ] display gadget list
+- [x] display gadget list
 - [ ] display gadget form
 - [ ] creating method to insert popular posts gadget
 - [ ] creating method to add search gadget to blog
