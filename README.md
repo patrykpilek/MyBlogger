@@ -163,7 +163,7 @@
 - [x] creating gadget list page
 - [x] display gadget list
 - [x] display gadget form
-- [ ] creating method to insert popular posts gadget
+- [x] creating method to insert popular posts gadget
 - [ ] creating method to add search gadget to blog
 - [ ] creating method to add html gadget to blog
 - [ ] creating method to add profile gadget to blog

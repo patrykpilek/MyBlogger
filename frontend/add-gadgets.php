@@ -74,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title"  style="display: block;">
                                             <div class="bn-input">
-                                                <input type="text" name="gadgetTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <input type="text" name="gadgetTitle" id="gadgetTitle">
                                                 <div id="error" class="bt-error">
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                     <span>
                                                         Display up to
                                                     <select id="postLimit" name="postLimit">
-                                                        <option value="{POST-LIMIT}" selected>{POST-LIMIT}</option>
+                                                        <option value="10" selected>10</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -118,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </table>
                             <div class="lt-foo">
                                 <div class="bn-button">
-                                    <button id="topPostsBtn"  class="btn-newp">Save changes</button>
+                                    <button id="topPostsBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
                                     <button class="cancel-btn" onclick="window.close();">Cancel</button>
                                 </div>
                             </div>
