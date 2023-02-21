@@ -199,7 +199,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title"  style="display: block;">
                                             <div class="bn-input">
-                                                <input type="text" name="title" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <input type="text" name="title" id="gadgetTitle">
                                                 <div id="titleError" class="bt-error">
                                                 </div>
                                             </div>
@@ -213,9 +213,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <textarea class="text-area" id="gadgetContent">
-                                                    {GADGET-CONTENT}
-                                                </textarea>
+                                                <textarea class="text-area" id="gadgetContent"></textarea>
                                                 <div id="contentError" class="bt-error">
                                                 </div>
                                             </div>
@@ -229,7 +227,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <input type="url" name="fbUrl" id="fbUrl" value="{GADGET-CONTENT}">
+                                                <input type="url" name="fbUrl" id="fbUrl">
                                                 <div class="bt-error">
                                                 </div>
                                             </div>
@@ -243,7 +241,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <input type="url" name="twitterUrl" id="twitterUrl" value="{GADGET-CONTENT}">
+                                                <input type="url" name="twitterUrl" id="twitterUrl">
                                                 <div class="bt-error">
                                                 </div>
                                             </div>
@@ -257,7 +255,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <input type="url" name="igUrl" id="igUrl" value="{GADGET-CONTENT}">
+                                                <input type="url" name="igUrl" id="igUrl">
                                                 <div class="bt-error">
                                                 </div>
                                             </div>
@@ -271,7 +269,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <input type="url" name="ytUrl" id="ytUrl" value="{GADGET-CONTENT}">
+                                                <input type="url" name="ytUrl" id="ytUrl">
                                                 <div class="bt-error">
                                                 </div>
                                             </div>
@@ -282,7 +280,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </table>
                             <div class="lt-foo">
                                 <div class="bn-button">
-                                    <button id="profileBtn" class="btn-newp">Save changes</button>
+                                    <button id="profileBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
                                     <button class="cancel-btn" onclick="window.close();">Cancel</button>
                                 </div>
                             </div>
