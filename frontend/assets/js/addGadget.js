@@ -53,3 +53,42 @@ if(topPostsBtn) {
         }
     });
 }
+
+//search gadget
+let searchBtn = document.querySelector("#searchSaveBtn")
+
+if(searchBtn) {
+    searchBtn.addEventListener("click", function(event) {
+        let blogID = this.dataset.blog;
+        let area = this.dataset.area;
+        let pos = this.dataset.pos;
+        let title = document.querySelector("#gadgetTitle");
+        let error = document.querySelector("#error");
+
+        if(title.value !== "") {
+            error.innerHTML = "";
+            let formData = new FormData();
+
+            formData.append("blogID", blogID);
+            formData.append("area", area);
+            formData.append("pos", pos);
+            formData.append("title", title.value);
+
+            let httpRequest = new XMLHttpRequest();
+
+            if(httpRequest) {
+                httpRequest.open('POST', 'http://localhost/backend/ajax/addSearchGadget.php', true);
+                httpRequest.onreadystatechange = function () {
+                    if(this.readyState === 4 && this.status === 200) {
+                        window.close();
+                        window.opener.location.reload(true);
+                    }
+                }
+
+                httpRequest.send(formData);
+            }
+        } else {
+            error.innerHTML = "Required field must not be blank";
+        }
+    });
+}

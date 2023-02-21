@@ -363,7 +363,7 @@ class Layout extends Blog
                                     <span>'. $content->{'title'} .'</span>
                                 </div>
                                 <div>
-                                    <span>Nav Gadget</span>
+                                    <span>'.$content->{'caption'}.'</span>
                                 </div>
                             </div>
                             <span>

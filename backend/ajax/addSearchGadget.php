@@ -7,17 +7,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $pos = (int)$_POST['pos'];
         $title = Validate::escape($_POST['title']);
         $area = Validate::escape($_POST['area']);
-        $postLimit = (int)$_POST['postLimit'];
         $blog = $dashObj->blogAuth($blogID);
-        $gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'topPosts', 'displayOn' => $area, 'position' => $pos]);
+        $gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'search', 'displayOn' => $area, 'position' => $pos]);
 
         if ($blog) {
             if ($blog->role === "Admin") {
-                $content = '{"title": "' . $title . '", "caption": "Popular Posts Gadget", "postLimit": "' . $postLimit . '"}';
+                $content = '{"title": "' . $title . '", "caption": "Blog Search Gadget"}';
                 if (!$gadget) {
                     $userObj->create('gadgets', [
                         'blogID' => $blogID,
-                        'type' => 'topPosts',
+                        'type' => 'search',
                         'content' => $content,
                         'displayOn' => $area,
                         'position' => $pos,
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 } else {
                     $userObj->update('gadgets', ['content' =>$content], [
                         'blogID' => $blogID,
-                        'type' => 'topPosts',
+                        'type' => 'search',
                         'content' => $content,
                         'displayOn' => $area,
                         'position' => $pos

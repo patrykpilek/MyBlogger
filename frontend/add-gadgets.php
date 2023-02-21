@@ -135,7 +135,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <input type="text" name="searchInput" id="gadgetTitle" value="{GADGET-CONTENT}">
+                                                <input type="text" name="searchInput" id="gadgetTitle">
                                                 <div id="error" class="bt-error">
                                                 </div>
                                             </div>
@@ -146,7 +146,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </table>
                             <div class="lt-foo">
                                 <div class="bn-button">
-                                    <button id="searchSaveBtn" class="btn-newp">Save changes</button>
+                                    <button id="searchSaveBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
                                     <button class="cancel-btn" onclick="window.close();">Cancel</button>
                                 </div>
                             </div>
