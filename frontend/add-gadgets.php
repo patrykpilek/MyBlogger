@@ -160,7 +160,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                             Title
                                         </div>
                                         <div class="bn-input">
-                                            <input type="text" name="gadgetTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                            <input type="text" name="gadgetTitle" id="gadgetTitle">
                                             <div id="error" class="bt-error" style="display:block;">
                                             </div>
                                         </div>
@@ -173,9 +173,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                             Content
                                         </div>
                                         <div class="bn-input">
-                                            <textarea class="text-area" id="gadgetContent">
-                                                {GADGET-HTML}
-                                            </textarea>
+                                            <textarea class="text-area" id="gadgetContent"></textarea>
                                             <div id="contentError"class="bt-error">
                                             </div>
                                         </div>
@@ -185,7 +183,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </div>
                             <div class="lt-foo">
                                 <div class="bn-button">
-                                    <button id="htmlSaveBtn" class="btn-newp">Save changes</button>
+                                    <button id="htmlSaveBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
                                     <button class="cancel-btn" onclick="window.close();">Cancel</button>
                                 </div>
                             </div>
