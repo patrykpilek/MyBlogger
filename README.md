@@ -168,7 +168,7 @@
 - [x] creating method to add html gadget to blog
 - [x] creating method to add profile gadget to blog
 - [x] creating method to add labels gadget
-- [ ] creating js function to add lists gadget
+- [x] creating js function to add lists gadget
 - [ ] adding list gadget
 - [ ] creating method to delete gadgets
 - [ ] creating method to edit gadgets

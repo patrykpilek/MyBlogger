@@ -227,3 +227,106 @@ if(labelBtn) {
         }
     });
 }
+
+//list gadget
+let listBtn = document.querySelector("#listSaveBtn");
+let addLink = document.querySelector("#addLink");
+let title = document.querySelector("#gadgetTitle");
+let siteUrl = document.querySelector("#siteUrl");
+let siteName = document.querySelector("#siteName");
+let titleEr = document.querySelector("#titleError");
+let urlEr = document.querySelector("#urlError");
+let nameEr = document.querySelector("#nameError");
+let linkArea = document.querySelector("#linkArea");
+let urlArr = [];
+let nameArr = [];
+
+if(listBtn) {
+    listBtn.addEventListener("click", function(event) {
+        let blogID = this.dataset.blog;
+        let area = this.dataset.area;
+        let pos = this.dataset.pos;
+        let title = document.querySelector("#gadgetTitle");
+        let error = document.querySelector("#error");
+
+        if(title.value !== "" && links !== null) {
+            titleEr.innerHTML = "";
+            nameEr.innerHTML = "";
+            urlEr.innerHTML = "";
+
+            links.forEach(function(el) {
+                urlArr.push(el.href);
+                nameArr.push(el.innerHTML);
+            });
+
+            let formData = new FormData();
+
+            formData.append("blogID", blogID);
+            formData.append("area", area);
+            formData.append("pos", pos);
+            formData.append("title", title.value);
+            formData.append("urlArr", JSON.stringify(urlArr));
+            formData.append("nameArr", JSON.stringify(nameArr));
+
+            let httpRequest = new XMLHttpRequest();
+
+            if(httpRequest) {
+                httpRequest.open('POST', 'http://localhost/backend/ajax/addListGadget.php', true);
+                httpRequest.onreadystatechange = function () {
+                    if(this.readyState === 4 && this.status === 200) {
+                        window.close();
+                        window.opener.location.reload(true);
+                    }
+                }
+
+                httpRequest.send(formData);
+            }
+        } else {
+            titleEr.innerHTML = "Required field must not be blank";
+            nameEr.innerHTML = "Required field must not be blank";
+            urlEr.innerHTML = "Required field must not be blank";
+        }
+    });
+}
+
+addLink.addEventListener("click", function(event) {
+    event.preventDefault();
+    if(title.value !== '' && siteUrl.value !== '' && siteName.value !== '') {
+        console.log("test");
+        let pattern = /^(http|https):\/\//;
+
+        if(pattern.test(siteUrl.value)) {
+            url = "http://" + siteUrl.value;
+        } else {
+            url = siteUrl.value;
+        }
+
+        let link = document.createElement('li');
+        link.innerHTML = "<span><a href='javascript:;' id='deleteLink'>Delete</a></span><span><a href='"+url+"' target='_blank' id='link'>"+siteName.value+"</a></span>"
+        siteUrl.value = '';
+        siteName.value = '';
+        linkArea.appendChild(link);
+        link.children[0].children[0].addEventListener("click", remove, false);
+        links = document.querySelector("#link");
+    } else {
+        titleEr.innerHTML = "Required field must not be blank";
+        nameEr.innerHTML = "Required field must not be blank";
+        urlEr.innerHTML = "Required field must not be blank";
+    }
+});
+
+if(deleteLink) {
+    deleteLink.forEach(function(el) {
+        el.addEventListener("click",  remove, false);
+    });
+}
+
+function remove() {
+    if(this.parentElement.nextElementSibling) {
+        this.parentElement.nextElementSibling.remove();
+        this.parentElement.remove();
+    }
+
+    deleteLink = document.querySelector("#deleteLink");
+    links = document.querySelector("#link");
+}

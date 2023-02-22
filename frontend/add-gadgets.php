@@ -323,7 +323,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     <td class="td-des">
                                         <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
-                                                <input type="text" name="gadgetTitle" id="gadgetTitle" value="{GADGET-TITLE}">
+                                                <input type="text" name="gadgetTitle" id="gadgetTitle">
                                                 <div id="titleError" class="bt-error">
                                                 </div>
                                             </div>
@@ -349,7 +349,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                         <span>New Site URL</span>
                                     </td>
                                     <td class="td-des">
-                                        <div class="bn-title">
+                                        <div class="bn-title" style="display: block;">
                                             <div class="bn-input">
                                                 <input type="url" name="siteUrl" id="siteUrl">
                                                 <div id="urlError" class="bt-error">
@@ -360,14 +360,14 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                     </div>
                                                     <div class="add-link-body">
                                                         <ul id="linkArea">
-                                                            <li>
-                                                                <span>
-                                                                    <a href="javascript:;" id="deleteLink">Delete</a>
-                                                                </span>
-                                                                <span>
-                                                                    <a id="link" href="{LINK}" target="_blink">{LINK}</a>
-                                                                </span>
-                                                            </li>
+<!--                                                            <li>-->
+<!--                                                                <span>-->
+<!--                                                                    <a href="javascript:;" id="deleteLink">Delete</a>-->
+<!--                                                                </span>-->
+<!--                                                                <span>-->
+<!--                                                                    <a id="link" href="{LINK}" target="_blink">{LINK}</a>-->
+<!--                                                                </span>-->
+<!--                                                            </li>-->
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -379,7 +379,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </table>
                             <div class="lt-foo">
                                 <div class="bn-button">
-                                    <button id="listSaveBtn" class="btn-newp">Save changes</button>
+                                    <button id="listSaveBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
                                     <button class="cancel-btn" onclick="window.close();">Cancel</button>
                                 </div>
                             </div>
