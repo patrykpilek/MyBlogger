@@ -238,6 +238,8 @@ let titleEr = document.querySelector("#titleError");
 let urlEr = document.querySelector("#urlError");
 let nameEr = document.querySelector("#nameError");
 let linkArea = document.querySelector("#linkArea");
+let deleteLink = document.querySelectorAll("#deleteLink");
+let links = document.querySelectorAll("#link");
 let urlArr = [];
 let nameArr = [];
 
@@ -307,7 +309,7 @@ addLink.addEventListener("click", function(event) {
         siteName.value = '';
         linkArea.appendChild(link);
         link.children[0].children[0].addEventListener("click", remove, false);
-        links = document.querySelector("#link");
+        links = document.querySelectorAll("#link");
     } else {
         titleEr.innerHTML = "Required field must not be blank";
         nameEr.innerHTML = "Required field must not be blank";
@@ -327,6 +329,6 @@ function remove() {
         this.parentElement.remove();
     }
 
-    deleteLink = document.querySelector("#deleteLink");
-    links = document.querySelector("#link");
+    deleteLink = document.querySelectorAll("#deleteLink");
+    links = document.querySelectorAll("#link");
 }
