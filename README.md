@@ -172,6 +172,6 @@
 - [x] adding list gadget
 - [x] creating method to delete gadgets
 - [x] creating method to edit gadgets
-- [ ] display gadget data for edit gadget page
+- [x] display gadget data for edit gadget page
 - [ ] display header, nav gadgets edit form
 - [ ] creating method to update nav header gadget

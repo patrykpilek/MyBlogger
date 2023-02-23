@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="text" name="gadgetTitle" id="gadgetTitle">
+                                            <input type="text" name="gadgetTitle" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
                                             <div id="error" class="bt-error">
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                     <span>
                                                         Display up to
                                                     <select id="postLimit" name="postLimit">
-                                                        <option value="10" selected>10</option>
+                                                        <option value="<?php echo $content->{'postLimit'}; ?>" selected><?php echo $content->{'postLimit'}; ?></option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                         Title
                                     </div>
                                     <div class="bn-input">
-                                        <input type="text" name="gadgetTitle" id="gadgetTitle">
+                                        <input type="text" name="gadgetTitle" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
                                         <div id="error" class="bt-error" style="display:block;">
                                         </div>
                                     </div>
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                         Content
                                     </div>
                                     <div class="bn-input">
-                                        <textarea class="text-area" id="gadgetContent"></textarea>
+                                        <textarea class="text-area" id="gadgetContent"><?php echo Validate::escape($gadget->html); ?>"</textarea>
                                         <div id="contentError" class="bt-error">
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="text" name="title" id="gadgetTitle">
+                                            <input type="text" name="title" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
                                             <div id="titleError" class="bt-error">
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <textarea class="text-area" id="gadgetContent"></textarea>
+                                            <textarea class="text-area" id="gadgetContent"><?php echo $content->{'description'}; ?>"</textarea>
                                             <div id="contentError" class="bt-error">
                                             </div>
                                         </div>
@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="url" name="fbUrl" id="fbUrl">
+                                            <input type="url" name="fbUrl" id="fbUrl" value="<?php echo $content->{'Facebook'}; ?>">
                                             <div class="bt-error">
                                             </div>
                                         </div>
@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="url" name="twitterUrl" id="twitterUrl">
+                                            <input type="url" name="twitterUrl" id="twitterUrl" value="<?php echo $content->{'Twitter'}; ?>">
                                             <div class="bt-error">
                                             </div>
                                         </div>
@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="url" name="igUrl" id="igUrl">
+                                            <input type="url" name="igUrl" id="igUrl" value="<?php echo $content->{'Instagram'}; ?>">
                                             <div class="bt-error">
                                             </div>
                                         </div>
@@ -281,7 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="url" name="ytUrl" id="ytUrl">
+                                            <input type="url" name="ytUrl" id="ytUrl" value="<?php echo $content->{'Youtube'}; ?>">
                                             <div class="bt-error">
                                             </div>
                                         </div>
@@ -310,7 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="text" name="labelsTitle" id="gadgetTitle">
+                                            <input type="text" name="labelsTitle" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
                                             <div id="error" class="bt-error">
                                             </div>
                                         </div>
@@ -339,7 +339,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="text" name="gadgetTitle" id="gadgetTitle">
+                                            <input type="text" name="gadgetTitle" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
                                             <div id="titleError" class="bt-error">
                                             </div>
                                         </div>
@@ -376,14 +376,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                 </div>
                                                 <div class="add-link-body">
                                                     <ul id="linkArea">
-                                                        <!--                                                            <li>-->
-                                                        <!--                                                                <span>-->
-                                                        <!--                                                                    <a href="javascript:;" id="deleteLink">Delete</a>-->
-                                                        <!--                                                                </span>-->
-                                                        <!--                                                                <span>-->
-                                                        <!--                                                                    <a id="link" href="{LINK}" target="_blink">{LINK}</a>-->
-                                                        <!--                                                                </span>-->
-                                                        <!--                                                            </li>-->
+                                                        <?php
+                                                            for ($i=1; $i < $content->{'total'}; $i++) {
+                                                                echo '<span><a href="javascript:;" id="deleteLink">Delelete</a></span> | <span><a href="'.$content->{"link{$i}"}.'" id="link" target="_blank">'.$content->{"name{$i}"}.'</a></span';
+                                                            }
+                                                        ?>
                                                     </ul>
                                                 </div>
                                             </div>

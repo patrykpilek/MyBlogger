@@ -370,14 +370,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                 </div>
                                                 <div class="add-link-body">
                                                     <ul id="linkArea">
-                                                        <!--                                                            <li>-->
-                                                        <!--                                                                <span>-->
-                                                        <!--                                                                    <a href="javascript:;" id="deleteLink">Delete</a>-->
-                                                        <!--                                                                </span>-->
-                                                        <!--                                                                <span>-->
-                                                        <!--                                                                    <a id="link" href="{LINK}" target="_blink">{LINK}</a>-->
-                                                        <!--                                                                </span>-->
-                                                        <!--                                                            </li>-->
                                                     </ul>
                                                 </div>
                                             </div>
@@ -414,11 +406,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </div>
                             </div>
                             <div class="lpopup-add">
+                                <?php if($userObj->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'topPosts'])): ?>
+                                    <span>
+                                        Already added
+                                    </span>
+                                <?php else: ?>
                                 <span>
                                     <a href="javascript:;" id="addGadget" data-type="topPosts" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
                                         <i class="fas fa-plus-square"></i>
                                     </a>
                                 </span>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -439,11 +437,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </div>
                             </div>
                             <div class="lpopup-add">
+                                <?php if($userObj->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'search'])): ?>
+                                    <span>
+                                        Already added
+                                    </span>
+                                <?php else: ?>
                                 <span>
                                     <a href="javascript:;" id="addGadget" data-type="search" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
                                         <i class="fas fa-plus-square"></i>
                                     </a>
                                 </span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
