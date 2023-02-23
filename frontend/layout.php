@@ -170,14 +170,14 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                         </div>
                                                                         <div class="gadget-right flex fl-4 fl-c">
                                                                             <div>
-                                                                                <span><?php echo $content->{'title'} ?></span>
+                                                                                <span><?php echo $blog->Title ?></span>
                                                                             </div>
                                                                             <div>
                                                                                 <span>Header Gadget</span>
                                                                             </div>
                                                                         </div>
                                                                         <span>
-                                                                            <a href="javascript:;" id="editGadget">Edit</a>
+                                                                            <a href="javascript:;" id="editGadget" data-blog="<?php echo $blog->blogID; ?>" data-type="<?php echo $gadget->type; ?>" data-area="<?php echo $gadget->displayOn; ?>" data-pos="<?php echo $gadget->position; ?>">Edit</a>
                                                                         </span>
                                                                     </div>
                                                                 </div><!--gadget ends-->
@@ -215,7 +215,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                                             </div>
                                                                         </div>
                                                                         <span>
-                                                                            <a href="javascript:;" id="editGadget">Edit</a>
+                                                                            <a href="javascript:;" id="editGadget" data-blog="<?php echo $blog->blogID; ?>" data-type="<?php echo $gadget->type; ?>" data-area="<?php echo $gadget->displayOn; ?>" data-pos="<?php echo $gadget->position; ?>">Edit</a>
                                                                         </span>
                                                                     </div>
                                                                 </div>

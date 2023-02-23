@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="header-bottom flex fl-row">
                 <div class="lay-header">
                     <h3>
-                        Add a Gadget
+                        Edit a Gadget
                     </h3>
                 </div>
             </div>
@@ -69,7 +69,122 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="layout-pop-inner">
 
                 <div class="laypopup-box">
-                    <?php if (!empty($type) && $type === "topPosts"): ?>
+                    <?php if (!empty($type) && $type === "header"): ?>
+                        <div class="l-popup flex fl-c">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Blog Title</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                                <input id="gadgetTitle" type="text" name="blogTitle" value="<?php echo $blog->Title; ?>">
+                                                <div id="error" class="bt-error">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">
+                                        <span>Blog Description</span>
+                                    </td>
+                                    <td class="td-des">
+                                        <div class="bn-title" style="display: block;">
+                                            <div class="bn-input">
+                                            <textarea id="gadgetContent" class="text-area">
+                                                <?php echo $blog->Description; ?>
+                                            </textarea>
+                                                <div class="bt-error">
+                                                </div>
+                                                <div>
+                                                    <span style="color:#888484;font-size: 13px;">500 Characters Max</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="lt-foo">
+                                <div class="bn-button">
+                                    <button id="headerSaveBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>"
+                                            data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
+                                    <button class="cancel-btn">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif (!empty($type) && $type === "nav"): ?>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="td-title">
+                                    <span>Title</span>
+                                </td>
+                                <td class="td-des">
+                                    <div class="bn-title" style="display: block;">
+                                        <div class="bn-input">
+                                            <input type="text" name="gadgetTitle" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
+                                            <div id="titleError" class="bt-error">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-title">
+                                    <span>Page Name</span>
+                                </td>
+                                <td class="td-des">
+                                    <div class="bn-title" style="display: block;">
+                                        <div class="bn-input">
+                                            <input type="text" name="pageName" id="pageName">
+                                            <div id="nameError" class="bt-error">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-title">
+                                    <span>Page URL</span>
+                                </td>
+                                <td class="td-des">
+                                    <div class="bn-title" style="display: block;">
+                                        <div class="bn-input">
+                                            <input type="url" name="pageUrl" id="pageUrl">
+                                            <div id="urlError" class="bt-error">
+                                            </div>
+                                            <div class="add-link-box">
+                                                <div class="add-btn-div">
+                                                    <button id="addLink" class="cancel-btn">Add Link</button>
+                                                </div>
+                                                <div class="add-link-body">
+                                                    <ul id="linkArea">
+                                                        <?php
+                                                        for ($i = 1; $i <= $content->{'total'}; $i++) {
+                                                            echo '<span><a href="javascript:;" id="deleteLink">Delelete</a></span> | <span><a href="' . $content->{"link{$i}"} . '" id="link" target="_blank">' . $content->{"name{$i}"} . '</a></span><br/>';
+                                                        }
+                                                        ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="lt-foo">
+                            <div class="bn-button">
+                                <button id="navSaveBtn" data-blog="<?php echo $blogID; ?>" data-area="<?php echo $area; ?>"
+                                        data-pos="<?php echo $pos; ?>" class="btn-newp">Save changes</button>
+                                <button class="cancel-btn">Cancel</button>
+                            </div>
+                        </div>
+                    <?php elseif (!empty($type) && $type === "topPosts"): ?>
                     <div class="l-popup flex fl-c">
                         <table>
                             <tbody>
@@ -98,7 +213,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                     <span>
                                                         Display up to
                                                     <select id="postLimit" name="postLimit">
-                                                        <option value="<?php echo $content->{'postLimit'}; ?>" selected><?php echo $content->{'postLimit'}; ?></option>
+                                                        <option value="<?php echo $content->{'postLimit'}; ?>"
+                                                                selected><?php echo $content->{'postLimit'}; ?></option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -377,9 +493,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                                 <div class="add-link-body">
                                                     <ul id="linkArea">
                                                         <?php
-                                                            for ($i=1; $i < $content->{'total'}; $i++) {
-                                                                echo '<span><a href="javascript:;" id="deleteLink">Delelete</a></span> | <span><a href="'.$content->{"link{$i}"}.'" id="link" target="_blank">'.$content->{"name{$i}"}.'</a></span';
-                                                            }
+                                                        for ($i = 1; $i <= $content->{'total'}; $i++) {
+                                                            echo '<span><a href="javascript:;" id="deleteLink">Delelete</a></span> | <span><a href="' . $content->{"link{$i}"} . '" id="link" target="_blank">' . $content->{"name{$i}"} . '</a></span><br/>';
+                                                        }
                                                         ?>
                                                     </ul>
                                                 </div>
