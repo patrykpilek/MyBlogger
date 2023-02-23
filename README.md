@@ -174,4 +174,4 @@
 - [x] creating method to edit gadgets
 - [x] display gadget data for edit gadget page
 - [x] display header, nav gadgets edit form
-- [ ] creating method to update nav header gadget
+- [x] creating method to update nav header gadget
