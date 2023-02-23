@@ -294,7 +294,6 @@ if(listBtn) {
 addLink.addEventListener("click", function(event) {
     event.preventDefault();
     if(title.value !== '' && siteUrl.value !== '' && siteName.value !== '') {
-        console.log("test");
         let pattern = /^(http|https):\/\//;
 
         if(pattern.test(siteUrl.value)) {

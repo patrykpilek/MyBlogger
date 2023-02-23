@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $userObj->update('gadgets', ['content' =>$content], [
                         'blogID' => $blogID,
                         'type' => 'profile',
-                        'content' => $content,
                         'displayOn' => $area,
                         'position' => $pos,
                         'html' => ''

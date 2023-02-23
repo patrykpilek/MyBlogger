@@ -16,6 +16,19 @@ button.forEach(function(el) {
     });
 });
 
+// edit gadget
+let editBtn = document.querySelectorAll('#editGadget');
+
+editBtn.forEach(function(el) {
+    el.addEventListener("click", function (event) {
+        event.preventDefault();
+        let area = this.dataset.area;
+        let pos = this.dataset.pos;
+        let type = this.dataset.type;
+
+        window.open('http://localhost/blogID/' + blogID + '/gadgets/edit/' + type + '/' + area + '/' + pos, 'about:blank', 'width=780,height=800');
+    });
+});
 // delete gadget
 let deleteBtn = document.querySelectorAll("#deleteGadget");
 deleteBtn.forEach(function(el) {

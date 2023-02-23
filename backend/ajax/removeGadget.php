@@ -5,31 +5,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if (isset($_POST['blogID'])) {
         $blogID = (int)$_POST['blogID'];
         $pos = (int)$_POST['pos'];
-        $title = Validate::escape($_POST['title']);
         $area = Validate::escape($_POST['area']);
+        $type = Validate::escape($_POST['type']);
         $blog = $dashObj->blogAuth($blogID);
-        $gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'type' => 'search', 'displayOn' => $area, 'position' => $pos]);
+        $gadget = $userObj->get('gadgets', ['blogID' => $blog->blogID, 'type' => $type, 'displayOn' => $area, 'position' => $pos]);
 
-        if ($blog) {
-            if ($blog->role === "Admin") {
-                $content = '{"title": "' . $title . '", "caption": "Blog Search Gadget"}';
-                if (!$gadget) {
-                    $userObj->create('gadgets', [
-                        'blogID' => $blogID,
-                        'type' => 'search',
-                        'content' => $content,
-                        'displayOn' => $area,
-                        'position' => $pos,
-                        'html' => ''
-                    ]);
+        if(!empty($gadget)) {
+            if ($blog) {
+                if ($blog->role === "Admin") {
+                    $userObj->delete("gadgets", ['gadgetID' => $gadget->gadgetID]);
                 } else {
-                    $userObj->update('gadgets', ['content' =>$content], [
-                        'blogID' => $blogID,
-                        'type' => 'search',
-                        'content' => $content,
-                        'displayOn' => $area,
-                        'position' => $pos
-                    ]);
+                    echo "You can't preform this action!";
                 }
             }
         }

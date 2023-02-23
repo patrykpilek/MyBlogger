@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $userObj->update('gadgets', ['content' =>$content], [
                         'blogID' => $blogID,
                         'type' => 'topPosts',
-                        'content' => $content,
                         'displayOn' => $area,
                         'position' => $pos
                     ]);

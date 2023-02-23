@@ -15,6 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $type = Validate::escape($_GET['type']);
         }
 
+        $gadget = $userObj->get("gadgets", ['blogID' => $blog->blogID, 'type' => $type, 'position' => $pos, 'displayOn' => $area]);
+
+        if ($gadget) {
+            $content = json_decode($gadget->content);
+        }
+
         if (!$blog) {
             header('Location: 404');
         }
@@ -137,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 <td class="td-des">
                                     <div class="bn-title" style="display: block;">
                                         <div class="bn-input">
-                                            <input type="text" name="searchInput" id="gadgetTitle">
+                                            <input type="text" name="searchInput" id="gadgetTitle" value="<?php echo $content->{'title'}; ?>">
                                             <div id="error" class="bt-error">
                                             </div>
                                         </div>
@@ -396,158 +402,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             </div>
                         </div>
                     </div>
-                <?php else: ?>
-                    <!--l-popup-body-->
-                    <div class="l-popup-body">
-                        <div class="lp-box flex fl-row">
-                            <div>
-                                <span>
-                                    <i class="fas fa-newspaper"></i>
-                                </span>
-                            </div>
-                            <div class="lpopup-title fl-4">
-                                <div class="lpopup-head">
-                                    <a href="javaScript;:" class="add-color">Popular Posts</a>
-                                </div>
-                                <div class="lpopup-body">
-                                    Highlight posts on your blog.
-                                </div>
-                            </div>
-                            <div class="lpopup-add">
-                                <span>
-                                    <a href="javascript:;" id="addGadget" data-type="topPosts" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--l-popup-body-ends-->
-
-                    <!--l-popup-body-->
-                    <div class="l-popup-body">
-                        <div class="lp-box flex fl-row">
-                            <div>
-                                <span><i class="fas fa-search"></i></span>
-                            </div>
-                            <div class="lpopup-title fl-4">
-                                <div class="lpopup-head">
-                                    <a href="#">Blog Search</a>
-                                </div>
-                                <div class="lpopup-body">
-                                    Let visitors search your blog.
-                                </div>
-                            </div>
-                            <div class="lpopup-add">
-                                <span>
-                                    <a href="javascript:;" id="addGadget" data-type="search" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--l-popup-body-ends-->
-
-                    <!--l-popup-body-->
-                    <div class="l-popup-body">
-                        <div class="lp-box flex fl-row">
-                            <div>
-                                <span><i class="fas fa-code"></i></span>
-                            </div>
-                            <div class="lpopup-title fl-4">
-                                <div class="lpopup-head">
-                                    <a href="#">HTML/JavaScript</a>
-                                </div>
-                                <div class="lpopup-body">
-                                    Add third-party functionality or other code to your blog.
-                                </div>
-                            </div>
-                            <div class="lpopup-add">
-                                <span>
-                                    <a href="javascript:;" id="addGadget" data-type="html" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--l-popup-body-ends-->
-
-                    <!--l-popup-body-->
-                    <div class="l-popup-body">
-                        <div class="lp-box flex fl-row">
-                            <div>
-                                <span><i class="fas fa-user"></i></span>
-                            </div>
-                            <div class="lpopup-title fl-4">
-                                <div class="lpopup-head">
-                                    <a href="#">Profile</a>
-                                </div>
-                                <div class="lpopup-body">
-                                    Display information about yourself to your visitors.
-                                </div>
-                            </div>
-                            <div class="lpopup-add">
-                                <span>
-                                    <a href="javascript:;" id="addGadget" data-type="profile" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--l-popup-body-ends-->
-
-                    <!--l-popup-body-->
-                    <div class="l-popup-body">
-                        <div class="lp-box flex fl-row">
-                            <div>
-                                <span><i class="fas fa-tags"></i></span>
-                            </div>
-                            <div class="lpopup-title fl-4">
-                                <div class="lpopup-head">
-                                    <a href="#">Labels</a>
-                                </div>
-                                <div class="lpopup-body">
-                                    Show all the labels of posts in your blog.
-                                </div>
-                            </div>
-                            <div class="lpopup-add">
-                                <span>
-                                    <a href="javascript:;" id="addGadget" data-type="labels" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--l-popup-body-ends-->
-
-                    <!--l-popup-body-->
-                    <div class="l-popup-body">
-                        <div class="lp-box flex fl-row">
-                            <div>
-                                <span><i class="fas fa-list-ul"></i></span>
-                            </div>
-                            <div class="lpopup-title fl-4">
-                                <div class="lpopup-head">
-                                    <a href="#">Link List</a>
-                                </div>
-                                <div class="lpopup-body">Display a collection of your favorite sites, blogs, or web pages for your visitors.
-                                </div>
-                            </div>
-                            <div class="lpopup-add">
-                                <span>
-                                    <a href="javascript:;" id="addGadget" data-type="list" data-area="<?php echo $area; ?>" data-pos="<?php echo $pos; ?>" data-blog="<?php echo $blogID; ?>">
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--l-popup-body-ends-->
                 <?php endif; ?>
             </div>
         </div>
@@ -555,5 +409,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/addGadget.js"></script>
     </div><!--layout-popup-inner-->
 </div><!--layout-popup-wrapper-->
+
 </body>
 </html>
