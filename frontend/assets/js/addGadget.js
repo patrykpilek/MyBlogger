@@ -249,7 +249,7 @@ if(listBtn) {
         let area = this.dataset.area;
         let pos = this.dataset.pos;
         let title = document.querySelector("#gadgetTitle");
-        let error = document.querySelector("#error");
+        // let error = document.querySelector("#error");
 
         if(title.value !== "" && links !== null) {
             titleEr.innerHTML = "";
@@ -308,30 +308,30 @@ if(addLink) {
             siteUrl.value = '';
             siteName.value = '';
             linkArea.appendChild(link);
-            link.children[0].children[0].addEventListener("click", premove, false);
-            plinks = document.querySelectorAll("#link");
+            link.children[0].children[0].addEventListener("click", remove, false);
+            links = document.querySelectorAll("#link");
         } else {
-            ptitleEr.innerHTML = "Required field must not be blank";
-            pnameEr.innerHTML = "Required field must not be blank";
-            purlEr.innerHTML = "Required field must not be blank";
+            titleEr.innerHTML = "Required field must not be blank";
+            nameEr.innerHTML = "Required field must not be blank";
+            urlEr.innerHTML = "Required field must not be blank";
         }
     });
 }
 
-if(pdeleteLink) {
-    pdeleteLink.forEach(function(el) {
-        el.addEventListener("click",  premove, false);
+if(deleteLink) {
+    deleteLink.forEach(function(el) {
+        el.addEventListener("click",  remove, false);
     });
 }
 
-function premove() {
+function remove() {
     if(this.parentElement.nextElementSibling) {
         this.parentElement.nextElementSibling.remove();
         this.parentElement.remove();
     }
 
-    pdeleteLink = document.querySelectorAll("#deleteLink");
-    plinks = document.querySelectorAll("#link");
+    deleteLink = document.querySelectorAll("#deleteLink");
+    links = document.querySelectorAll("#link");
 }
 
 //header gadget
@@ -396,7 +396,7 @@ if(navBtn) {
         let area = this.dataset.area;
         let pos = this.dataset.pos;
         let ptitle = document.querySelector("#gadgetTitle");
-        let perror = document.querySelector("#error");
+        // let perror = document.querySelector("#error");
 
         if(ptitle.value !== "" && plinks !== null) {
             ptitleEr.innerHTML = "";
@@ -454,29 +454,29 @@ if(paddLink) {
             link.innerHTML = "<span><a href='javascript:;' id='deleteLink'>Delete</a></span><span><a href='"+url+"' target='_blank' id='link'>"+psiteName.value+"</a></span>"
             psiteUrl.value = '';
             psiteName.value = '';
-            linkArea.appendChild(link);
-            link.children[0].children[0].addEventListener("click", remove, false);
-            links = document.querySelectorAll("#link");
+            plinkArea.appendChild(link);
+            link.children[0].children[0].addEventListener("click", premove, false);
+            plinks = document.querySelectorAll("#link");
         } else {
-            titleEr.innerHTML = "Required field must not be blank";
-            nameEr.innerHTML = "Required field must not be blank";
-            urlEr.innerHTML = "Required field must not be blank";
+            ptitleEr.innerHTML = "Required field must not be blank";
+            pnameEr.innerHTML = "Required field must not be blank";
+            purlEr.innerHTML = "Required field must not be blank";
         }
     });
 }
 
-if(deleteLink) {
-    deleteLink.forEach(function(el) {
-        el.addEventListener("click",  remove, false);
+if(pdeleteLink) {
+    pdeleteLink.forEach(function(el) {
+        el.addEventListener("click",  premove, false);
     });
 }
 
-function remove() {
+function premove() {
     if(this.parentElement.nextElementSibling) {
         this.parentElement.nextElementSibling.remove();
         this.parentElement.remove();
     }
 
-    deleteLink = document.querySelectorAll("#deleteLink");
-    links = document.querySelectorAll("#link");
+    pdeleteLink = document.querySelectorAll("#deleteLink");
+    plinks = document.querySelectorAll("#link");
 }
