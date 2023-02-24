@@ -5,6 +5,11 @@ include "backend/init.php";
 if(!$blogObj->getBlog()) {
     $userObj->redirect('login.php');
 }
+
+if($blog->DefaultDemplate === 'false') {
+    $templateObj->renderTemplate($blog->Template, "POST");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
