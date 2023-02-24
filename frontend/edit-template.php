@@ -10,7 +10,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
     }
 
     $html = file_get_contents('../index.php', FALSE, NULL,  113);
-    $html = htmlentities($html);
+    $html = htmlentities($templateObj->addTemplateTags($html));
 //    $userObj->update("blogs", ['Template' => $html], ['blogID' => $blog->blogID]);
 }
 ?>

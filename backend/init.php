@@ -17,6 +17,7 @@ $userObj = new Users();
 $dashObj = new Dashboard();
 $blogObj = new Blog();
 $layoutObj = new Layout();
+$templateObj = new Template();
 
 if($blog = $blogObj->getBlog())
 {

@@ -10,11 +10,8 @@ if(!$blogObj->getBlog()) {
 <html lang="en">
 <head>
     <title><?php $blogObj->getTitle(); ?></title>
-    <?php
-        $blogObj->getStyles();
-        $blogObj->getMeta();
-
-    ?>
+    <?php $blogObj->getStyles(); ?>
+    <?php $blogObj->getMeta(); ?>
 </head>
 <body>
 <div class="wrapper">
