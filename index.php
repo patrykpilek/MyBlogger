@@ -5,10 +5,9 @@ include "backend/init.php";
 if(!$blogObj->getBlog()) {
     $userObj->redirect('login.php');
 }
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title><?php $blogObj->getTitle(); ?></title>
     <?php

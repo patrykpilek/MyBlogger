@@ -8,6 +8,10 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
     if (!$blog) {
         header('Location: 404');
     }
+
+    $html = file_get_contents('../index.php', FALSE, NULL,  113);
+    $html = htmlentities($html);
+//    $userObj->update("blogs", ['Template' => $html], ['blogID' => $blog->blogID]);
 }
 ?>
 <!DOCTYPE html>
@@ -138,9 +142,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 </div>
                             </div>
                             <div class="edit-tamplate-body">
-                                <div class="edit-tamplate" id="editor">
-                                    <textarea rows="5" cols="10" class="code" name="ace-editor"></textarea>
-                                </div>
+                                <div class="edit-tamplate" id="editor"><textarea rows="5" cols="10" class="code" name="ace-editor"><?php echo $blog->Template; ?></textarea></div>
                             </div>
                         </div>
                     </div>
@@ -149,6 +151,11 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
             </div>
         </div>
         <!--MAIN-DIV-ENDS-HERE-->
+        <script type="text/javascript">
+            let editor = ace.edit("editor");
+            editor.setTheme("ace/theme/eclipse");
+            editor.session.setMode("ace/mode/xml");
+        </script>
     </div>
 </div>
 <!-- JS FILES -->

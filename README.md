@@ -179,7 +179,7 @@
 ### Creating Template Editor / Engine for blogs
 
 - [x] creating a template page
-- [ ] displaying blog template codes in editor 
+- [x] displaying blog template codes in editor 
 - [ ] creating shortcode for blog template
 - [ ] creating method to use blog template shortcodes
 - [ ] updating template using editor
