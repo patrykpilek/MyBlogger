@@ -152,3 +152,26 @@
 - [x] uploading images to post editor
 - [x] creating method to new page
 - [x] creating method to update page
+
+### Creating Layout Section for Blogs
+
+- [x] creating layout page
+- [x] creating method to display widgets on sidebar to edit
+- [x] display footer gadgets
+- [x] creating drag and drop function for gadgets
+- [x] creating method to update position for gadget
+- [x] creating gadget list page
+- [x] display gadget list
+- [x] display gadget form
+- [x] creating method to insert popular posts gadget
+- [x] creating method to add search gadget to blog
+- [x] creating method to add html gadget to blog
+- [x] creating method to add profile gadget to blog
+- [x] creating method to add labels gadget
+- [x] creating js function to add lists gadget
+- [x] adding list gadget
+- [x] creating method to delete gadgets
+- [x] creating method to edit gadgets
+- [x] display gadget data for edit gadget page
+- [x] display header, nav gadgets edit form
+- [x] creating method to update nav header gadget
