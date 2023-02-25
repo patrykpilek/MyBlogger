@@ -190,7 +190,7 @@
 - [x] creating stats page
 - [x] creating stats table for page views
 - [x] creating stats method for page views
-- [ ] creating method to display page views by country
+- [x] creating method to display page views by country
 - [ ] creating method to display posts page views
 - [ ] creating method to display pages pageviews
 - [ ] creating method to display referring links

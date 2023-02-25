@@ -246,7 +246,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                         </div>
                                     </div>
                                     <div class="stat-table-body fl-4 flex fl-c">
-                                        {Audience}
+                                        <?php echo $statsObj->getAudience($blog->blogID, 'alltime'); ?>
                                     </div>
                                 </div><!--STATS-BOX ENDS-->
 
