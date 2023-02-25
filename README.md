@@ -188,7 +188,7 @@
 ### Creating Page Views Stats Analytics
 
 - [x] creating stats page
-- [ ] creating stats table for page views
+- [x] creating stats table for page views
 - [ ] creating stats method for page views
 - [ ] creating method to display page views by country
 - [ ] creating method to display posts page views
