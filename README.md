@@ -175,3 +175,12 @@
 - [x] display gadget data for edit gadget page
 - [x] display header, nav gadgets edit form
 - [x] creating method to update nav header gadget
+
+### Creating Template Editor / Engine for blogs
+
+- [x] creating a template page
+- [x] displaying blog template codes in editor 
+- [x] creating shortcode for blog template
+- [x] creating method to use blog template shortcodes
+- [x] updating template using editor
+- [x] creating js function to restore template codes

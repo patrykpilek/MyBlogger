@@ -35,10 +35,10 @@ class Layout extends Blog
                 <header>
                     <div class="bg-des-title-wrap">
                         <a href="' . BASE_URL . '">
-                            <h1 class="blogtitle">' . $content->{'title'} . '</h1>
+                            <h1 class="blogtitle">' . $blog->Title . '</h1>
                         </a>
                         <p>
-                            ' . $content->{'description'} . '
+                            ' . $blog->Description . '
                         </p>
                     </div>
                 </header>
