@@ -192,7 +192,7 @@
 - [x] creating stats method for page views
 - [x] creating method to display page views by country
 - [x] creating method to display posts page views
-- [ ] creating method to display pages pageviews
+- [x] creating method to display pages pageviews
 - [ ] creating method to display referring links
 - [ ] display stats by dates
 - [ ] creating method to user ip, counter, referlink

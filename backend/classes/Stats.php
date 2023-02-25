@@ -145,4 +145,52 @@ class Stats
             }
         }
     }
+
+    public function getPages($blogID, $type)
+    {
+        $offset = '';
+
+        if($type === 'alltime') {
+            $sql = "SELECT *, `S`.`postID`, COUNT(`statsID`) as 'pageviews' FROM `stats` `S` LEFT JOIN `posts` `P` ON `P`.`postID` = `S`.`postID` WHERE `S`.`blogID` = :blogID AND `P`.`postType` = 'Page' GROUP BY `S`.`postID` ORDER BY `pageviews` DESC";
+        } else {
+            $sql = "SELECT *, `S`.`postID`, COUNT(`statsID`) as 'pageviews' FROM `stats` `S` LEFT JOIN `posts` `P` ON `P`.`postID` = `S`.`postID` WHERE `S`.`blogID` = :blogID AND `P`.`postType` = 'Page' AND date(`S`.`date`) = :offset GROUP BY `S`.`postID` ORDER BY `pageviews` DESC";
+        }
+
+        if($type === 'today') {
+            $offset = date('Y-m-d');
+        } elseif ($type === 'yesterday') {
+            $offset = date('Y-m-d', strtotime('-1 day'));
+        } elseif ($type === 'week') {
+            $offset = date('Y-m-d', strtotime('-7 week'));
+        }  elseif ($type === 'month') {
+            $offset = date('Y-m-d', strtotime('-30 day'));
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        ($type !== 'alltime') ? $stmt->bindParam("offset", $offset, PDO::PARAM_STR) : null;
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if(empty($data)) {
+            echo '<p>No stats yet, check back later.</p>';
+        } else {
+            foreach ($data as $data) {
+                $date = new DateTime($data->date);
+                echo '
+                <div class="st-body-list">
+                    <div class="flex fl-row">
+                        <div class="fl-4">
+                            <p><a href="#">'.$data->title.'</a></p>                
+                            <p>'.$date->format("M d, Y").'</p>                
+                        </div>
+                        <div class="fl-1">
+                            '.$data->pageviews.'
+                        </div>
+                    </div>
+                </div>
+            ';
+            }
+        }
+    }
 }
