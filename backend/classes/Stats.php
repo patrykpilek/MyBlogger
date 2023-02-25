@@ -193,4 +193,50 @@ class Stats
             }
         }
     }
+
+    public function getReferringSites($blogID, $type)
+    {
+        $offset = '';
+
+        if($type === 'alltime') {
+            $sql = "SELECT `referLink`, COUNT(`statsID`) as 'pageviews' FROM `stats` WHERE `blogID` = :blogID AND `referLink` IS NOT NULL GROUP BY `referLink` ORDER BY `pageviews` DESC";
+        } else {
+            $sql = "SELECT `referLink`, COUNT(`statsID`) as 'pageviews' FROM `stats` WHERE date(`date`) = :offset AND `blogID` = :blogID AND `referLink` IS NOT NULL GROUP BY `referLink` ORDER BY `pageviews` DESC";
+        }
+
+        if($type === 'today') {
+            $offset = date('Y-m-d');
+        } elseif ($type === 'yesterday') {
+            $offset = date('Y-m-d', strtotime('-1 day'));
+        } elseif ($type === 'week') {
+            $offset = date('Y-m-d', strtotime('-7 week'));
+        }  elseif ($type === 'month') {
+            $offset = date('Y-m-d', strtotime('-30 day'));
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        ($type !== 'alltime') ? $stmt->bindParam("offset", $offset, PDO::PARAM_STR) : null;
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if(empty($data)) {
+            echo '<p>No stats yet, check back later.</p>';
+        } else {
+            foreach ($data as $data) {
+                echo '
+                <div class="st-body-list">
+                    <div class="flex fl-row">
+                        <div class="fl-4">
+                            <p><a href="#">'.$data->referLink.'</a></p>                                
+                        </div>
+                        <div class="fl-1">
+                            '.$data->pageviews.'
+                        </div>
+                    </div>
+                </div>
+            ';
+            }
+        }
+    }
 }
