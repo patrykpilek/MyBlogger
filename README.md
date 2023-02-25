@@ -183,4 +183,4 @@
 - [x] creating shortcode for blog template
 - [x] creating method to use blog template shortcodes
 - [x] updating template using editor
-- [ ] creating js function to restore template codes
+- [x] creating js function to restore template codes

@@ -156,6 +156,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
             editor.setTheme("ace/theme/eclipse");
             editor.session.setMode("ace/mode/xml");
             let button = document.querySelector("#saveBtn");
+            let revertBtn = document.querySelector("#revert");
 
             button.addEventListener("click", function(event) {
                 let formData = new FormData();
@@ -177,6 +178,30 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                     }
 
                     httpRequest.send(formData);
+                }
+            });
+
+            revertBtn.addEventListener("click", function(event) {
+                if(confirm("Are you sure, you want to restore your Template?")) {
+                    let formData = new FormData();
+
+                    formData.append("blogID", button.dataset.blog);
+
+                    let httpRequest = new XMLHttpRequest();
+
+                    if(httpRequest) {
+                        httpRequest.open('POST', 'http://localhost/backend/ajax/restoreTemplate.php', true);
+                        httpRequest.onreadystatechange = function () {
+                            if(this.readyState === 4 && this.status === 200) {
+                                if(this.responseText.length > 0) {
+                                    alert(this.responseText);
+                                }
+                                location.reload(true);
+                            }
+                        }
+
+                        httpRequest.send(formData);
+                    }
                 }
             });
         </script>
