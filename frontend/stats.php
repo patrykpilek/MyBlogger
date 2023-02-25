@@ -149,7 +149,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     <p>Pageviews today</p>
                                                 </div>
                                                 <div class="fl-1">
-                                                    {TODAY}
+                                                    <?php echo $statsObj->getStats($blog->blogID, 'today'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,7 +159,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     <p>Pageviews yesterday</p>
                                                 </div>
                                                 <div class="fl-1">
-                                                    {YESTERDAY}
+                                                    <?php echo $statsObj->getStats($blog->blogID, 'yesterday'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     <p>Pageviews last week</p>
                                                 </div>
                                                 <div class="fl-1">
-                                                    {WEEK}
+                                                    <?php echo $statsObj->getStats($blog->blogID, 'week'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     <p>Pageviews last month</p>
                                                 </div>
                                                 <div class="fl-1">
-                                                    {MONTH}
+                                                    <?php echo $statsObj->getStats($blog->blogID, 'month'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                                     <p>Pageviews all time history</p>
                                                 </div>
                                                 <div class="fl-1">
-                                                    {ALLTIME}
+                                                    <?php echo $statsObj->getStats($blog->blogID, 'alltime'); ?>
                                                 </div>
                                             </div>
                                         </div>
