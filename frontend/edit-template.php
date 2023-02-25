@@ -136,7 +136,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             <div class="edit-tamplate-head">
                                 <div class="lt-foo rightpad">
                                     <div class="bn-button">
-                                        <button id="saveBtn" class="btn-newp">Save Template</button>
+                                        <button id="saveBtn" data-blog="<?php echo $blog->blogID; ?>" class="btn-newp">Save Template</button>
                                         <button id="revert" class="cancel-btn">Revert to default</button>
                                     </div>
                                 </div>
@@ -155,6 +155,30 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
             let editor = ace.edit("editor");
             editor.setTheme("ace/theme/eclipse");
             editor.session.setMode("ace/mode/xml");
+            let button = document.querySelector("#saveBtn");
+
+            button.addEventListener("click", function(event) {
+                let formData = new FormData();
+
+                formData.append("blogID", this.dataset.blog);
+                formData.append("html", editor.getValue());
+
+                let httpRequest = new XMLHttpRequest();
+
+                if(httpRequest) {
+                    httpRequest.open('POST', 'http://localhost/backend/ajax/validateHtml.php', true);
+                    httpRequest.onreadystatechange = function () {
+                        if(this.readyState === 4 && this.status === 200) {
+                            if(this.responseText.length > 0) {
+                                alert(this.responseText);
+                            }
+                            location.reload(true);
+                        }
+                    }
+
+                    httpRequest.send(formData);
+                }
+            });
         </script>
     </div>
 </div>

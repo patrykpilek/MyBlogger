@@ -182,5 +182,5 @@
 - [x] displaying blog template codes in editor 
 - [x] creating shortcode for blog template
 - [x] creating method to use blog template shortcodes
-- [ ] updating template using editor
+- [x] updating template using editor
 - [ ] creating js function to restore template codes
