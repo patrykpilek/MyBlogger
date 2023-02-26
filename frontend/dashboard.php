@@ -63,10 +63,10 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             <h4><?php echo $blog->Title; ?></h4>
                         </div>
                         <span>
-					<a href="javascript:;" id="blogListBtn">
-						<i class="fas fa-sort-down"></i>
-					</a>
-				</span>
+                            <a href="javascript:;" id="blogListBtn">
+                                <i class="fas fa-sort-down"></i>
+                            </a>
+				        </span>
                         <div class="b-h-menu" id="blogListMenu">
                             <div class="bhm-head">
                                 <h6>Your blogs</h6>
@@ -267,6 +267,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                         <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/removePosts.js"></script>
                         <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/postPagination.js"></script>
                         <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/searchPosts.js"></script>
+                        <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/addNewBlog.js"></script>
                     </div>
                     <!--MAIN-Right-inner-DIV-ENDS-HERE-->
                 </div>
