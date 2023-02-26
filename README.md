@@ -202,6 +202,6 @@
 - [x] creating functions to create new blog
 - [x] creating blogList method
 - [x] creating signup page
-- [ ] validating and signing up new user and blog
+- [x] validating and signing up new user and blog
 - [ ] fixing blog errors
 - [ ] creating method to display views on posts
