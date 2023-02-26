@@ -4,13 +4,11 @@ class Stats
 {
     protected $pdo;
     protected $user;
-    protected $blog;
 
     public function __construct()
     {
         $this->pdo = Database::instance();
         $this->user = new Users();
-        $this->blog = new Blog();
     }
 
     public function getIP()

@@ -5,12 +5,14 @@ class Blog
     protected $db;
     protected $user;
     protected $layout;
+    protected $stats;
 
     public function __construct()
     {
         $this->db = Database::instance();
         $this->user = new Users();
         $this->layout = new Layout();
+        $this->stats = new Stats();
     }
 
     public function getBlog()
@@ -24,6 +26,14 @@ class Blog
                 $this->user->redirect('404');
             }
         }
+    }
+
+    public function addPageview()
+    {
+        $blog = $this->getBlog();
+        $post = $this->getPost();
+        $postID = (!$post) ? '0' : $post->postID;
+        $this->user->create('stats', ['blogID' => $blog->blogID, 'postID' => $postID, 'userIP' => $this->stats->getIP(), 'referLink' => $this->stats->getReferLink($blog->Domain), 'country' => $this->stats->getCountry($this->stats->getIP()), 'date' => date('Y-m-d H:i:s')]);
     }
 
     public function getTitle()
@@ -122,6 +132,8 @@ class Blog
                 </div>
             ';
         }
+
+        $this->addPageview();
     }
 
     public function getSearchResult($search) {
@@ -486,6 +498,8 @@ class Blog
                     $this->displayPostData();
                 }
             }
+
+            $this->addPageview();
         }
     }
 
