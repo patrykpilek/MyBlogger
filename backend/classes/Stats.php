@@ -13,6 +13,35 @@ class Stats
         $this->blog = new Blog();
     }
 
+    public function getIP()
+    {
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
+        return $ip;
+    }
+
+    public function getCountry($ip)
+    {
+        $geoPlugin_array = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip={$ip}"));
+        return $geoPlugin_array['geoplugin_countryName'];
+    }
+
+    public function getReferLink($subdomain)
+    {
+        if(isset($_SERVER['HTTP_REFERER'])) {
+            $url = parse_url($_SERVER['HTTP_REFERER']);
+            return "http://{$url['host']}";
+        } else {
+            return "http://{$subdomain}.localhost/";
+        }
+    }
+
     public function getStats($blogID, $type)
     {
         if($type === 'alltime') {

@@ -195,7 +195,7 @@
 - [x] creating method to display pages pageviews
 - [x] creating method to display referring links
 - [x] display stats by dates
-- [ ] creating method to user ip, counter, referlink
+- [x] creating method to user ip, counter, referlink
 - [ ] creating method to add pageview
 - [ ] creating js function to display blog list menu
 - [ ] validating blog form

@@ -22,6 +22,11 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
     } elseif (strpos($_SERVER['REQUEST_URI'], '?type=month')) {
         $type = 'month';
     }
+
+//    echo $statsObj->getIP();
+//    echo $statsObj->getCountry('31.54.245.89');
+//    echo $statsObj->getReferLink($blog->Domain);
+
 }
 ?>
 <!DOCTYPE html>
