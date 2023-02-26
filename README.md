@@ -204,4 +204,4 @@
 - [x] creating signup page
 - [x] validating and signing up new user and blog
 - [x] fixing blog errors
-- [ ] creating method to display views on posts
+- [x] creating method to display views on posts

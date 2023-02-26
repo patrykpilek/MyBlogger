@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         if ($blog) {
             if ($blog->role === "Admin") {
-                $content = '{"title": "' . $title . '", "caption": "Profile Gadget", "Facebook": "'.$fbUrl.'", "Twitter": "'.$twUrl.'", "Instagram": "'.$igUrl.'", "Youtube": "'.$ytUrl.'"}';
+                $content = '{"title": "' . $title . '", "caption": "Profile Gadget", "description": "'.$desc.'", "Facebook": "'.$fbUrl.'", "Twitter": "'.$twUrl.'", "Instagram": "'.$igUrl.'", "Youtube": "'.$ytUrl.'"}';
                 if (!$gadget) {
                     $userObj->create('gadgets', [
                         'blogID' => $blogID,

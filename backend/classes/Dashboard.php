@@ -124,11 +124,11 @@ class Dashboard
                                                 <a href="javascript:;">' . $post->fullName . '</a></span>
                                             </div>
                                             <div class="pl-cm-count">
-                                                <span>0</span>
+                                                <span>'.$this->getCommentCount($post->postID, $post->blogID).'</span>
                                                 <span><i class="fas fa-comment"></i></span>
                                             </div>
                                             <div class="pl-views-count">
-                                                <span>0</span>
+                                                <span>'.$this->getPostViews($post->postID, $post->blogID).'</span>
                                                 <span><i class="fas fa-eye"></i></span>
                                             </div>
                                             <div class="pl-post-date">
@@ -148,13 +148,33 @@ class Dashboard
                     <div class="posts-wrap-inner">
                         <div class="nopost flex">
                             <div>
-                                <p>There are no ' . $type . 's. </p><a href="{CREATE-POST-LINK}">Create a new ' . $type . '</a>
+                                <p>There are no ' . $type . 's. </p><a href="'.BASE_URL.'admin/blogID/'.$blogID.'/'.strtolower($type).'/new/">Create a new ' . $type . '</a>
                             </div>
                         </div>
                     </div>
                 </div>
             ';
         }
+    }
+
+    public function getPostViews($postID, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT count(`statsID`) AS `views` FROM `stats` WHERE `postID` = :postID AND `blogID` = :blogID");
+        $stmt->bindParam(":postID", $postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        return $data->views;
+    }
+
+    public function getCommentCount($postID, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT count(`commentID`) AS `views` FROM `comments` WHERE `postID` = :postID AND `blogID` = :blogID");
+        $stmt->bindParam(":postID", $postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        return $data->views;
     }
 
     public function getPostLabels($postID, $blogID)
