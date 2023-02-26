@@ -2,8 +2,9 @@
 include 'backend/init.php';
 
 if($userObj->isLoggedIn()) {
-    $blog = $userObj->get("blogs", ['CreatedBy' => $userObj->ID()]);
-    $userObj->redirect("admin/blogID/{$blog->blogID}/dashboard/");
+    if($blog = $blogObj->getUserBlog()) {
+        $userObj->redirect("admin/blogID/{$blog->bligID}/dashboard/");
+    }
 }
 
 if($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -77,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
                     </div>
                     <div class="sign-footer">
                         <button type="submit" name="login">login</button>
-                        <a type="button" class="cancel-btn" href="signup.php">Sign-up</a>
+                        <a type="button" class="cancel-btn" onclick="window.location.href = '<?php echo BASE_URL; ?>signup.php';" href="signup.php">Sign-up</a>
                     </div>
                 </form>
             </div>

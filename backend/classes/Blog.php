@@ -35,6 +35,19 @@ class Blog
         }
     }
 
+    public function getUserBlog()
+    {
+        $user = $this->user->userData();
+
+        if($user) {
+            $stmt = $this->db->prepare("SELECT * FROM `blogs` `B`, `blogsAuth` `A` LEFT JOIN `users` `U` ON `A`.`userID` = `U`.`userID` WHERE `B`.`blogID` = `A`.`blogID` AND `U`.`userID` = :userID");
+
+            $stmt->bindParam(":userID", $user->userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+    }
+
     public function addPageview()
     {
         $blog = $this->getBlog();

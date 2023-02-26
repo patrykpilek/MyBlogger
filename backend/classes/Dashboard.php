@@ -30,7 +30,7 @@ class Dashboard
         $blogID = $blog->blogID;
 
         if($blog) {
-            $stmt = $this->db->prepare("SELECT * FROM `blogs` `B`, `blogsAuth` `A` LEFT JOIN `users` `ON` `A`.`userID` = `U`.`userID` WHERE `B`.`blogID` = `A`.`blogID` AND `U`.`userID` = :userID");
+            $stmt = $this->db->prepare("SELECT * FROM `blogs` `B`, `blogsAuth` `A` LEFT JOIN `users` `U` ON `A`.`userID` = `U`.`userID` WHERE `B`.`blogID` = `A`.`blogID` AND `U`.`userID` = :userID");
 
             $stmt->bindParam(":userID", $blog->userID, PDO::PARAM_INT);
             $stmt->execute();
