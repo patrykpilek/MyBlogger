@@ -200,7 +200,7 @@
 - [x] creating js function to display blog list menu
 - [x] validating blog form
 - [x] creating functions to create new blog
-- [ ] creating blogList method
+- [x] creating blogList method
 - [ ] creating signup page
 - [ ] validating and signing up new user and blog
 - [ ] fixing blog errors

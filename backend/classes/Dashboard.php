@@ -24,6 +24,29 @@ class Dashboard
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getBlogList($blogID)
+    {
+        $blog = $this->blogAuth($blogID);
+        $blogID = $blog->blogID;
+
+        if($blog) {
+            $stmt = $this->db->prepare("SELECT * FROM `blogs` `B`, `blogsAuth` `A` LEFT JOIN `users` `ON` `A`.`userID` = `U`.`userID` WHERE `B`.`blogID` = `A`.`blogID` AND `U`.`userID` = :userID");
+
+            $stmt->bindParam(":userID", $blog->userID, PDO::PARAM_INT);
+            $stmt->execute();
+            $data =  $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($data as $blog) {
+                if($blogID === $blog->blogID) {
+                    echo '<div class="bhm-bl bhm-bl-active"><a href="'.BASE_URL.'admin/blogID/'.$blog->blogID.'.dashboard/">'.$blog->Title.'</a></div>';
+
+                } else {
+                    echo '<div class="bhm-bl"><a href="'.BASE_URL.'admin/blogID/'.$blog->blogID.'.dashboard/">'.$blog->Title.'</a></div>';
+                }
+            }
+        }
+    }
+
     public function searchPosts($search, $blogID)
     {
         $stmt = $this->db->prepare("SELECT * FROM `posts`, `users` WHERE `authorID` = `userID` AND `title` LIKE ? AND `blogID` = ?");

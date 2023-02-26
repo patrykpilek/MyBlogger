@@ -73,7 +73,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             </div>
                             <div class="bhm-body">
                                 <!-- BlogList -->
-                                {BLOGS LIST}
+                                <?php $dashObj->getBlogList($blogID); ?>
                             </div>
                             <div class="bhm-footer">
                                 <a href="javascript:;" id="newBlogBtn" data-blog="<?php echo $blog->blogID; ?>">New Blog...</a>

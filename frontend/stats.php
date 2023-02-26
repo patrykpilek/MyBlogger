@@ -82,25 +82,25 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             <h4><?php echo $blog->Title; ?></h4>
                         </div>
                         <span>
-					<a href="javascript:;" id="blogListBtn">
-						<i class="fas fa-sort-down"></i>
-					</a>
-				</span>
+                            <a href="javascript:;" id="blogListBtn">
+                                <i class="fas fa-sort-down"></i>
+                            </a>
+				        </span>
                         <div class="b-h-menu" id="blogListMenu">
                             <div class="bhm-head">
                                 <h6>Your blogs</h6>
                             </div>
                             <div class="bhm-body">
                                 <!-- BlogList -->
-                                {BLOGS LIST}
+                                <?php $dashObj->getBlogList($blogID); ?>
                             </div>
                             <div class="bhm-footer">
-                                <a href="javascript:;" id="newBlogBtn">New Blog...</a>
+                                <a href="javascript:;" id="newBlogBtn" data-blog="<?php echo $blog->blogID; ?>">New Blog...</a>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <a href="SUBDOMAIN" target="_blank">ViewBlog</a>
+                        <a href="http://<?php echo $blog->Domain; ?>.localhost/" target="_blank">ViewBlog</a>
                     </div>
                 </div>
                 <div class="header-b-right flex fl-4"></div>
@@ -290,6 +290,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                     </div>
                                 </div><!--STATS-BOX ENDS-->
                                 <!-- Js files -->
+                                <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/addNewBlog.js"></script>
                             </div><!--STATS ENDS HERE-->
                         </div><!--STATS INNER ENDS HERE-->
                     </div><!--STATS-WRAP-->
