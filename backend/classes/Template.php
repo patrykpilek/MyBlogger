@@ -73,7 +73,7 @@ class Template
     public function postPage()
     {
         ob_start();
-        $this->blog->postPage();
+        $this->blog->getPostPage();
         return ob_get_clean();
     }
 

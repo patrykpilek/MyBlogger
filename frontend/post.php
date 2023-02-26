@@ -3,6 +3,21 @@
 include '../backend/init.php';
 $post = $blogObj->getPost();
 
+if(!$blogObj->getBlog()) {
+    $userObj->redirect('login.php');
+}
+
+if($post) {
+    $type = "PAGE";
+} else {
+    $type = "POST";
+}
+
+if($blog->DefaultDemplate === 'false') {
+    $templateObj->renderTemplate($blog->Template, $type);
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html>

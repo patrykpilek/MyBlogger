@@ -79,7 +79,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 <div>
                                     <button id="publish" data-blog="<?php echo $blog->blogID;?>">Publish</button>
                                     <button id="saveBtn">Save</button>
-                                    <button>Close</button>
+                                    <button onclick="window.location.href='admin/blogID/'.$blog_>blogID.'/dashboard/';">Close</button>
                                 </div>
                             </div>
                         </div>
