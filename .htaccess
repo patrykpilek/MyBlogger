@@ -6,6 +6,7 @@ RewriteRule ^admin/blogID/([0-9]+)/dashboard/pending/comments/?$ frontend/pendin
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/settings/?$ frontend/settings.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/layout/?$ frontend/layout.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/template/edit/?$ frontend/edit-template.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/stats/?$ frontend/stats.php?blogID=$1
 
 RewriteRule ^admin/blogID/([0-9]+)/post/new/?$ frontend/new-post.php?blogID=$1
 RewriteRule ^admin/blogID/([0-9]+)/page/new/?$ frontend/new-page.php?blogID=$1

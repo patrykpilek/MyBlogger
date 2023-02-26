@@ -62,20 +62,20 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                             <h4><?php echo $blog->Title; ?></h4>
                         </div>
                         <span>
-					<a href="javascript:;" id="blogListBtn">
-						<i class="fas fa-sort-down"></i>
-					</a>
-				</span>
+                            <a href="javascript:;" id="blogListBtn">
+                                <i class="fas fa-sort-down"></i>
+                            </a>
+				        </span>
                         <div class="b-h-menu" id="blogListMenu">
                             <div class="bhm-head">
                                 <h6>Your blogs</h6>
                             </div>
                             <div class="bhm-body">
                                 <!-- BlogList -->
-                                {BLOGS LIST}
+                                <?php $dashObj->getBlogList($blogID); ?>
                             </div>
                             <div class="bhm-footer">
-                                <a href="javascript:;" id="newBlogBtn">New Blog...</a>
+                                <a href="javascript:;" id="newBlogBtn" data-blog="<?php echo $blog->blogID; ?>">New Blog...</a>
                             </div>
                         </div>
                     </div>
@@ -222,6 +222,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                         <!-- Js files -->
                         <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/commentsPagination.js"></script>
                         <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/removeComments.js"></script>
+                        <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/addNewBlog.js"></script>
                     </div>
                     <!--MAIN-Right-inner-DIV-ENDS-HERE-->
                 </div>

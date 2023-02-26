@@ -24,6 +24,29 @@ class Dashboard
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getBlogList($blogID)
+    {
+        $blog = $this->blogAuth($blogID);
+        $blogID = $blog->blogID;
+
+        if($blog) {
+            $stmt = $this->db->prepare("SELECT * FROM `blogs` `B`, `blogsAuth` `A` LEFT JOIN `users` `U` ON `A`.`userID` = `U`.`userID` WHERE `B`.`blogID` = `A`.`blogID` AND `U`.`userID` = :userID");
+
+            $stmt->bindParam(":userID", $blog->userID, PDO::PARAM_INT);
+            $stmt->execute();
+            $data =  $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($data as $blog) {
+                if($blogID === $blog->blogID) {
+                    echo '<div class="bhm-bl bhm-bl-active"><a href="'.BASE_URL.'admin/blogID/'.$blog->blogID.'.dashboard/">'.$blog->Title.'</a></div>';
+
+                } else {
+                    echo '<div class="bhm-bl"><a href="'.BASE_URL.'admin/blogID/'.$blog->blogID.'.dashboard/">'.$blog->Title.'</a></div>';
+                }
+            }
+        }
+    }
+
     public function searchPosts($search, $blogID)
     {
         $stmt = $this->db->prepare("SELECT * FROM `posts`, `users` WHERE `authorID` = `userID` AND `title` LIKE ? AND `blogID` = ?");
@@ -101,11 +124,11 @@ class Dashboard
                                                 <a href="javascript:;">' . $post->fullName . '</a></span>
                                             </div>
                                             <div class="pl-cm-count">
-                                                <span>0</span>
+                                                <span>'.$this->getCommentCount($post->postID, $post->blogID).'</span>
                                                 <span><i class="fas fa-comment"></i></span>
                                             </div>
                                             <div class="pl-views-count">
-                                                <span>0</span>
+                                                <span>'.$this->getPostViews($post->postID, $post->blogID).'</span>
                                                 <span><i class="fas fa-eye"></i></span>
                                             </div>
                                             <div class="pl-post-date">
@@ -125,13 +148,33 @@ class Dashboard
                     <div class="posts-wrap-inner">
                         <div class="nopost flex">
                             <div>
-                                <p>There are no ' . $type . 's. </p><a href="{CREATE-POST-LINK}">Create a new ' . $type . '</a>
+                                <p>There are no ' . $type . 's. </p><a href="'.BASE_URL.'admin/blogID/'.$blogID.'/'.strtolower($type).'/new/">Create a new ' . $type . '</a>
                             </div>
                         </div>
                     </div>
                 </div>
             ';
         }
+    }
+
+    public function getPostViews($postID, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT count(`statsID`) AS `views` FROM `stats` WHERE `postID` = :postID AND `blogID` = :blogID");
+        $stmt->bindParam(":postID", $postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        return $data->views;
+    }
+
+    public function getCommentCount($postID, $blogID)
+    {
+        $stmt = $this->db->prepare("SELECT count(`commentID`) AS `views` FROM `comments` WHERE `postID` = :postID AND `blogID` = :blogID");
+        $stmt->bindParam(":postID", $postID, PDO::PARAM_INT);
+        $stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        return $data->views;
     }
 
     public function getPostLabels($postID, $blogID)

@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
 
         if($blog) {
             if($blog->role === 'Admin') {
-                $html= file_get_contents('../../index.php', FALSE, NULL, 219);
+                $html= file_get_contents('../../index.php', FALSE, NULL, 231);
                 $html = $templateObj->addTemplateTags($html);
                 $html = htmlentities($html);
                 $userObj->update('blogs', ['Template' => $html], ['blogID' => $blog->blogID]);

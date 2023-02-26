@@ -184,3 +184,24 @@
 - [x] creating method to use blog template shortcodes
 - [x] updating template using editor
 - [x] creating js function to restore template codes
+
+### Creating Page Views Stats Analytics
+
+- [x] creating stats page
+- [x] creating stats table for page views
+- [x] creating stats method for page views
+- [x] creating method to display page views by country
+- [x] creating method to display posts page views
+- [x] creating method to display pages pageviews
+- [x] creating method to display referring links
+- [x] display stats by dates
+- [x] creating method to user ip, counter, referlink
+- [x] creating method to add pageview
+- [x] creating js function to display blog list menu
+- [x] validating blog form
+- [x] creating functions to create new blog
+- [x] creating blogList method
+- [x] creating signup page
+- [x] validating and signing up new user and blog
+- [x] fixing blog errors
+- [x] creating method to display views on posts

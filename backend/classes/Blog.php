@@ -5,12 +5,21 @@ class Blog
     protected $db;
     protected $user;
     protected $layout;
+    protected $stats;
 
     public function __construct()
     {
         $this->db = Database::instance();
         $this->user = new Users();
         $this->layout = new Layout();
+        $this->stats = new Stats();
+    }
+
+    public function blogExist($domain) {
+        $stmt = $this->db->prepare("SELECT * FROM `blogs` WHERE `Domain` = :domain");
+        $stmt->bindParam(":domain", $domain, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
     public function getBlog()
@@ -24,6 +33,27 @@ class Blog
                 $this->user->redirect('404');
             }
         }
+    }
+
+    public function getUserBlog()
+    {
+        $user = $this->user->userData();
+
+        if($user) {
+            $stmt = $this->db->prepare("SELECT * FROM `blogs` `B`, `blogsAuth` `A` LEFT JOIN `users` `U` ON `A`.`userID` = `U`.`userID` WHERE `B`.`blogID` = `A`.`blogID` AND `U`.`userID` = :userID");
+
+            $stmt->bindParam(":userID", $user->userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+    }
+
+    public function addPageview()
+    {
+        $blog = $this->getBlog();
+        $post = $this->getPost();
+        $postID = (!$post) ? '0' : $post->postID;
+        $this->user->create('stats', ['blogID' => $blog->blogID, 'postID' => $postID, 'userIP' => $this->stats->getIP(), 'referLink' => $this->stats->getReferLink($blog->Domain), 'country' => $this->stats->getCountry($this->stats->getIP()), 'date' => date('Y-m-d H:i:s')]);
     }
 
     public function getTitle()
@@ -122,6 +152,8 @@ class Blog
                 </div>
             ';
         }
+
+        $this->addPageview();
     }
 
     public function getSearchResult($search) {
@@ -486,6 +518,8 @@ class Blog
                     $this->displayPostData();
                 }
             }
+
+            $this->addPageview();
         }
     }
 
@@ -569,5 +603,16 @@ class Blog
             }
         }
         return $slug;
+    }
+
+    public function createDefaultGadgets($blogID) {
+        $blog = $this->user->get('blogs', ['blogID' => $blogID]);
+        $header = '{"title": "'.$blog->Title.'", "caption": "Header Gadget"}';
+        $nav = '{"title": "Nav", "caption": "Header Gadget", "link1": "http://'.$blog->Domain.'.localhost", "name1": "Home", "total": "1"}';
+        $search = '{"title": "Search", "caption": "Header Gadget"}';
+
+        $this->user->create('gadgets', ['blogID' => $blog->blogID, 'type' => 'header', 'content' => $header, 'position' => 1, 'displayOn' => 'header', 'html' => '']);
+        $this->user->create('gadgets', ['blogID' => $blog->blogID, 'type' => 'nav', 'content' => $nav, 'position' => 2, 'displayOn' => 'nav', 'html' => '']);
+        $this->user->create('gadgets', ['blogID' => $blog->blogID, 'type' => 'search', 'content' => $search, 'position' => 1, 'displayOn' => 'sideBar', 'html' => '']);
     }
 }

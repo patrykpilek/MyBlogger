@@ -18,6 +18,7 @@ $dashObj = new Dashboard();
 $blogObj = new Blog();
 $layoutObj = new Layout();
 $templateObj = new Template();
+$statsObj = new Stats();
 
 if($blog = $blogObj->getBlog())
 {
