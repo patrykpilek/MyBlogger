@@ -8,6 +8,20 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
     if (!$blog) {
         header('Location: 404');
     }
+
+    $type = 'alltime';
+
+    if(strpos($_SERVER['REQUEST_URI'], '?type=all')) {
+        $type = 'alltime';
+    } elseif (strpos($_SERVER['REQUEST_URI'], '?type=now')) {
+        $type = 'today';
+    } elseif (strpos($_SERVER['REQUEST_URI'], '?type=day')) {
+        $type = 'yesterday';
+    } elseif (strpos($_SERVER['REQUEST_URI'], '?type=week')) {
+        $type = 'week';
+    } elseif (strpos($_SERVER['REQUEST_URI'], '?type=month')) {
+        $type = 'month';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -132,11 +146,11 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                         <div class="stats-inner">
                             <div class="stats-header flex">
                                 <div class="stats-header-buttons">
-                                    <button>Now</button>
-                                    <button>Day</button>
-                                    <button>Week</button>
-                                    <button>Month</button>
-                                    <button>All time</button>
+                                    <button onclick="window.location ='?type=now';">Now</button>
+                                    <button onclick="window.location ='?type=day';">Day</button>
+                                    <button onclick="window.location ='?type=week';">Week</button>
+                                    <button onclick="window.location ='?type=month';">Month</button>
+                                    <button onclick="window.location ='?type=all';">All time</button>
                                 </div>
                             </div>
                             <div class="stats">
@@ -210,7 +224,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                         </div>
                                     </div>
                                     <div class="stat-table-body fl-4 flex fl-c">
-                                        <?php $statsObj->getPosts($blog->blogID, 'alltime'); ?>
+                                        <?php $statsObj->getPosts($blog->blogID, $type); ?>
                                     </div>
                                 </div><!--STATS-BOX ENDS-->
                                 <div class="stats-box fl-c">
@@ -228,7 +242,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                         </div>
                                     </div>
                                     <div class="stat-table-body fl-4 flex fl-c">
-                                        <?php $statsObj->getReferringSites($blog->blogID, 'alltime'); ?>
+                                        <?php $statsObj->getReferringSites($blog->blogID, $type); ?>
                                     </div>
                                 </div><!--STATS-BOX ENDS-->
                                 <div class="stats-box fl-c">
@@ -246,7 +260,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                         </div>
                                     </div>
                                     <div class="stat-table-body fl-4 flex fl-c">
-                                        <?php $statsObj->getAudience($blog->blogID, 'alltime'); ?>
+                                        <?php $statsObj->getAudience($blog->blogID, $type); ?>
                                     </div>
                                 </div><!--STATS-BOX ENDS-->
 
@@ -265,7 +279,7 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                         </div>
                                     </div>
                                     <div class="stat-table-body fl-4 flex fl-c">
-                                        <?php $statsObj->getPages($blog->blogID, 'alltime'); ?>
+                                        <?php $statsObj->getPages($blog->blogID, $type); ?>
                                     </div>
                                 </div><!--STATS-BOX ENDS-->
                                 <!-- Js files -->
