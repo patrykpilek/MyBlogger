@@ -21,6 +21,8 @@ if (isset($_GET['blogID']) && !empty($_GET['blogID'])) {
         $type = 'week';
     } elseif (strpos($_SERVER['REQUEST_URI'], '?type=month')) {
         $type = 'month';
+    } else {
+        $type = 'alltime';
     }
 
 //    echo $statsObj->getIP();

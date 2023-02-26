@@ -76,7 +76,7 @@ if(isset($_GET['blogID']) && !empty($_GET['blogID'])) {
                                 {BLOGS LIST}
                             </div>
                             <div class="bhm-footer">
-                                <a href="javascript:;" id="newBlogBtn">New Blog...</a>
+                                <a href="javascript:;" id="newBlogBtn" data-blog="<?php echo $blog->blogID; ?>">New Blog...</a>
                             </div>
                         </div>
                     </div>

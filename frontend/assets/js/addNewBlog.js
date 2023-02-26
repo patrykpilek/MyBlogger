@@ -69,6 +69,7 @@ function createBlog(title, url) {
 
     formData.append('title', title);
     formData.append('url', url);
+    formData.append('blogID', newBlogBtn.dataset.blog);
 
     let httpRequest = new XMLHttpRequest();
 
@@ -79,7 +80,7 @@ function createBlog(title, url) {
                 if(isNaN(this.responseText)) {
                     document.querySelector('#error').innerHTML = this.responseText;
                 } else {
-                    window.location.href = 'http://localhost/admin/blogID' + this.responseText + '/dashboard/';
+                    window.location.href = 'http://localhost/admin/blogID/' + this.responseText + '/dashboard/';
                 }
             }
         }

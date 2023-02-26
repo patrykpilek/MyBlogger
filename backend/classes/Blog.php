@@ -15,6 +15,13 @@ class Blog
         $this->stats = new Stats();
     }
 
+    public function blogExist($domain) {
+        $stmt = $this->db->prepare("SELECT * FROM `blogs` WHERE `Domain` = :domain");
+        $stmt->bindParam(":domain", $domain, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
     public function getBlog()
     {
         if (preg_match('/^([a-zA-Z0-9]+)\.localhost/', $_SERVER['HTTP_HOST'], $match)) {
@@ -583,5 +590,16 @@ class Blog
             }
         }
         return $slug;
+    }
+
+    public function createDefaultGadgets($blogID) {
+        $blog = $this->user->get('blogs', ['blogID' => $blogID]);
+        $header = '{"title": "'.$blog->Title.'", "caption": "Header Gadget"}';
+        $nav = '{"title": "Nav", "caption": "Header Gadget", "link1": "http://'.$blog->Domain.'.localhost", "name1": "Home", "total": "1"}';
+        $search = '{"title": "Search", "caption": "Header Gadget"}';
+
+        $this->user->create('gadgets', ['blogID' => $blog->blogID, 'type' => 'header', 'content' => $header, 'position' => 1, 'displayOn' => 'header', 'html' => '']);
+        $this->user->create('gadgets', ['blogID' => $blog->blogID, 'type' => 'nav', 'content' => $nav, 'position' => 2, 'displayOn' => 'nav', 'html' => '']);
+        $this->user->create('gadgets', ['blogID' => $blog->blogID, 'type' => 'search', 'content' => $search, 'position' => 1, 'displayOn' => 'sideBar', 'html' => '']);
     }
 }

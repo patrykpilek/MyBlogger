@@ -199,7 +199,7 @@
 - [x] creating method to add pageview
 - [x] creating js function to display blog list menu
 - [x] validating blog form
-- [ ] creating functions to create new blog
+- [x] creating functions to create new blog
 - [ ] creating blogList method
 - [ ] creating signup page
 - [ ] validating and signing up new user and blog
